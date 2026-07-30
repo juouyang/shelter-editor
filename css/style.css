@@ -91,9 +91,10 @@ a.tab:focus {
   border-left-width: 0;
 }
 
-.dwellers {
+.dwellers,
+.Others {
   height: 100%;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .dweller_info,
