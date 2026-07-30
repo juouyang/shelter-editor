@@ -27,7 +27,7 @@ Copyright (C) 2017
   <meta name="description"
     content="Web app to edit Fallout Shelter save games. You can change dwellers SPECIAL, other stats and vault's resources.">
   <link rel="stylesheet" href="css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/style.css?v=20260730-2">
+  <link rel="stylesheet" href="css/style.css?v=20260730-4">
 </head>
 
 <body ng-app="shelter" ng-controller="dwellerController">
@@ -181,6 +181,13 @@ Copyright (C) 2017
             <div class="col-sm-4">
               <label>Unlock Themes</label><br />
               <button type="button" class="btn btn-primary" ng-click="unlockthemes()">Activate</button>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-sm-4">
+              <label>Delete All Vault Mr. Handies</label><br />
+              <button type="button" class="btn btn-danger" ng-click="deleteAllVaultMrHandies()">Activate</button>
             </div>
           </div>
 
@@ -353,14 +360,9 @@ Copyright (C) 2017
           </div>
 
           <div class="form-group row" ng-show="isMrHandy(other)">
-            <div class="col-sm-6">
+            <div class="col-sm-12">
               <button type="button" class="btn btn-danger" ng-click="deleteMrHandy()"
                 ng-disabled="isMrHandyInWasteland(other)">Delete This Mr. Handy</button>
-            </div>
-            <div class="col-sm-6">
-              <button type="button" class="btn btn-danger" ng-click="deleteAllVaultMrHandies()">
-                Delete All Vault Mr. Handies
-              </button>
             </div>
           </div>
 
@@ -371,29 +373,6 @@ Copyright (C) 2017
             Deletion changes the loaded save in memory. Use Save to download the modified file.
           </p>
         </form>
-      </div>
-    </div>
-
-    <div class="row box" ng-show="section == 'extras'">
-      <div class="col-sm-12 vault_info">
-
-        <label title="Savefile names can only be 'Vault1.sav', 'Vault2.sav' or 'Vault3.sav'">Savefile Name: </label>
-        <input type="text" name="presetSaveName" id="presetSaveName" placeholder="Vault1.sav" value="Vault2.sav"><br>
-
-        <br>
-        <center><b><a href="SaveDecrypt.html">Fallout Shelter Save Decryptor</a></b></center>
-
-        <hr />
-
-        <br>
-        <center><b><a href="https://github.com/rakion99/shelter-editor">View the Source Code</a></b></center>
-        <br>
-        <center><label>Updated by <a href="https://github.com/rakion99/">rakion99</a> &amp; <a
-              href="https://github.com/TheCreatorJames/">TheCreatorJames</a></label></center>
-        <br>
-        <center><label>Project Originally by <a
-              href="https://github.com/MobileSam/shelter-editor">MobileSam</a>.</label></center>
-
       </div>
     </div>
 
@@ -538,8 +517,6 @@ Copyright (C) 2017
         ng-class="{ 'active': section == 'wastelandD' }">WastelandD <small>({{ wastelandTeams.length }})</small></a>
       <a href="" ng-hide="!wastelandTeams2.length" class="tab" ng-click="section = 'wastelandH'"
         ng-class="{ 'active': section == 'wastelandH' }">WastelandH <small>({{ wastelandTeams2.length }})</small></a>
-      <a href="" ng-hide="!save.dwellers" class="tab" ng-click="section = 'extras'"
-        ng-class="{ 'active': section == 'extras' }">Extras</a>
     </div>
 
     <div class="row save">
@@ -603,7 +580,7 @@ Copyright (C) 2017
   <script src="js/json2.min.js"></script>
   <script src="js/aes.js"></script>
   <script src="js/FileSaver.js"></script>
-  <script src="js/shelter.js?v=20260730-2"></script>
+  <script src="js/shelter.js?v=20260730-4"></script>
   <script src="js/jscolor.js"></script>
 </body>
 

@@ -23,6 +23,8 @@ body > .container {
   height: 30px;
   position: absolute;
   top: -5px;
+  width: 100%;
+  white-space: nowrap;
 }
 
 .tab {
