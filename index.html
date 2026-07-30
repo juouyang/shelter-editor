@@ -206,7 +206,7 @@ Copyright (C) 2017
 
     <div class="row box" ng-show="section == 'dwellers'">
       <div class="dwellers list-group col-sm-4">
-        <a ng-repeat="d in save.dwellers.dwellers" ng-click="editDweller(d);" ng-class="{ 'active': dweller == d }"
+        <a ng-repeat="d in save.dwellers.dwellers | orderBy:['name', 'lastName']" ng-click="editDweller(d);" ng-class="{ 'active': dweller == d }"
           class="list-group-item">{{ d.name }} {{ d.lastName }}</a>
       </div>
       <div class="dweller_info col-sm-8" ng-hide="!dweller.name">
