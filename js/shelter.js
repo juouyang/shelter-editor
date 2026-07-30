@@ -480,6 +480,27 @@ app.controller('dwellerController', function ($scope) {
     alert("Healed All Dwellers!");
   };
 
+  $scope.maxAllDwellersHealth = function () {
+    var dwellers = $scope.save.dwellers.dwellers;
+
+    for (var dwellerIndex = 0; dwellerIndex < dwellers.length; dwellerIndex++) {
+      dwellers[dwellerIndex].health.healthValue = 644;
+      dwellers[dwellerIndex].health.maxHealth = 644;
+    }
+
+    alert("Set all dwellers' health and max health to 644.");
+  };
+
+  $scope.maxAllDwellersLevel = function () {
+    var dwellers = $scope.save.dwellers.dwellers;
+
+    for (var dwellerIndex = 0; dwellerIndex < dwellers.length; dwellerIndex++) {
+      dwellers[dwellerIndex].experience.currentLevel = 50;
+    }
+
+    alert("Set all dwellers' level to 50.");
+  };
+
   $scope.maxSpecialAll = function () {
     var sum2 = Object.keys($scope.save.dwellers.dwellers).length;
     for (i = 0; i < sum2; i++)
