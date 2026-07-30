@@ -267,6 +267,11 @@ a.list-group-item, a.list-group-item, button.list-group-item, button.list-group-
 
   .tabs {
     top: 2px;
+    width: 100%;
+    height: 70px;
+    white-space: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
   }
 
   .tab:first-child {

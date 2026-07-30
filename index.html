@@ -351,6 +351,25 @@ Copyright (C) 2017
                 ng-options="o.v as o.n for o in [{ n: 'Not Death', v: false }, { n: 'Death', v: true }]"></select>
             </div>
           </div>
+
+          <div class="form-group row" ng-show="isMrHandy(other)">
+            <div class="col-sm-6">
+              <button type="button" class="btn btn-danger" ng-click="deleteMrHandy()"
+                ng-disabled="isMrHandyInWasteland(other)">Delete This Mr. Handy</button>
+            </div>
+            <div class="col-sm-6">
+              <button type="button" class="btn btn-danger" ng-click="deleteAllVaultMrHandies()">
+                Delete All Vault Mr. Handies
+              </button>
+            </div>
+          </div>
+
+          <p class="help-block" ng-show="isMrHandyInWasteland(other)">
+            This Mr. Handy is assigned to a wasteland team. Return it to the vault before deleting it.
+          </p>
+          <p class="help-block" ng-show="isMrHandy(other)">
+            Deletion changes the loaded save in memory. Use Save to download the modified file.
+          </p>
         </form>
       </div>
     </div>

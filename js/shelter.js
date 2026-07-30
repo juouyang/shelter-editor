@@ -348,6 +348,123 @@ app.controller('dwellerController', function ($scope) {
     _otherName = $scope.other.name;
   };
 
+  function isMrHandy(other) {
+    return other && other.characterType === 2;
+  }
+
+  function isActorInWasteland(actorId) {
+    var wasteland = $scope.save.vault.wasteland || {};
+    var teams = wasteland.teams || [];
+
+    for (var teamIndex = 0; teamIndex < teams.length; teamIndex++) {
+      if ((teams[teamIndex].actors || []).indexOf(actorId) !== -1) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+  function deleteMrHandyIds(actorIds) {
+    var actors = $scope.save.dwellers.actors;
+    var rooms = $scope.save.vault.rooms || [];
+
+    for (var roomIndex = 0; roomIndex < rooms.length; roomIndex++) {
+      var mrHandyList = rooms[roomIndex].mrHandyList;
+
+      if (!Array.isArray(mrHandyList)) {
+        continue;
+      }
+
+      for (var handyIndex = mrHandyList.length - 1; handyIndex >= 0; handyIndex--) {
+        if (actorIds.indexOf(mrHandyList[handyIndex]) !== -1) {
+          mrHandyList.splice(handyIndex, 1);
+        }
+      }
+    }
+
+    for (var actorIndex = actors.length - 1; actorIndex >= 0; actorIndex--) {
+      if (actorIds.indexOf(actors[actorIndex].serializeId) !== -1) {
+        actors.splice(actorIndex, 1);
+      }
+    }
+  }
+
+  $scope.isMrHandy = isMrHandy;
+
+  $scope.isMrHandyInWasteland = function (other) {
+    return isMrHandy(other) && isActorInWasteland(other.serializeId);
+  };
+
+  $scope.deleteMrHandy = function () {
+    if (!isMrHandy($scope.other)) {
+      return;
+    }
+
+    if (isActorInWasteland($scope.other.serializeId)) {
+      alert("This Mr. Handy is assigned to a wasteland team. Return it to the vault before deleting it.");
+      return;
+    }
+
+    if (!confirm("Delete this Mr. Handy permanently from the loaded save?")) {
+      return;
+    }
+
+    deleteMrHandyIds([$scope.other.serializeId]);
+    $scope.other = {};
+    _otherName = null;
+    alert("Deleted Mr. Handy from the loaded save.");
+  };
+
+  $scope.deleteAllVaultMrHandies = function () {
+    var actors = $scope.save.dwellers.actors;
+    var actorIds = [];
+    var skipped = 0;
+
+    for (var actorIndex = 0; actorIndex < actors.length; actorIndex++) {
+      if (!isMrHandy(actors[actorIndex])) {
+        continue;
+      }
+
+      if (isActorInWasteland(actors[actorIndex].serializeId)) {
+        skipped++;
+      }
+      else {
+        actorIds.push(actors[actorIndex].serializeId);
+      }
+    }
+
+    if (!actorIds.length) {
+      alert(skipped
+        ? "All remaining Mr. Handies are assigned to wasteland teams. Return them to the vault before deleting them."
+        : "There are no Mr. Handies to delete.");
+      return;
+    }
+
+    var message = "Delete " + actorIds.length + " Mr. Handies permanently from the loaded save?";
+    if (skipped) {
+      message += " " + skipped + " assigned to wasteland teams will be skipped.";
+    }
+
+    if (!confirm(message)) {
+      return;
+    }
+
+    var selectedActorId = $scope.other.serializeId;
+    deleteMrHandyIds(actorIds);
+
+    if (actorIds.indexOf(selectedActorId) !== -1) {
+      $scope.other = {};
+      _otherName = null;
+    }
+
+    message = "Deleted " + actorIds.length + " Mr. Handies from the loaded save.";
+    if (skipped) {
+      message += " Skipped " + skipped + " assigned to wasteland teams.";
+    }
+    alert(message);
+  };
+
   $scope.maxhappinessAll = function () {
     var sum2 = Object.keys($scope.save.dwellers.dwellers).length;
     for (i = 0; i < sum2; i++)
