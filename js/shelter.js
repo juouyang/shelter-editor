@@ -175,6 +175,12 @@ app.controller('dwellerController', function ($scope, $http) {
   $scope.fileName = '';
   $scope.dweller = {};
   $scope.statsName = ['Unknown', 'S.', 'P.', 'E.', 'C.', 'I.', 'A.', 'L.'];
+  $scope.dwellerFilters = {
+    outfitId: '',
+    weaponId: '',
+    outfits: [],
+    weapons: []
+  };
   $scope.other = {};
   $scope.petOwner = {};
   $scope.petItem = {};
@@ -282,6 +288,9 @@ app.controller('dwellerController', function ($scope, $http) {
     set: function (val) {
       _save = val;
       configurePetEditor();
+      $scope.dwellerFilters.outfitId = '';
+      $scope.dwellerFilters.weaponId = '';
+      refreshDwellerEquipmentFilters();
       extractCount();
       extractTeams();
     }
@@ -364,6 +373,90 @@ app.controller('dwellerController', function ($scope, $http) {
     _skinColor = colorConverter($scope.dweller.skinColor, true);
     _hairColor = colorConverter($scope.dweller.hairColor, true);
     setTimeout(colorHack, 200);
+  };
+
+  function equipmentId(dweller, fieldName) {
+    var equipment = dweller && dweller[fieldName];
+    return equipment && equipment.id ? equipment.id : '';
+  }
+
+  function buildEquippedOptions(dwellers, fieldName, names, emptyName) {
+    var counts = {};
+    var options = [];
+
+    for (var dwellerIndex = 0; dwellerIndex < dwellers.length; dwellerIndex++) {
+      var id = equipmentId(dwellers[dwellerIndex], fieldName);
+      counts[id] = (counts[id] || 0) + 1;
+    }
+
+    Object.keys(counts).forEach(function (id) {
+      var name = names[id] || (id ? id : emptyName);
+      options.push({
+        id: id,
+        name: name,
+        count: counts[id],
+        label: name + " (" + counts[id] + ")"
+      });
+    });
+
+    options.sort(function (left, right) {
+      return left.name.localeCompare(right.name);
+    });
+
+    return options;
+  }
+
+  function optionExists(options, id) {
+    for (var optionIndex = 0; optionIndex < options.length; optionIndex++) {
+      if (options[optionIndex].id === id) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+  function refreshDwellerEquipmentFilters() {
+    var dwellers = _save && _save.dwellers && _save.dwellers.dwellers
+      ? _save.dwellers.dwellers
+      : [];
+
+    $scope.dwellerFilters.outfits = buildEquippedOptions(
+      dwellers,
+      "equipedOutfit",
+      $scope.dwelleroutfitslist || {},
+      "No Outfit"
+    );
+    $scope.dwellerFilters.weapons = buildEquippedOptions(
+      dwellers,
+      "equipedWeapon",
+      $scope.dwellerweaponlist || {},
+      "No Weapon"
+    );
+
+    if ($scope.dwellerFilters.outfitId
+      && !optionExists($scope.dwellerFilters.outfits, $scope.dwellerFilters.outfitId)) {
+      $scope.dwellerFilters.outfitId = '';
+    }
+
+    if ($scope.dwellerFilters.weaponId
+      && !optionExists($scope.dwellerFilters.weapons, $scope.dwellerFilters.weaponId)) {
+      $scope.dwellerFilters.weaponId = '';
+    }
+  }
+
+  $scope.refreshDwellerEquipmentFilters = refreshDwellerEquipmentFilters;
+
+  $scope.filterDwellerByEquipment = function (dweller) {
+    return (!$scope.dwellerFilters.outfitId
+      || equipmentId(dweller, "equipedOutfit") === $scope.dwellerFilters.outfitId)
+      && (!$scope.dwellerFilters.weaponId
+        || equipmentId(dweller, "equipedWeapon") === $scope.dwellerFilters.weaponId);
+  };
+
+  $scope.clearDwellerEquipmentFilters = function () {
+    $scope.dwellerFilters.outfitId = '';
+    $scope.dwellerFilters.weaponId = '';
   };
 
   $scope.editOthers = function (other) {

@@ -27,7 +27,7 @@ Copyright (C) 2017
   <meta name="description"
     content="Web app to edit Fallout Shelter save games. You can change dwellers SPECIAL, other stats and vault's resources.">
   <link rel="stylesheet" href="css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/style.css?v=20260730-4">
+  <link rel="stylesheet" href="css/style.css?v=20260731-3">
 </head>
 
 <body ng-app="shelter" ng-controller="dwellerController">
@@ -217,9 +217,40 @@ Copyright (C) 2017
 
 
     <div class="row box" ng-show="section == 'dwellers'">
-      <div class="dwellers list-group col-sm-4">
-        <a ng-repeat="d in save.dwellers.dwellers | orderBy:['name', 'lastName']" ng-click="editDweller(d);" ng-class="{ 'active': dweller == d }"
-          class="list-group-item">{{ d.name }} {{ d.lastName }}</a>
+      <div class="dwellers col-sm-4">
+        <div class="dweller_filters" ng-show="fileName">
+          <div class="form-group">
+            <label for="dweller-outfit-filter">Equipped Outfit</label>
+            <select id="dweller-outfit-filter" class="form-control" ng-model="dwellerFilters.outfitId"
+              ng-options="option.id as option.label for option in dwellerFilters.outfits">
+              <option value="">All equipped outfits</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="dweller-weapon-filter">Equipped Weapon</label>
+            <select id="dweller-weapon-filter" class="form-control" ng-model="dwellerFilters.weaponId"
+              ng-options="option.id as option.label for option in dwellerFilters.weapons">
+              <option value="">All equipped weapons</option>
+            </select>
+          </div>
+
+          <div class="dweller_filter_summary">
+            Showing {{ filteredDwellers.length || 0 }} of {{ save.dwellers.dwellers.length || 0 }}
+            <a href="" ng-click="clearDwellerEquipmentFilters()"
+              ng-show="dwellerFilters.outfitId || dwellerFilters.weaponId">Clear filters</a>
+          </div>
+        </div>
+
+        <div class="dweller_list list-group">
+          <a
+            ng-repeat="d in filteredDwellers = (save.dwellers.dwellers | filter:filterDwellerByEquipment | orderBy:['name', 'lastName'])"
+            ng-click="editDweller(d);" ng-class="{ 'active': dweller == d }"
+            class="list-group-item">{{ d.name }} {{ d.lastName }}</a>
+          <div class="dweller_filter_empty" ng-show="fileName && filteredDwellers.length === 0">
+            No dwellers match both filters.
+          </div>
+        </div>
       </div>
       <div class="dweller_info col-sm-8" ng-hide="!dweller.name">
         <a href="#" class="back_button glyphicon glyphicon-chevron-left" ng-click="closeDweller()">Back</a>
@@ -305,12 +336,14 @@ Copyright (C) 2017
             <div class="col-sm-4">
               <label>Equiped Outfit</label>
               <select class="form-control" name="equipedOutfit" ng-model="dweller.equipedOutfit.id"
+                ng-change="refreshDwellerEquipmentFilters()"
                 ng-options="label as value for (label,value) in dwelleroutfitslist"></select>
             </div>
           
             <div class="col-sm-4">
               <label>Equiped Weapon</label>
               <select class="form-control" name="equipedWeaponid" ng-model="dweller.equipedWeapon.id"
+                ng-change="refreshDwellerEquipmentFilters()"
                 ng-options="label as value for (label,value) in dwellerweaponlist"></select>
             </div>
 
@@ -701,7 +734,7 @@ Copyright (C) 2017
   <script src="js/json2.min.js"></script>
   <script src="js/aes.js"></script>
   <script src="js/FileSaver.js"></script>
-  <script src="js/shelter.js?v=20260731-2"></script>
+  <script src="js/shelter.js?v=20260731-3"></script>
   <script src="js/jscolor.js"></script>
 </body>
 

@@ -96,7 +96,60 @@ a.tab:focus {
 .dwellers,
 .Others {
   height: 100%;
+}
+
+.dwellers {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 0;
+}
+
+.Others,
+.dweller_list {
   overflow-y: auto;
+}
+
+.dweller_filters {
+  background-color: #f5f5f5;
+  border-bottom: 1px solid #ddd;
+  flex: 0 0 auto;
+  padding: 8px 10px 7px;
+}
+
+.dweller_filters .form-group {
+  margin-bottom: 6px;
+}
+
+.dweller_filters label {
+  font-size: 12px;
+  margin-bottom: 2px;
+}
+
+.dweller_filters .form-control {
+  height: 30px;
+  padding: 4px 8px;
+}
+
+.dweller_filter_summary {
+  color: #666;
+  font-size: 12px;
+}
+
+.dweller_filter_summary a {
+  float: right;
+}
+
+.dweller_list {
+  flex: 1 1 auto;
+  margin-bottom: 0;
+  min-height: 0;
+}
+
+.dweller_filter_empty {
+  color: #777;
+  padding: 20px 10px;
+  text-align: center;
 }
 
 .dweller_info,
