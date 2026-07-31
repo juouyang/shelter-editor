@@ -172,6 +172,8 @@ app.controller('dwellerController', function ($scope) {
   $scope.dweller = {};
   $scope.statsName = ['Unknown', 'S.', 'P.', 'E.', 'C.', 'I.', 'A.', 'L.'];
   $scope.other = {};
+  $scope.petOwner = {};
+  $scope.petItem = {};
   $scope.wastelandTeams = [];
   $scope.wastelandTeams2 = [];
   $scope.team = {};
@@ -214,6 +216,11 @@ app.controller('dwellerController', function ($scope) {
       }
       else {
         $scope.other.name = val;
+      }
+
+      var equippedPet = getEquippedPetForActor($scope.other);
+      if (equippedPet && equippedPet.extraData) {
+        equippedPet.extraData.uniqueName = $scope.other.name;
       }
     }
   });
@@ -345,10 +352,33 @@ app.controller('dwellerController', function ($scope) {
   $scope.editOthers = function (other) {
     $scope.other = other;
     _otherName = $scope.other.name;
+    $scope.petOwner = isPet(other) ? findDweller(other.FollowedID) || {} : {};
+    $scope.petItem = getEquippedPetForActor(other) || {};
   };
 
   function isMrHandy(other) {
     return other && other.characterType === 2;
+  }
+
+  function isPet(other) {
+    return other && other.characterType === 3;
+  }
+
+  function getEquippedPetForActor(other) {
+    if (!isPet(other)) {
+      return null;
+    }
+
+    var owner = findDweller(other.FollowedID);
+    if (!owner || !owner.equippedPet || owner.equippedPet.type !== "Pet") {
+      return null;
+    }
+
+    if (owner.equippedPet.id !== other.actorDataId) {
+      return null;
+    }
+
+    return owner.equippedPet;
   }
 
   function isActorInWasteland(actorId) {
@@ -390,6 +420,7 @@ app.controller('dwellerController', function ($scope) {
   }
 
   $scope.isMrHandy = isMrHandy;
+  $scope.isPet = isPet;
 
   $scope.isMrHandyInWasteland = function (other) {
     return isMrHandy(other) && isActorInWasteland(other.serializeId);
@@ -538,6 +569,8 @@ app.controller('dwellerController', function ($scope) {
 
   $scope.closeOther = function () {
     $scope.other = {};
+    $scope.petOwner = {};
+    $scope.petItem = {};
   };
 
   $scope.download = function () {

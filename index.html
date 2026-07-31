@@ -344,14 +344,15 @@ Copyright (C) 2017
       </div>
     </div>
 
-    <div class="row box" ng-show="section == 'Others'">
+    <div class="row box" ng-show="section == 'mrHandies'">
       <div class="Others list-group col-sm-4">
-        <a ng-repeat="o in save.dwellers.actors" ng-click="editOthers(o);" ng-class="{ 'active': other == o }"
+        <a ng-repeat="o in save.dwellers.actors | filter:isMrHandy | orderBy:'serializeId'"
+          ng-click="editOthers(o);" ng-class="{ 'active': other == o }"
           class="list-group-item">{{ o.name }}</a>
       </div>
-      <div class="other_info col-sm-8" ng-hide="!other.name">
+      <div class="other_info col-sm-8" ng-hide="!isMrHandy(other)">
         <a href="#" class="back_button glyphicon glyphicon-chevron-left" ng-click="closeOther()">Back</a>
-        <form name="otherForm">
+        <form name="mrHandyForm">
           <div class="form-group row">
             <div class="col-sm-4">
               <label>Name</label>
@@ -371,7 +372,7 @@ Copyright (C) 2017
             </div>
           </div>
 
-          <div class="form-group row" ng-show="isMrHandy(other)">
+          <div class="form-group row">
             <div class="col-sm-12">
               <button type="button" class="btn btn-danger" ng-click="deleteMrHandy()"
                 ng-disabled="isMrHandyInWasteland(other)">Delete This Mr. Handy</button>
@@ -381,8 +382,64 @@ Copyright (C) 2017
           <p class="help-block" ng-show="isMrHandyInWasteland(other)">
             This Mr. Handy is assigned to a wasteland team. Return it to the vault before deleting it.
           </p>
-          <p class="help-block" ng-show="isMrHandy(other)">
+          <p class="help-block">
             Deletion changes the loaded save in memory. Use Save to download the modified file.
+          </p>
+        </form>
+      </div>
+    </div>
+
+    <div class="row box" ng-show="section == 'pets'">
+      <div class="Others list-group col-sm-4">
+        <a ng-repeat="o in save.dwellers.actors | filter:isPet | orderBy:['name', 'serializeId']"
+          ng-click="editOthers(o);" ng-class="{ 'active': other == o }"
+          class="list-group-item">{{ o.name }}</a>
+      </div>
+      <div class="other_info col-sm-8" ng-hide="!isPet(other)">
+        <a href="#" class="back_button glyphicon glyphicon-chevron-left" ng-click="closeOther()">Back</a>
+        <form name="petForm">
+          <div class="form-group row">
+            <div class="col-sm-4">
+              <label>Name</label>
+              <input type="text" class="form-control" name="petName" placeholder="Name"
+                ng-model="otherName">
+            </div>
+
+            <div class="col-sm-4">
+              <label>Health</label>
+              <input type="number" class="form-control" name="petHealth" min="0" ng-model="other.health">
+            </div>
+
+            <div class="col-sm-4">
+              <label>Is Death?</label>
+              <select class="form-control" name="petDeath" ng-model="other.death"
+                ng-options="o.v as o.n for o in [{ n: 'Not Death', v: false }, { n: 'Death', v: true }]"></select>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-sm-4">
+              <label>Owner</label>
+              <input type="text" class="form-control"
+                ng-value="petOwner.name + ' ' + petOwner.lastName" readonly>
+            </div>
+
+            <div class="col-sm-4">
+              <label>Bonus</label>
+              <input type="text" class="form-control" ng-model="petItem.extraData.bonus" readonly>
+            </div>
+
+            <div class="col-sm-4">
+              <label>Bonus Value</label>
+              <input type="number" class="form-control" ng-model="petItem.extraData.bonusValue">
+            </div>
+          </div>
+
+          <p class="help-block">
+            This list contains pets currently assigned to dwellers. Pets stored in inventory are not included.
+          </p>
+          <p class="help-block" ng-show="!petItem.extraData">
+            The equipped pet data for this actor could not be resolved. Bonus editing is unavailable.
           </p>
         </form>
       </div>
@@ -523,8 +580,12 @@ Copyright (C) 2017
         ng-class="{ 'active': section == 'vault' }">Vault {{ save.vault.VaultName }}<small></small></a>
       <a href="" ng-hide="!save.dwellers" class="tab" ng-click="section = 'dwellers'"
         ng-class="{ 'active': section == 'dwellers' }">Dwellers <small>({{ save.dwellers.dwellers.length }})</small></a>
-      <a href="" ng-hide="!save.dwellers" class="tab" ng-click="section = 'Others'"
-        ng-class="{ 'active': section == 'Others' }">Others <small>({{ save.dwellers.actors.length }})</small></a>
+      <a href="" ng-hide="!save.dwellers" class="tab" ng-click="section = 'mrHandies'"
+        ng-class="{ 'active': section == 'mrHandies' }">Mr. Handy
+        <small>({{ (save.dwellers.actors | filter:isMrHandy).length }})</small></a>
+      <a href="" ng-hide="!save.dwellers" class="tab" ng-click="section = 'pets'"
+        ng-class="{ 'active': section == 'pets' }">Pets
+        <small>({{ (save.dwellers.actors | filter:isPet).length }})</small></a>
       <a href="" ng-hide="!wastelandTeams.length" class="tab" ng-click="section = 'wastelandD'"
         ng-class="{ 'active': section == 'wastelandD' }">WastelandD <small>({{ wastelandTeams.length }})</small></a>
       <a href="" ng-hide="!wastelandTeams2.length" class="tab" ng-click="section = 'wastelandH'"
@@ -592,7 +653,7 @@ Copyright (C) 2017
   <script src="js/json2.min.js"></script>
   <script src="js/aes.js"></script>
   <script src="js/FileSaver.js"></script>
-  <script src="js/shelter.js?v=20260730-6"></script>
+  <script src="js/shelter.js?v=20260731-1"></script>
   <script src="js/jscolor.js"></script>
 </body>
 
