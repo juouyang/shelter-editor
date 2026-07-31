@@ -165,7 +165,11 @@ function edit(fileName, save) {
 
 var app = angular.module('shelter', []);
 
-app.controller('dwellerController', function ($scope) {
+app.controller('dwellerController', function ($scope, $http) {
+  var PET_CATALOG_URLS = {
+    "1.13.25": "data/pets-1.13.25.json?v=20260731-2"
+  };
+
   $scope.section = 'vault';
 
   $scope.fileName = '';
@@ -174,6 +178,16 @@ app.controller('dwellerController', function ($scope) {
   $scope.other = {};
   $scope.petOwner = {};
   $scope.petItem = {};
+  $scope.petDefinition = {};
+  $scope.petEditor = {
+    saveVersion: '',
+    supported: false,
+    loading: false,
+    ready: false,
+    error: '',
+    catalog: {},
+    editedActorIds: {}
+  };
   $scope.wastelandTeams = [];
   $scope.wastelandTeams2 = [];
   $scope.team = {};
@@ -222,6 +236,8 @@ app.controller('dwellerController', function ($scope) {
       if (equippedPet && equippedPet.extraData) {
         equippedPet.extraData.uniqueName = $scope.other.name;
       }
+
+      markSelectedPetEdited();
     }
   });
 
@@ -265,6 +281,7 @@ app.controller('dwellerController', function ($scope) {
     },
     set: function (val) {
       _save = val;
+      configurePetEditor();
       extractCount();
       extractTeams();
     }
@@ -354,6 +371,7 @@ app.controller('dwellerController', function ($scope) {
     _otherName = $scope.other.name;
     $scope.petOwner = isPet(other) ? findDweller(other.FollowedID) || {} : {};
     $scope.petItem = getEquippedPetForActor(other) || {};
+    refreshSelectedPetDefinition();
   };
 
   function isMrHandy(other) {
@@ -380,6 +398,129 @@ app.controller('dwellerController', function ($scope) {
 
     return owner.equippedPet;
   }
+
+  function normalizeAppVersion(save) {
+    if (!save || save.appVersion === undefined || save.appVersion === null) {
+      return '';
+    }
+
+    return String(save.appVersion).trim();
+  }
+
+  function configurePetEditor() {
+    var version = normalizeAppVersion(_save);
+    var catalogUrl = PET_CATALOG_URLS[version];
+
+    $scope.petEditor.saveVersion = version;
+    $scope.petEditor.supported = !!catalogUrl;
+    $scope.petEditor.loading = false;
+    $scope.petEditor.ready = false;
+    $scope.petEditor.error = '';
+    $scope.petEditor.catalog = {};
+    $scope.petEditor.editedActorIds = {};
+    $scope.petDefinition = {};
+
+    if (!catalogUrl) {
+      return;
+    }
+
+    $scope.petEditor.loading = true;
+    $http.get(catalogUrl, { cache: true }).then(function (response) {
+      if (normalizeAppVersion(_save) !== version) {
+        return;
+      }
+
+      var data = response.data || {};
+      var pets = data.pets || [];
+      var catalog = {};
+
+      if (String(data.appVersion || '').trim() !== version) {
+        throw new Error("The Pet catalog version does not match the loaded save.");
+      }
+
+      for (var petIndex = 0; petIndex < pets.length; petIndex++) {
+        catalog[pets[petIndex].id] = pets[petIndex];
+      }
+
+      if (!pets.length) {
+        throw new Error("The Pet catalog is empty.");
+      }
+
+      $scope.petEditor.catalog = catalog;
+      $scope.petEditor.loading = false;
+      $scope.petEditor.ready = true;
+      refreshSelectedPetDefinition();
+    }).catch(function (error) {
+      if (normalizeAppVersion(_save) !== version) {
+        return;
+      }
+
+      $scope.petEditor.loading = false;
+      $scope.petEditor.ready = false;
+      $scope.petEditor.error = error && error.message
+        ? error.message
+        : "The Pet catalog could not be loaded.";
+      refreshSelectedPetDefinition();
+    });
+  }
+
+  function refreshSelectedPetDefinition() {
+    var petId = $scope.petItem && $scope.petItem.id;
+    $scope.petDefinition = petId && $scope.petEditor.catalog[petId]
+      ? $scope.petEditor.catalog[petId]
+      : {};
+  }
+
+  function selectedPetMatchesCatalog() {
+    return $scope.petDefinition.id
+      && $scope.petItem
+      && $scope.petItem.extraData
+      && $scope.petItem.extraData.bonus === $scope.petDefinition.bonus;
+  }
+
+  function markSelectedPetEdited() {
+    if (isPet($scope.other) && $scope.canEditSelectedPet && $scope.canEditSelectedPet()) {
+      $scope.petEditor.editedActorIds[$scope.other.serializeId] = true;
+    }
+  }
+
+  function validateEditedPets() {
+    var actorIds = Object.keys($scope.petEditor.editedActorIds);
+
+    for (var actorIndex = 0; actorIndex < actorIds.length; actorIndex++) {
+      var actor = findActor(actorIds[actorIndex]);
+      var pet = getEquippedPetForActor(actor);
+      var definition = pet && $scope.petEditor.catalog[pet.id];
+      var bonusValue = pet && pet.extraData && pet.extraData.bonusValue;
+
+      if (!actor || !pet || !definition || pet.extraData.bonus !== definition.bonus) {
+        return "An edited Pet no longer matches the Fallout Shelter 1.13.25 catalog.";
+      }
+
+      if (typeof bonusValue !== "number" || !isFinite(bonusValue)
+        || bonusValue < definition.bonusMin || bonusValue > definition.bonusMax) {
+        return (actor.name || pet.id) + " has an invalid " + definition.bonus
+          + " value. Enter a value from " + definition.bonusMin + " to " + definition.bonusMax + ".";
+      }
+    }
+
+    return '';
+  }
+
+  $scope.canEditSelectedPet = function () {
+    return $scope.petEditor.ready && selectedPetMatchesCatalog();
+  };
+
+  $scope.markPetEdited = markSelectedPetEdited;
+
+  $scope.maxSelectedPetBonus = function () {
+    if (!$scope.canEditSelectedPet()) {
+      return;
+    }
+
+    $scope.petItem.extraData.bonusValue = $scope.petDefinition.bonusMax;
+    markSelectedPetEdited();
+  };
 
   function isActorInWasteland(actorId) {
     var wasteland = $scope.save.vault.wasteland || {};
@@ -571,9 +712,17 @@ app.controller('dwellerController', function ($scope) {
     $scope.other = {};
     $scope.petOwner = {};
     $scope.petItem = {};
+    $scope.petDefinition = {};
   };
 
   $scope.download = function () {
+    var petValidationError = validateEditedPets();
+    if (petValidationError) {
+      $scope.section = 'pets';
+      alert("Cannot save: " + petValidationError);
+      return;
+    }
+
     encrypt($scope.fileName, $scope.save);
   };
 

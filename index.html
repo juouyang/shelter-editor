@@ -398,21 +398,38 @@ Copyright (C) 2017
       <div class="other_info col-sm-8" ng-hide="!isPet(other)">
         <a href="#" class="back_button glyphicon glyphicon-chevron-left" ng-click="closeOther()">Back</a>
         <form name="petForm">
+          <div class="alert alert-info" ng-show="petEditor.loading">
+            Loading the Fallout Shelter {{ petEditor.saveVersion }} Pet catalog…
+          </div>
+          <div class="alert alert-success" ng-show="petEditor.ready">
+            Pet editing is enabled for Fallout Shelter {{ petEditor.saveVersion }}.
+            Pet ID, rarity, and bonus type are locked.
+          </div>
+          <div class="alert alert-warning" ng-show="!petEditor.supported">
+            Pet editing is unavailable for save version
+            {{ petEditor.saveVersion || 'unknown' }}. Pets are read-only; other editor features and Save remain available.
+          </div>
+          <div class="alert alert-danger" ng-show="petEditor.error">
+            Pet editing is read-only because the catalog could not be loaded: {{ petEditor.error }}
+          </div>
+
           <div class="form-group row">
             <div class="col-sm-4">
               <label>Name</label>
               <input type="text" class="form-control" name="petName" placeholder="Name"
-                ng-model="otherName">
+                ng-model="otherName" ng-disabled="!canEditSelectedPet()">
             </div>
 
             <div class="col-sm-4">
               <label>Health</label>
-              <input type="number" class="form-control" name="petHealth" min="0" ng-model="other.health">
+              <input type="number" class="form-control" name="petHealth" min="0"
+                ng-model="other.health" ng-change="markPetEdited()" ng-disabled="!canEditSelectedPet()">
             </div>
 
             <div class="col-sm-4">
               <label>Is Death?</label>
               <select class="form-control" name="petDeath" ng-model="other.death"
+                ng-change="markPetEdited()" ng-disabled="!canEditSelectedPet()"
                 ng-options="o.v as o.n for o in [{ n: 'Not Death', v: false }, { n: 'Death', v: true }]"></select>
             </div>
           </div>
@@ -425,13 +442,37 @@ Copyright (C) 2017
             </div>
 
             <div class="col-sm-4">
+              <label>Pet ID</label>
+              <input type="text" class="form-control" ng-model="petItem.id" readonly>
+            </div>
+
+            <div class="col-sm-4">
+              <label>Rarity</label>
+              <input type="text" class="form-control" ng-model="petDefinition.rarity" readonly>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-sm-4">
               <label>Bonus</label>
               <input type="text" class="form-control" ng-model="petItem.extraData.bonus" readonly>
             </div>
 
-            <div class="col-sm-4">
+            <div class="col-sm-4" ng-class="{ 'has-error': petForm.petBonusValue.$invalid }">
               <label>Bonus Value</label>
-              <input type="number" class="form-control" ng-model="petItem.extraData.bonusValue">
+              <input type="number" class="form-control" name="petBonusValue"
+                min="{{ petDefinition.bonusMin }}" max="{{ petDefinition.bonusMax }}" step="any"
+                ng-model="petItem.extraData.bonusValue" ng-model-options="{ allowInvalid: true }"
+                ng-change="markPetEdited()" ng-disabled="!canEditSelectedPet()">
+              <p class="help-block" ng-show="petDefinition.id">
+                Allowed range: {{ petDefinition.bonusMin }}–{{ petDefinition.bonusMax }}
+              </p>
+            </div>
+
+            <div class="col-sm-4">
+              <label>Set Allowed Maximum</label><br />
+              <button type="button" class="btn btn-primary" ng-click="maxSelectedPetBonus()"
+                ng-disabled="!canEditSelectedPet()">Max</button>
             </div>
           </div>
 
@@ -440,6 +481,13 @@ Copyright (C) 2017
           </p>
           <p class="help-block" ng-show="!petItem.extraData">
             The equipped pet data for this actor could not be resolved. Bonus editing is unavailable.
+          </p>
+          <p class="help-block" ng-show="petEditor.ready && petItem.id && !petDefinition.id">
+            Pet ID {{ petItem.id }} is not present in the Fallout Shelter 1.13.25 catalog. This Pet is read-only.
+          </p>
+          <p class="help-block"
+            ng-show="petDefinition.id && petItem.extraData && petItem.extraData.bonus != petDefinition.bonus">
+            This Pet's bonus type does not match the Fallout Shelter 1.13.25 catalog. This Pet is read-only.
           </p>
         </form>
       </div>
@@ -653,7 +701,7 @@ Copyright (C) 2017
   <script src="js/json2.min.js"></script>
   <script src="js/aes.js"></script>
   <script src="js/FileSaver.js"></script>
-  <script src="js/shelter.js?v=20260731-1"></script>
+  <script src="js/shelter.js?v=20260731-2"></script>
   <script src="js/jscolor.js"></script>
 </body>
 
