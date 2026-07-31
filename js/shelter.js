@@ -178,9 +178,12 @@ app.controller('dwellerController', function ($scope, $http) {
   $scope.dwellerFilters = {
     outfitId: '',
     weaponId: '',
+    petId: '',
     outfits: [],
-    weapons: []
+    weapons: [],
+    pets: []
   };
+  $scope.dwellerPetId = '';
   $scope.other = {};
   $scope.petOwner = {};
   $scope.petItem = {};
@@ -192,6 +195,7 @@ app.controller('dwellerController', function ($scope, $http) {
     ready: false,
     error: '',
     catalog: {},
+    pets: [],
     editedActorIds: {}
   };
   $scope.wastelandTeams = [];
@@ -290,6 +294,7 @@ app.controller('dwellerController', function ($scope, $http) {
       configurePetEditor();
       $scope.dwellerFilters.outfitId = '';
       $scope.dwellerFilters.weaponId = '';
+      $scope.dwellerFilters.petId = '';
       refreshDwellerEquipmentFilters();
       extractCount();
       extractTeams();
@@ -369,6 +374,9 @@ app.controller('dwellerController', function ($scope, $http) {
 
   $scope.editDweller = function (dweller) {
     $scope.dweller = dweller;
+    $scope.dwellerPetId = dweller.equippedPet && dweller.equippedPet.type === "Pet"
+      ? dweller.equippedPet.id
+      : '';
     _firstName = $scope.dweller.name;
     _skinColor = colorConverter($scope.dweller.skinColor, true);
     _hairColor = colorConverter($scope.dweller.hairColor, true);
@@ -406,6 +414,58 @@ app.controller('dwellerController', function ($scope, $http) {
     return options;
   }
 
+  function equippedPetId(dweller) {
+    return dweller && dweller.equippedPet && dweller.equippedPet.type === "Pet"
+      ? dweller.equippedPet.id
+      : "__no_pet__";
+  }
+
+  function buildEquippedPetOptions(dwellers) {
+    var counts = {};
+    var fallbackNames = {};
+    var options = [];
+
+    for (var dwellerIndex = 0; dwellerIndex < dwellers.length; dwellerIndex++) {
+      var id = equippedPetId(dwellers[dwellerIndex]);
+      var pet = dwellers[dwellerIndex].equippedPet;
+      counts[id] = (counts[id] || 0) + 1;
+
+      if (pet && pet.extraData && pet.extraData.uniqueName) {
+        fallbackNames[id] = pet.extraData.uniqueName;
+      }
+    }
+
+    Object.keys(counts).forEach(function (id) {
+      var definition = $scope.petEditor.catalog[id];
+      var name = id === "__no_pet__"
+        ? "No Pet"
+        : (definition ? definition.name : (fallbackNames[id] || id));
+
+      if (definition) {
+        name += " — " + definition.rarity;
+      }
+
+      options.push({
+        id: id,
+        name: name,
+        count: counts[id],
+        label: name + " (" + counts[id] + ")"
+      });
+    });
+
+    options.sort(function (left, right) {
+      if (left.id === "__no_pet__") {
+        return -1;
+      }
+      if (right.id === "__no_pet__") {
+        return 1;
+      }
+      return left.name.localeCompare(right.name);
+    });
+
+    return options;
+  }
+
   function optionExists(options, id) {
     for (var optionIndex = 0; optionIndex < options.length; optionIndex++) {
       if (options[optionIndex].id === id) {
@@ -433,6 +493,7 @@ app.controller('dwellerController', function ($scope, $http) {
       $scope.dwellerweaponlist || {},
       "No Weapon"
     );
+    $scope.dwellerFilters.pets = buildEquippedPetOptions(dwellers);
 
     if ($scope.dwellerFilters.outfitId
       && !optionExists($scope.dwellerFilters.outfits, $scope.dwellerFilters.outfitId)) {
@@ -443,6 +504,11 @@ app.controller('dwellerController', function ($scope, $http) {
       && !optionExists($scope.dwellerFilters.weapons, $scope.dwellerFilters.weaponId)) {
       $scope.dwellerFilters.weaponId = '';
     }
+
+    if ($scope.dwellerFilters.petId
+      && !optionExists($scope.dwellerFilters.pets, $scope.dwellerFilters.petId)) {
+      $scope.dwellerFilters.petId = '';
+    }
   }
 
   $scope.refreshDwellerEquipmentFilters = refreshDwellerEquipmentFilters;
@@ -451,12 +517,21 @@ app.controller('dwellerController', function ($scope, $http) {
     return (!$scope.dwellerFilters.outfitId
       || equipmentId(dweller, "equipedOutfit") === $scope.dwellerFilters.outfitId)
       && (!$scope.dwellerFilters.weaponId
-        || equipmentId(dweller, "equipedWeapon") === $scope.dwellerFilters.weaponId);
+        || equipmentId(dweller, "equipedWeapon") === $scope.dwellerFilters.weaponId)
+      && (!$scope.dwellerFilters.petId
+        || equippedPetId(dweller) === $scope.dwellerFilters.petId);
   };
 
   $scope.clearDwellerEquipmentFilters = function () {
     $scope.dwellerFilters.outfitId = '';
     $scope.dwellerFilters.weaponId = '';
+    $scope.dwellerFilters.petId = '';
+  };
+
+  $scope.updateDwellerPregnancy = function () {
+    if (!$scope.dweller.pregnant) {
+      $scope.dweller.babyReady = false;
+    }
   };
 
   $scope.editOthers = function (other) {
@@ -500,6 +575,40 @@ app.controller('dwellerController', function ($scope, $http) {
     return String(save.appVersion).trim();
   }
 
+  function humanizePetBonus(bonus) {
+    return String(bonus || '').replace(/([a-z0-9])([A-Z])/g, "$1 $2");
+  }
+
+  function buildPetSelectionOptions(pets) {
+    var rarityOrder = {
+      Common: 0,
+      Rare: 1,
+      Legendary: 2,
+      None: 3
+    };
+    var options = pets.map(function (pet) {
+      return {
+        id: pet.id,
+        rarity: pet.rarity,
+        name: pet.name,
+        label: pet.name + " — " + humanizePetBonus(pet.bonus)
+          + " (max " + pet.bonusMax + ")"
+      };
+    });
+
+    options.sort(function (left, right) {
+      var rarityDifference = (rarityOrder[left.rarity] || 0) - (rarityOrder[right.rarity] || 0);
+      if (rarityDifference) {
+        return rarityDifference;
+      }
+
+      var nameDifference = left.name.localeCompare(right.name);
+      return nameDifference || left.id.localeCompare(right.id);
+    });
+
+    return options;
+  }
+
   function configurePetEditor() {
     var version = normalizeAppVersion(_save);
     var catalogUrl = PET_CATALOG_URLS[version];
@@ -510,6 +619,7 @@ app.controller('dwellerController', function ($scope, $http) {
     $scope.petEditor.ready = false;
     $scope.petEditor.error = '';
     $scope.petEditor.catalog = {};
+    $scope.petEditor.pets = [];
     $scope.petEditor.editedActorIds = {};
     $scope.petDefinition = {};
 
@@ -540,9 +650,11 @@ app.controller('dwellerController', function ($scope, $http) {
       }
 
       $scope.petEditor.catalog = catalog;
+      $scope.petEditor.pets = buildPetSelectionOptions(pets);
       $scope.petEditor.loading = false;
       $scope.petEditor.ready = true;
       refreshSelectedPetDefinition();
+      refreshDwellerEquipmentFilters();
     }).catch(function (error) {
       if (normalizeAppVersion(_save) !== version) {
         return;
@@ -613,6 +725,180 @@ app.controller('dwellerController', function ($scope, $http) {
 
     $scope.petItem.extraData.bonusValue = $scope.petDefinition.bonusMax;
     markSelectedPetEdited();
+  };
+
+  function findPetActorForDweller(dwellerId) {
+    var actors = $scope.save.dwellers.actors || [];
+
+    for (var actorIndex = 0; actorIndex < actors.length; actorIndex++) {
+      if (isPet(actors[actorIndex]) && actors[actorIndex].FollowedID == dwellerId) {
+        return actors[actorIndex];
+      }
+    }
+
+    return null;
+  }
+
+  function nextActorSerializeId() {
+    var actors = $scope.save.dwellers.actors || [];
+    var nextId = parseInt($scope.save.dwellers.mrhId, 10);
+
+    if (!isFinite(nextId) || nextId < 1) {
+      nextId = 1;
+    }
+
+    for (var actorIndex = 0; actorIndex < actors.length; actorIndex++) {
+      nextId = Math.max(nextId, parseInt(actors[actorIndex].serializeId, 10) + 1);
+    }
+
+    while (findActor(nextId)) {
+      nextId++;
+    }
+
+    $scope.save.dwellers.mrhId = nextId + 1;
+    return nextId;
+  }
+
+  function emptyActorResources() {
+    return {
+      Nuka: 0,
+      Food: 0,
+      Energy: 0,
+      Water: 0,
+      StimPack: 0,
+      RadAway: 0,
+      Lunchbox: 0,
+      MrHandy: 0,
+      PetCarrier: 0,
+      CraftedOutfit: 0,
+      CraftedWeapon: 0,
+      NukaColaQuantum: 0,
+      CraftedTheme: 0
+    };
+  }
+
+  function emptyActorEquipment() {
+    return {
+      storage: {
+        resources: emptyActorResources(),
+        bonus: emptyActorResources()
+      },
+      inventory: {
+        items: []
+      },
+      dwellers: [],
+      questClues: [],
+      collectedThemes: {
+        themeList: []
+      }
+    };
+  }
+
+  function createPetActor(dweller, definition) {
+    return {
+      characterType: 3,
+      actorDataId: definition.id,
+      serializeId: nextActorSerializeId(),
+      name: definition.name,
+      canCollect: false,
+      willGoToWasteland: false,
+      equipment: emptyActorEquipment(),
+      health: 5000,
+      death: false,
+      savedRoom: typeof dweller.savedRoom === "number" ? dweller.savedRoom : -1,
+      FollowedID: dweller.serializeId
+    };
+  }
+
+  function removePetActorReferences(actorIds) {
+    var wasteland = $scope.save.vault.wasteland || {};
+    var teams = wasteland.teams || [];
+
+    for (var teamIndex = 0; teamIndex < teams.length; teamIndex++) {
+      var teamActors = teams[teamIndex].actors || [];
+
+      for (var actorIndex = teamActors.length - 1; actorIndex >= 0; actorIndex--) {
+        if (actorIds.indexOf(teamActors[actorIndex]) !== -1) {
+          teamActors.splice(actorIndex, 1);
+        }
+      }
+    }
+  }
+
+  function removeDwellerPet(dweller) {
+    var actors = $scope.save.dwellers.actors || [];
+    var removedActorIds = [];
+
+    for (var actorIndex = actors.length - 1; actorIndex >= 0; actorIndex--) {
+      if (isPet(actors[actorIndex]) && actors[actorIndex].FollowedID == dweller.serializeId) {
+        removedActorIds.push(actors[actorIndex].serializeId);
+        delete $scope.petEditor.editedActorIds[actors[actorIndex].serializeId];
+        actors.splice(actorIndex, 1);
+      }
+    }
+
+    removePetActorReferences(removedActorIds);
+    delete dweller.equippedPet;
+
+    if (Object.prototype.hasOwnProperty.call(dweller, "pet")) {
+      delete dweller.pet;
+    }
+
+    if (removedActorIds.indexOf($scope.other.serializeId) !== -1) {
+      $scope.closeOther();
+    }
+  }
+
+  $scope.changeSelectedDwellerPet = function () {
+    if (!$scope.petEditor.ready || !$scope.dweller || !$scope.dweller.serializeId) {
+      return;
+    }
+
+    var petId = $scope.dwellerPetId;
+
+    if (!petId) {
+      removeDwellerPet($scope.dweller);
+      refreshDwellerEquipmentFilters();
+      return;
+    }
+
+    var definition = $scope.petEditor.catalog[petId];
+    if (!definition) {
+      alert("This Pet is not present in the Fallout Shelter 1.13.25 catalog.");
+      $scope.dwellerPetId = equippedPetId($scope.dweller) === "__no_pet__"
+        ? ''
+        : equippedPetId($scope.dweller);
+      return;
+    }
+
+    var actor = findPetActorForDweller($scope.dweller.serializeId);
+    if (!actor) {
+      actor = createPetActor($scope.dweller, definition);
+      $scope.save.dwellers.actors.push(actor);
+    }
+
+    actor.actorDataId = definition.id;
+    actor.name = definition.name;
+    actor.FollowedID = $scope.dweller.serializeId;
+
+    $scope.dweller.equippedPet = {
+      id: definition.id,
+      type: "Pet",
+      hasBeenAssigned: false,
+      hasRandonWeaponBeenAssigned: false,
+      extraData: {
+        uniqueName: definition.name,
+        bonus: definition.bonus,
+        bonusValue: definition.bonusMax
+      }
+    };
+
+    if (Object.prototype.hasOwnProperty.call($scope.dweller, "pet")) {
+      delete $scope.dweller.pet;
+    }
+
+    $scope.petEditor.editedActorIds[actor.serializeId] = true;
+    refreshDwellerEquipmentFilters();
   };
 
   function isActorInWasteland(actorId) {
@@ -791,6 +1077,7 @@ app.controller('dwellerController', function ($scope, $http) {
 
   $scope.closeDweller = function (dweller) {
     $scope.dweller = {};
+    $scope.dwellerPetId = '';
   };
 
   $scope.editTeam = function (team) {

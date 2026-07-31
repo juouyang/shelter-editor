@@ -235,10 +235,18 @@ Copyright (C) 2017
             </select>
           </div>
 
+          <div class="form-group">
+            <label for="dweller-pet-filter">Equipped Pet</label>
+            <select id="dweller-pet-filter" class="form-control" ng-model="dwellerFilters.petId"
+              ng-options="option.id as option.label for option in dwellerFilters.pets">
+              <option value="">All equipped pets</option>
+            </select>
+          </div>
+
           <div class="dweller_filter_summary">
             Showing {{ filteredDwellers.length || 0 }} of {{ save.dwellers.dwellers.length || 0 }}
             <a href="" ng-click="clearDwellerEquipmentFilters()"
-              ng-show="dwellerFilters.outfitId || dwellerFilters.weaponId">Clear filters</a>
+              ng-show="dwellerFilters.outfitId || dwellerFilters.weaponId || dwellerFilters.petId">Clear filters</a>
           </div>
         </div>
 
@@ -248,7 +256,7 @@ Copyright (C) 2017
             ng-click="editDweller(d);" ng-class="{ 'active': dweller == d }"
             class="list-group-item">{{ d.name }} {{ d.lastName }}</a>
           <div class="dweller_filter_empty" ng-show="fileName && filteredDwellers.length === 0">
-            No dwellers match both filters.
+            No dwellers match the selected filters.
           </div>
         </div>
       </div>
@@ -322,13 +330,15 @@ Copyright (C) 2017
             <div class="col-sm-4" ng-if="dweller.gender==1">
               <label>Pregnant</label>
               <select class="form-control" name="pregnant" ng-model="dweller.pregnant"
+                ng-change="updateDwellerPregnancy()"
                 ng-options="o.v as o.n for o in [{ n: 'Not Pregnant', v: false }, { n: 'Pregnant', v: true }]"></select>
             </div>
 
-            <div class="col-sm-4" ng-if="dweller.pregnant">
+            <div class="col-sm-4" ng-if="dweller.gender==1">
               <label>Baby Ready</label>
-              <select class="form-control" name="babyReady" ng-model="dweller.babyReady"
+              <select class="form-control" name="babyReady" ng-model="dweller.babyReady" ng-disabled="!dweller.pregnant"
                 ng-options="o.v as o.n for o in [{ n: 'Not Ready', v: false }, { n: 'Ready', v: true }]"></select>
+              <p class="help-block" ng-show="!dweller.pregnant">Set Pregnant first to enable Baby Ready.</p>
             </div>
           </div>
 
@@ -347,12 +357,21 @@ Copyright (C) 2017
                 ng-options="label as value for (label,value) in dwellerweaponlist"></select>
             </div>
 
-            <!-- expreminetal/need to have already equiped a pet--><!--
             <div class="col-sm-4">
-              <label>Equiped Pet</label>
-              <select class="form-control" name="equippedPet" ng-model="dweller.equippedPet.id"
-                ng-options="label as value for (label,value) in { sphynx_l: 'sphynx_l' }"></select>
-            </div>-->
+              <label>Equipped Pet</label>
+              <select class="form-control" name="equippedPet" ng-model="dwellerPetId"
+                ng-change="changeSelectedDwellerPet()" ng-disabled="!petEditor.ready"
+                ng-options="option.id as option.label group by option.rarity for option in petEditor.pets">
+                <option value="">No Pet</option>
+              </select>
+              <p class="help-block" ng-show="petEditor.loading">Loading the 1.13.25 Pet catalog…</p>
+              <p class="help-block" ng-show="!petEditor.supported">
+                Pet equipment editing is available only for Fallout Shelter 1.13.25.
+              </p>
+              <p class="help-block" ng-show="petEditor.ready">
+                New Pet bonus values use the allowed maximum for this game version.
+              </p>
+            </div>
           </div>
 
           <hr />
@@ -734,7 +753,7 @@ Copyright (C) 2017
   <script src="js/json2.min.js"></script>
   <script src="js/aes.js"></script>
   <script src="js/FileSaver.js"></script>
-  <script src="js/shelter.js?v=20260731-3"></script>
+  <script src="js/shelter.js?v=20260731-4"></script>
   <script src="js/jscolor.js"></script>
 </body>
 
