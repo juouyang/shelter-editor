@@ -27,7 +27,7 @@ Copyright (C) 2017
   <meta name="description"
     content="Web app to edit Fallout Shelter save games. You can change dwellers SPECIAL, other stats and vault's resources.">
   <link rel="stylesheet" href="css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/style.css?v=20260801-1">
+  <link rel="stylesheet" href="css/style.css?v=20260801-2">
 </head>
 
 <body ng-app="shelter" ng-controller="dwellerController">
@@ -131,82 +131,71 @@ Copyright (C) 2017
 
           <hr />
 
-          <div class="form-group row">
-            <div class="col-sm-4">
-              <label>Remove Rocks</label><br />
-              <button type="button" class="btn btn-primary" ng-click="removeRocks()">Activate</button>
+          <section class="vault-action-group" aria-labelledby="room-actions-title">
+            <h4 id="room-actions-title">Room</h4>
+            <div class="row">
+              <div class="col-sm-4 vault-action">
+                <label>Remove Rocks</label><br />
+                <button type="button" class="btn btn-primary" ng-click="removeRocks()">Activate</button>
+              </div>
+              <div class="col-sm-4 vault-action">
+                <label>Unlock All Rooms</label><br />
+                <button type="button" class="btn btn-primary" ng-click="unlockrooms()">Activate</button>
+              </div>
+              <div class="col-sm-4 vault-action">
+                <label>Clear Emergency on all rooms</label><br />
+                <button type="button" class="btn btn-primary" ng-click="clearemergency()">Activate</button>
+              </div>
+              <div class="col-sm-4 vault-action">
+                <label>Unlock Themes</label><br />
+                <button type="button" class="btn btn-primary" ng-click="unlockthemes()">Activate</button>
+              </div>
+              <div class="col-sm-4 vault-action">
+                <label>Unlock All Recipes</label><br />
+                <button type="button" class="btn btn-primary" ng-click="unlockrecipes()">Activate</button>
+              </div>
             </div>
+          </section>
 
-            <div class="col-sm-4">
-              <label>Unlock All Rooms</label><br />
-              <button type="button" class="btn btn-primary" ng-click="unlockrooms()">Activate</button>
+          <section class="vault-action-group" aria-labelledby="dweller-actions-title">
+            <h4 id="dweller-actions-title">Dweller</h4>
+            <div class="row">
+              <div class="col-sm-4 vault-action">
+                <label>Max All Dweller Stats</label><br />
+                <button type="button" class="btn btn-primary" ng-click="maxSpecialAll()">Activate</button>
+              </div>
+              <div class="col-sm-4 vault-action">
+                <label>Max All Dweller Happiness</label><br />
+                <button type="button" class="btn btn-primary" ng-click="maxhappinessAll()">Activate</button>
+              </div>
+              <div class="col-sm-4 vault-action">
+                <label>Heal All Dwellers</label><br />
+                <button type="button" class="btn btn-primary" ng-click="healAll()">Activate</button>
+              </div>
+              <div class="col-sm-4 vault-action">
+                <label>Max All Dwellers Health</label><br />
+                <button type="button" class="btn btn-primary" ng-click="maxAllDwellersHealth()">Activate</button>
+              </div>
+              <div class="col-sm-4 vault-action">
+                <label>Max All Dwellers Level</label><br />
+                <button type="button" class="btn btn-primary" ng-click="maxAllDwellersLevel()">Activate</button>
+              </div>
             </div>
+          </section>
 
-            <div class="col-sm-4">
-              <label>Unlock All Recipes</label><br />
-              <button type="button" class="btn btn-primary" ng-click="unlockrecipes()">Activate</button>
+          <section class="vault-action-group" aria-labelledby="mr-handy-actions-title">
+            <h4 id="mr-handy-actions-title">Mr. Handy</h4>
+            <div class="row">
+              <div class="col-sm-4 vault-action">
+                <label>Delete All Vault Mr. Handies</label><br />
+                <button type="button" class="btn btn-danger" ng-click="deleteAllVaultMrHandies()">Activate</button>
+              </div>
+              <div class="col-sm-4 vault-action">
+                <label>Heal All Mr. Handies</label><br />
+                <button type="button" class="btn btn-primary" ng-click="healAllMrHandies()">Activate</button>
+              </div>
             </div>
-          </div>
-
-          <hr />
-
-          <div class="form-group row">
-            <div class="col-sm-4">
-              <label>Max All Dweller Stats</label><br />
-              <button type="button" class="btn btn-primary" ng-click="maxSpecialAll()">Activate</button>
-            </div>
-
-            <div class="col-sm-4">
-              <label>Max All Dweller Happiness</label><br />
-              <button type="button" class="btn btn-primary" ng-click="maxhappinessAll()">Activate</button>
-            </div>
-
-            <div class="col-sm-4">
-              <label>Heal All Dwellers</label><br />
-              <button type="button" class="btn btn-primary" ng-click="healAll()">Activate</button>
-            </div>
-          </div>
-
-          <div class="form-group row">
-            <div class="col-sm-4">
-              <label>Clear Emergency on all rooms</label><br />
-              <button type="button" class="btn btn-primary" ng-click="clearemergency()">Activate</button>
-            </div>
-
-            <div class="col-sm-4">
-              <label>Accept all Dwellers Waiting</label><br />
-              <button type="button" class="btn btn-primary" ng-click="acceptdwellersWaiting()">Activate</button>
-            </div>
-
-            <div class="col-sm-4">
-              <label>Unlock Themes</label><br />
-              <button type="button" class="btn btn-primary" ng-click="unlockthemes()">Activate</button>
-            </div>
-          </div>
-
-          <div class="form-group row">
-            <div class="col-sm-4">
-              <label>Max All Dwellers Health</label><br />
-              <button type="button" class="btn btn-primary" ng-click="maxAllDwellersHealth()">Activate</button>
-            </div>
-
-            <div class="col-sm-4">
-              <label>Max All Dwellers Level</label><br />
-              <button type="button" class="btn btn-primary" ng-click="maxAllDwellersLevel()">Activate</button>
-            </div>
-          </div>
-
-          <div class="form-group row">
-            <div class="col-sm-4">
-              <label>Delete All Vault Mr. Handies</label><br />
-              <button type="button" class="btn btn-danger" ng-click="deleteAllVaultMrHandies()">Activate</button>
-            </div>
-
-            <div class="col-sm-4">
-              <label>Heal All Mr. Handies</label><br />
-              <button type="button" class="btn btn-primary" ng-click="healAllMrHandies()">Activate</button>
-            </div>
-          </div>
+          </section>
 
           <div class="form-group row">
             <div class="col-sm-4">
@@ -705,16 +694,6 @@ Copyright (C) 2017
       <p>Large Files can take more time to load!</p>
       Drag a save file here (e.g. Vault1.sav) <br />
       or select one here: <br /><input type="file" id="sav_file" name="sav_file" />
-      <br /><br /><br />
-      For PC/Launcher Version the save is in:<br /> "Documents\My Games\Fallout Shelter"
-      <br />
-      For Windows 10 Store version check this: <a
-        href="https://bethesda.net/community/topic/25405/transfer-vault-from-desktop-version-to-play-anywhere">Click
-        Here</a>
-      <br />
-      For Steam Version the save is in:<br /> "C:\Users\YOURUSERNAME\AppData\Local\FalloutShelter"
-      <br />
-      For Android Version the Save is in:<br /> "storage/sdcard/Android/data/com.bethsoft.falloutshelter/files"
     </div>
 
 
@@ -753,7 +732,7 @@ Copyright (C) 2017
   <script src="js/json2.min.js"></script>
   <script src="js/aes.js"></script>
   <script src="js/FileSaver.js"></script>
-  <script src="js/shelter.js?v=20260801-1"></script>
+  <script src="js/shelter.js?v=20260801-2"></script>
   <script src="js/jscolor.js"></script>
 </body>
 

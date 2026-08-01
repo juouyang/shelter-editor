@@ -1130,18 +1130,23 @@ app.controller('dwellerController', function ($scope, $http) {
     alert("Cleared Emergency on all rooms!");
   };
 
-  $scope.acceptdwellersWaiting = function () {
-    $scope.save.dwellerSpawner.dwellersWaiting = [];
-    alert("Accepted all Dwellers that was Waiting!");
-  };
-
   $scope.unlockthemes = function () {
-    var sum2 = Object.keys($scope.save.survivalW.collectedThemes.themeList).length;
-    for (i = 0; i < sum2; i++) {
-      $scope.save.survivalW.collectedThemes.themeList[i].extraData.partsCollectedCount = 9;
-      $scope.save.survivalW.collectedThemes.themeList[i].extraData.IsNew = true;
+    var themes = $scope.save.survivalW.collectedThemes.themeList || [];
+
+    for (var themeIndex = 0; themeIndex < themes.length; themeIndex++) {
+      var extraData = themes[themeIndex].extraData || {};
+      extraData.partsCollectedCount = 9;
+      extraData.IsCraftingInProgress = false;
+      extraData.IsCrafted = true;
+      extraData.IsClaimed = true;
+      extraData.IsClaimedInCraftingRoom = true;
+      extraData.IsNew = true;
+      themes[themeIndex].extraData = extraData;
     }
-    alert("All themes unlocked!");
+
+    alert(themes.length
+      ? "Unlocked " + themes.length + " themes."
+      : "There are no themes in this save to unlock.");
   };
 
   $scope.colortofos = colortofos;

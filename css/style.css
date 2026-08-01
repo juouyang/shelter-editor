@@ -163,6 +163,26 @@ a.tab:focus {
   padding: 15px;
 }
 
+.vault-action-group {
+  background-color: #f8fafb;
+  border: 1px solid #e1e6eb;
+  border-radius: 6px;
+  margin-bottom: 14px;
+  padding: 14px 15px 4px;
+}
+
+.vault-action-group h4 {
+  color: #285f91;
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 14px;
+}
+
+.vault-action {
+  margin-bottom: 14px;
+  min-height: 68px;
+}
+
 .stat {
   width: 14.285714286%;
 }
