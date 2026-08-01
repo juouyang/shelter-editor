@@ -1015,6 +1015,22 @@ app.controller('dwellerController', function ($scope, $http) {
     alert(message);
   };
 
+  $scope.healAllMrHandies = function () {
+    var actors = $scope.save.dwellers.actors || [];
+    var healed = 0;
+
+    for (var actorIndex = 0; actorIndex < actors.length; actorIndex++) {
+      if (isMrHandy(actors[actorIndex])) {
+        actors[actorIndex].health = 5000;
+        healed++;
+      }
+    }
+
+    alert(healed
+      ? "Restored " + healed + " Mr. Handies to 5000 health."
+      : "There are no Mr. Handies to heal.");
+  };
+
   $scope.maxhappinessAll = function () {
     var sum2 = Object.keys($scope.save.dwellers.dwellers).length;
     for (i = 0; i < sum2; i++)
