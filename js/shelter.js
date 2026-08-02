@@ -1382,6 +1382,78 @@ app.controller('dwellerController', function ($scope, $http) {
     alert("Set all dwellers' level to 50.");
   };
 
+  $scope.growUpAllKids = function () {
+    var rooms = $scope.save.vault.rooms || [];
+    var taskMgr = $scope.save.taskMgr || {};
+    var tasks = taskMgr.tasks || [];
+    var childTaskIds = [];
+    var updated = 0;
+    var alreadyDue = 0;
+    var missing = 0;
+    var now = Number(taskMgr.time);
+
+    if (!isFinite(now)) {
+      alert("The save does not contain a valid task clock. No child timers were changed.");
+      return;
+    }
+
+    for (var roomIndex = 0; roomIndex < rooms.length; roomIndex++) {
+      var children = rooms[roomIndex].children || [];
+
+      for (var childIndex = 0; childIndex < children.length; childIndex++) {
+        var taskId = Number(children[childIndex].taskID);
+        if (isFinite(taskId) && taskId > 0 && childTaskIds.indexOf(taskId) === -1) {
+          childTaskIds.push(taskId);
+        }
+      }
+    }
+
+    if (!childTaskIds.length) {
+      alert("There are no kids with grow-up timers in this save.");
+      return;
+    }
+
+    if (!confirm("Make all " + childTaskIds.length
+      + " kids ready to grow up the next time Fallout Shelter loads this save?")) {
+      return;
+    }
+
+    for (var childTaskIndex = 0; childTaskIndex < childTaskIds.length; childTaskIndex++) {
+      var growthTask = null;
+
+      for (var taskIndex = 0; taskIndex < tasks.length; taskIndex++) {
+        if (tasks[taskIndex].id == childTaskIds[childTaskIndex]) {
+          growthTask = tasks[taskIndex];
+          break;
+        }
+      }
+
+      if (!growthTask || !isFinite(Number(growthTask.endTime))) {
+        missing++;
+        continue;
+      }
+
+      if (Number(growthTask.endTime) <= now) {
+        alreadyDue++;
+        continue;
+      }
+
+      growthTask.startTime = Math.min(
+        isFinite(Number(growthTask.startTime)) ? Number(growthTask.startTime) : now,
+        now
+      );
+      growthTask.endTime = now;
+      updated++;
+    }
+
+    var message = "Marked " + (updated + alreadyDue) + " kids ready to grow up."
+      + " Fallout Shelter will complete the adult transition when it next loads the save.";
+    if (missing) {
+      message += " Skipped " + missing + " kids with missing grow-up tasks.";
+    }
+    alert(message);
+  };
+
   $scope.maxSpecialAll = function () {
     var sum2 = Object.keys($scope.save.dwellers.dwellers).length;
     for (i = 0; i < sum2; i++)
