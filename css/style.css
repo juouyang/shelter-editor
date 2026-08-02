@@ -342,6 +342,23 @@ a.list-group-item, a.list-group-item, button.list-group-item, button.list-group-
   display: none;
 }
 
+@media (min-width: 769px) {
+  body > .container {
+    margin-bottom: 20px;
+    margin-top: 20px;
+  }
+
+  .dweller_box {
+    height: calc(100vh - 50px);
+    min-height: 680px;
+    max-height: 900px;
+  }
+
+  .dweller_box .dweller_info {
+    overflow-y: auto;
+  }
+}
+
 @media (max-width: 768px) {
   body {
     background: none;

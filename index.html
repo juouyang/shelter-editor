@@ -27,7 +27,7 @@ Copyright (C) 2017
   <meta name="description"
     content="Web app to edit Fallout Shelter save games. You can change dwellers SPECIAL, other stats and vault's resources.">
   <link rel="stylesheet" href="css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/style.css?v=20260802-1">
+  <link rel="stylesheet" href="css/style.css?v=20260802-2">
 </head>
 
 <body ng-app="shelter" ng-controller="dwellerController">
@@ -210,7 +210,7 @@ Copyright (C) 2017
 
 
 
-    <div class="row box" ng-show="section == 'dwellers'">
+    <div class="row box dweller_box" ng-show="section == 'dwellers'">
       <div class="dwellers col-sm-4">
         <div class="dweller_filters" ng-show="fileName">
           <div class="form-group">
@@ -333,21 +333,35 @@ Copyright (C) 2017
               <label>Hair Color</label>
               <input class="form-control jscolor" name="hairColor" ng-model="hairColor">
             </div>
+
+            <div class="col-sm-4">
+              <label>Life Stage</label>
+              <input type="text" class="form-control" name="lifeStage"
+                ng-value="dwellerLifeStageLabel(dweller)" readonly>
+            </div>
           </div>
 
           <div class="form-group row">
-            <div class="col-sm-4" ng-if="dweller.gender==1">
+            <div class="col-sm-4" ng-if="dweller.gender==1 && !isChildDweller(dweller)">
               <label>Pregnant</label>
               <select class="form-control" name="pregnant" ng-model="dweller.pregnant"
                 ng-change="updateDwellerPregnancy()"
                 ng-options="o.v as o.n for o in [{ n: 'Not Pregnant', v: false }, { n: 'Pregnant', v: true }]"></select>
             </div>
 
-            <div class="col-sm-4" ng-if="dweller.gender==1">
+            <div class="col-sm-4" ng-if="dweller.gender==1 && !isChildDweller(dweller)">
               <label>Baby Ready</label>
               <select class="form-control" name="babyReady" ng-model="dweller.babyReady" ng-disabled="!dweller.pregnant"
                 ng-options="o.v as o.n for o in [{ n: 'Not Ready', v: false }, { n: 'Ready', v: true }]"></select>
               <p class="help-block" ng-show="!dweller.pregnant">Set Pregnant first to enable Baby Ready.</p>
+            </div>
+          </div>
+
+          <div class="form-group row" ng-if="isChildDweller(dweller)">
+            <div class="col-sm-4">
+              <label>Growth Remaining</label>
+              <input type="text" class="form-control" name="growthRemaining"
+                ng-value="dwellerGrowthRemainingLabel(dweller)" readonly>
             </div>
           </div>
 
@@ -747,7 +761,7 @@ Copyright (C) 2017
   <script src="js/json2.min.js"></script>
   <script src="js/aes.js"></script>
   <script src="js/FileSaver.js"></script>
-  <script src="js/shelter.js?v=20260802-1"></script>
+  <script src="js/shelter.js?v=20260802-2"></script>
   <script src="js/jscolor.js"></script>
 </body>
 

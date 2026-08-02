@@ -216,7 +216,9 @@ app.controller('dwellerController', function ($scope, $http) {
     _firstName = null,
     _otherName = null,
     _dwellerLocationById = {},
-    _dwellerLocationLabels = {};
+    _dwellerLocationLabels = {},
+    _dwellerChildById = {},
+    _dwellerGrowthLabels = {};
 
   Object.defineProperty($scope, 'firstName', {
     get: function () {
@@ -480,17 +482,51 @@ app.controller('dwellerController', function ($scope, $http) {
       + " · " + room.mergeLevel + "-wide";
   }
 
+  function growthRemainingLabel(task, taskManagerTime) {
+    if (!task) {
+      return "Unknown (growth task not found)";
+    }
+
+    var remainingSeconds = task.paused && isFinite(task.pausedRemainingTime)
+      ? task.pausedRemainingTime
+      : task.endTime - taskManagerTime;
+
+    if (!isFinite(remainingSeconds)) {
+      return "Unknown";
+    }
+
+    if (remainingSeconds <= 0) {
+      return "Ready to grow up in game";
+    }
+
+    var totalMinutes = Math.ceil(remainingSeconds / 60);
+    var hours = Math.floor(totalMinutes / 60);
+    var minutes = totalMinutes % 60;
+    var label = hours ? hours + "h " : "";
+    label += minutes + "m";
+    return label + " (at save time)";
+  }
+
   function buildDwellerLocationOptions(dwellers) {
     var rooms = _save && _save.vault && _save.vault.rooms ? _save.vault.rooms : [];
     var teams = _save && _save.vault && _save.vault.wasteland && _save.vault.wasteland.teams
       ? _save.vault.wasteland.teams
       : [];
     var roomsById = {};
+    var tasksById = {};
     var locations = {};
     var options = [];
+    var taskManager = _save && _save.taskMgr ? _save.taskMgr : {};
+    var tasks = (taskManager.tasks || []).concat(taskManager.pausedTasks || []);
 
     _dwellerLocationById = {};
     _dwellerLocationLabels = {};
+    _dwellerChildById = {};
+    _dwellerGrowthLabels = {};
+
+    for (var taskIndex = 0; taskIndex < tasks.length; taskIndex++) {
+      tasksById[String(tasks[taskIndex].id)] = tasks[taskIndex];
+    }
 
     for (var roomIndex = 0; roomIndex < rooms.length; roomIndex++) {
       var room = rooms[roomIndex];
@@ -508,6 +544,18 @@ app.controller('dwellerController', function ($scope, $http) {
       var roomDwellers = room.dwellers || [];
       for (var roomDwellerIndex = 0; roomDwellerIndex < roomDwellers.length; roomDwellerIndex++) {
         _dwellerLocationById[String(roomDwellers[roomDwellerIndex])] = locationId;
+      }
+
+      var roomChildren = room.children || [];
+      for (var childIndex = 0; childIndex < roomChildren.length; childIndex++) {
+        var child = roomChildren[childIndex];
+        var childKey = String(child.dwellerID);
+        _dwellerLocationById[childKey] = locationId;
+        _dwellerChildById[childKey] = true;
+        _dwellerGrowthLabels[childKey] = growthRemainingLabel(
+          tasksById[String(child.taskID)],
+          taskManager.time
+        );
       }
     }
 
@@ -586,6 +634,20 @@ app.controller('dwellerController', function ($scope, $http) {
     var locationId = dwellerLocationId(dweller);
     return _dwellerLocationLabels[locationId]
       || (locationId === "__wasteland__" ? "Wasteland / Quest" : "Unassigned");
+  };
+
+  $scope.isChildDweller = function (dweller) {
+    return !!(dweller && _dwellerChildById[String(dweller.serializeId)]);
+  };
+
+  $scope.dwellerLifeStageLabel = function (dweller) {
+    return $scope.isChildDweller(dweller) ? "Child" : "Adult";
+  };
+
+  $scope.dwellerGrowthRemainingLabel = function (dweller) {
+    return dweller
+      ? (_dwellerGrowthLabels[String(dweller.serializeId)] || "Unknown")
+      : "Unknown";
   };
 
   function optionExists(options, id) {
