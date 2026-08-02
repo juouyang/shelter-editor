@@ -179,9 +179,11 @@ app.controller('dwellerController', function ($scope, $http) {
     outfitId: '',
     weaponId: '',
     petId: '',
+    locationId: '',
     outfits: [],
     weapons: [],
-    pets: []
+    pets: [],
+    locations: []
   };
   $scope.dwellerPetId = '';
   $scope.other = {};
@@ -212,7 +214,9 @@ app.controller('dwellerController', function ($scope, $http) {
     _skinColor = null,
     _hairColor = null,
     _firstName = null,
-    _otherName = null;
+    _otherName = null,
+    _dwellerLocationById = {},
+    _dwellerLocationLabels = {};
 
   Object.defineProperty($scope, 'firstName', {
     get: function () {
@@ -295,6 +299,7 @@ app.controller('dwellerController', function ($scope, $http) {
       $scope.dwellerFilters.outfitId = '';
       $scope.dwellerFilters.weaponId = '';
       $scope.dwellerFilters.petId = '';
+      $scope.dwellerFilters.locationId = '';
       refreshDwellerEquipmentFilters();
       extractCount();
       extractTeams();
@@ -466,6 +471,123 @@ app.controller('dwellerController', function ($scope, $http) {
     return options;
   }
 
+  function roomLocationId(room) {
+    return "room:" + room.deserializeID;
+  }
+
+  function roomLocationName(room) {
+    return room.type + " · Row " + room.row + " · Col " + room.col
+      + " · " + room.mergeLevel + "-wide";
+  }
+
+  function buildDwellerLocationOptions(dwellers) {
+    var rooms = _save && _save.vault && _save.vault.rooms ? _save.vault.rooms : [];
+    var teams = _save && _save.vault && _save.vault.wasteland && _save.vault.wasteland.teams
+      ? _save.vault.wasteland.teams
+      : [];
+    var roomsById = {};
+    var locations = {};
+    var options = [];
+
+    _dwellerLocationById = {};
+    _dwellerLocationLabels = {};
+
+    for (var roomIndex = 0; roomIndex < rooms.length; roomIndex++) {
+      var room = rooms[roomIndex];
+      var locationId = roomLocationId(room);
+      roomsById[String(room.deserializeID)] = room;
+      locations[locationId] = {
+        id: locationId,
+        name: roomLocationName(room),
+        group: "Row " + room.row,
+        row: room.row,
+        col: room.col,
+        count: 0
+      };
+
+      var roomDwellers = room.dwellers || [];
+      for (var roomDwellerIndex = 0; roomDwellerIndex < roomDwellers.length; roomDwellerIndex++) {
+        _dwellerLocationById[String(roomDwellers[roomDwellerIndex])] = locationId;
+      }
+    }
+
+    for (var teamIndex = 0; teamIndex < teams.length; teamIndex++) {
+      var teamDwellers = teams[teamIndex].dwellers || [];
+      for (var teamDwellerIndex = 0; teamDwellerIndex < teamDwellers.length; teamDwellerIndex++) {
+        _dwellerLocationById[String(teamDwellers[teamDwellerIndex])] = "__wasteland__";
+      }
+    }
+
+    for (var dwellerIndex = 0; dwellerIndex < dwellers.length; dwellerIndex++) {
+      var dweller = dwellers[dwellerIndex];
+      var dwellerKey = String(dweller.serializeId);
+      var dwellerLocationId = _dwellerLocationById[dwellerKey];
+
+      if (!dwellerLocationId && roomsById[String(dweller.savedRoom)]) {
+        dwellerLocationId = roomLocationId(roomsById[String(dweller.savedRoom)]);
+      }
+
+      if (!dwellerLocationId) {
+        dwellerLocationId = "__unassigned__";
+      }
+
+      _dwellerLocationById[dwellerKey] = dwellerLocationId;
+
+      if (!locations[dwellerLocationId]) {
+        locations[dwellerLocationId] = {
+          id: dwellerLocationId,
+          name: dwellerLocationId === "__wasteland__" ? "Wasteland / Quest" : "Unassigned",
+          group: "Other",
+          row: 999999,
+          col: dwellerLocationId === "__wasteland__" ? 0 : 1,
+          count: 0
+        };
+      }
+
+      locations[dwellerLocationId].count++;
+    }
+
+    Object.keys(locations).forEach(function (locationId) {
+      var location = locations[locationId];
+      if (!location.count) {
+        return;
+      }
+
+      _dwellerLocationLabels[locationId] = location.name;
+      options.push({
+        id: location.id,
+        name: location.name,
+        group: location.group,
+        row: location.row,
+        col: location.col,
+        count: location.count,
+        label: location.name + " (" + location.count + ")"
+      });
+    });
+
+    options.sort(function (left, right) {
+      if (left.row !== right.row) {
+        return left.row - right.row;
+      }
+      if (left.col !== right.col) {
+        return left.col - right.col;
+      }
+      return left.name.localeCompare(right.name);
+    });
+
+    return options;
+  }
+
+  function dwellerLocationId(dweller) {
+    return dweller ? (_dwellerLocationById[String(dweller.serializeId)] || "__unassigned__") : "__unassigned__";
+  }
+
+  $scope.dwellerLocationLabel = function (dweller) {
+    var locationId = dwellerLocationId(dweller);
+    return _dwellerLocationLabels[locationId]
+      || (locationId === "__wasteland__" ? "Wasteland / Quest" : "Unassigned");
+  };
+
   function optionExists(options, id) {
     for (var optionIndex = 0; optionIndex < options.length; optionIndex++) {
       if (options[optionIndex].id === id) {
@@ -494,6 +616,7 @@ app.controller('dwellerController', function ($scope, $http) {
       "No Weapon"
     );
     $scope.dwellerFilters.pets = buildEquippedPetOptions(dwellers);
+    $scope.dwellerFilters.locations = buildDwellerLocationOptions(dwellers);
 
     if ($scope.dwellerFilters.outfitId
       && !optionExists($scope.dwellerFilters.outfits, $scope.dwellerFilters.outfitId)) {
@@ -509,6 +632,11 @@ app.controller('dwellerController', function ($scope, $http) {
       && !optionExists($scope.dwellerFilters.pets, $scope.dwellerFilters.petId)) {
       $scope.dwellerFilters.petId = '';
     }
+
+    if ($scope.dwellerFilters.locationId
+      && !optionExists($scope.dwellerFilters.locations, $scope.dwellerFilters.locationId)) {
+      $scope.dwellerFilters.locationId = '';
+    }
   }
 
   $scope.refreshDwellerEquipmentFilters = refreshDwellerEquipmentFilters;
@@ -519,13 +647,16 @@ app.controller('dwellerController', function ($scope, $http) {
       && (!$scope.dwellerFilters.weaponId
         || equipmentId(dweller, "equipedWeapon") === $scope.dwellerFilters.weaponId)
       && (!$scope.dwellerFilters.petId
-        || equippedPetId(dweller) === $scope.dwellerFilters.petId);
+        || equippedPetId(dweller) === $scope.dwellerFilters.petId)
+      && (!$scope.dwellerFilters.locationId
+        || dwellerLocationId(dweller) === $scope.dwellerFilters.locationId);
   };
 
   $scope.clearDwellerEquipmentFilters = function () {
     $scope.dwellerFilters.outfitId = '';
     $scope.dwellerFilters.weaponId = '';
     $scope.dwellerFilters.petId = '';
+    $scope.dwellerFilters.locationId = '';
   };
 
   $scope.updateDwellerPregnancy = function () {

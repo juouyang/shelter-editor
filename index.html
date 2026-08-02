@@ -27,7 +27,7 @@ Copyright (C) 2017
   <meta name="description"
     content="Web app to edit Fallout Shelter save games. You can change dwellers SPECIAL, other stats and vault's resources.">
   <link rel="stylesheet" href="css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/style.css?v=20260801-2">
+  <link rel="stylesheet" href="css/style.css?v=20260802-1">
 </head>
 
 <body ng-app="shelter" ng-controller="dwellerController">
@@ -237,10 +237,19 @@ Copyright (C) 2017
             </select>
           </div>
 
+          <div class="form-group">
+            <label for="dweller-location-filter">Current Location</label>
+            <select id="dweller-location-filter" class="form-control" ng-model="dwellerFilters.locationId"
+              ng-options="option.id as option.label group by option.group for option in dwellerFilters.locations">
+              <option value="">All locations</option>
+            </select>
+          </div>
+
           <div class="dweller_filter_summary">
             Showing {{ filteredDwellers.length || 0 }} of {{ save.dwellers.dwellers.length || 0 }}
             <a href="" ng-click="clearDwellerEquipmentFilters()"
-              ng-show="dwellerFilters.outfitId || dwellerFilters.weaponId || dwellerFilters.petId">Clear filters</a>
+              ng-show="dwellerFilters.outfitId || dwellerFilters.weaponId || dwellerFilters.petId || dwellerFilters.locationId">
+              Clear filters</a>
           </div>
         </div>
 
@@ -305,6 +314,12 @@ Copyright (C) 2017
             <div class="col-sm-4">
               <label>Level</label>
               <input type="number" class="form-control" name="level" min="1" ng-model="dweller.experience.currentLevel">
+            </div>
+
+            <div class="col-sm-4">
+              <label>Current Location</label>
+              <input type="text" class="form-control" name="currentLocation"
+                ng-value="dwellerLocationLabel(dweller)" title="{{ dwellerLocationLabel(dweller) }}" readonly>
             </div>
           </div>
 
@@ -732,7 +747,7 @@ Copyright (C) 2017
   <script src="js/json2.min.js"></script>
   <script src="js/aes.js"></script>
   <script src="js/FileSaver.js"></script>
-  <script src="js/shelter.js?v=20260801-2"></script>
+  <script src="js/shelter.js?v=20260802-1"></script>
   <script src="js/jscolor.js"></script>
 </body>
 
