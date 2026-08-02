@@ -193,6 +193,8 @@ app.controller('dwellerController', function ($scope, $http) {
     weaponId: '',
     petId: ''
   };
+  $scope.dwellerOutfitOptions = [];
+  $scope.dwellerWeaponOptions = [];
   $scope.other = {};
   $scope.petOwner = {};
   $scope.petItem = {};
@@ -428,6 +430,48 @@ app.controller('dwellerController', function ($scope, $http) {
 
     options.sort(function (left, right) {
       return left.name.localeCompare(right.name);
+    });
+
+    return options;
+  }
+
+  function equipmentAlphabeticalGroup(name) {
+    var firstCharacter = String(name || '').trim().charAt(0).toUpperCase();
+
+    if (firstCharacter >= 'A' && firstCharacter <= 'E') {
+      return 'A–E';
+    }
+    if (firstCharacter >= 'F' && firstCharacter <= 'J') {
+      return 'F–J';
+    }
+    if (firstCharacter >= 'K' && firstCharacter <= 'O') {
+      return 'K–O';
+    }
+    if (firstCharacter >= 'P' && firstCharacter <= 'T') {
+      return 'P–T';
+    }
+    if (firstCharacter >= 'U' && firstCharacter <= 'Z') {
+      return 'U–Z';
+    }
+
+    return '#';
+  }
+
+  function buildEquipmentSelectionOptions(equipmentNames) {
+    var options = Object.keys(equipmentNames || {}).map(function (id) {
+      var name = equipmentNames[id] || id;
+
+      return {
+        id: id,
+        name: name,
+        label: name,
+        group: equipmentAlphabeticalGroup(name)
+      };
+    });
+
+    options.sort(function (left, right) {
+      var nameDifference = left.name.localeCompare(right.name);
+      return nameDifference || left.id.localeCompare(right.id);
     });
 
     return options;
@@ -2326,6 +2370,9 @@ app.controller('dwellerController', function ($scope, $http) {
     WorkDress: 'Rural Schoolmarm',
     WrestlerSpecial: 'Wrestler Outfit'
   };
+
+  $scope.dwellerOutfitOptions = buildEquipmentSelectionOptions($scope.dwelleroutfitslist);
+  $scope.dwellerWeaponOptions = buildEquipmentSelectionOptions($scope.dwellerweaponlist);
 });
 
 function preset(preset, saveFileName) {
