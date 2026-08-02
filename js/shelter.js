@@ -186,6 +186,13 @@ app.controller('dwellerController', function ($scope, $http) {
     locations: []
   };
   $scope.dwellerPetId = '';
+  $scope.bulkDwellerSelection = {};
+  $scope.bulkDwellerCount = 0;
+  $scope.bulkDwellerEdit = {
+    outfitId: '',
+    weaponId: '',
+    petId: ''
+  };
   $scope.other = {};
   $scope.petOwner = {};
   $scope.petItem = {};
@@ -302,6 +309,11 @@ app.controller('dwellerController', function ($scope, $http) {
       $scope.dwellerFilters.weaponId = '';
       $scope.dwellerFilters.petId = '';
       $scope.dwellerFilters.locationId = '';
+      $scope.bulkDwellerSelection = {};
+      $scope.bulkDwellerCount = 0;
+      $scope.bulkDwellerEdit.outfitId = '';
+      $scope.bulkDwellerEdit.weaponId = '';
+      $scope.bulkDwellerEdit.petId = '';
       refreshDwellerEquipmentFilters();
       extractCount();
       extractTeams();
@@ -721,6 +733,110 @@ app.controller('dwellerController', function ($scope, $http) {
     $scope.dwellerFilters.locationId = '';
   };
 
+  function selectedBulkDwellers() {
+    var dwellers = _save && _save.dwellers && _save.dwellers.dwellers
+      ? _save.dwellers.dwellers
+      : [];
+
+    return dwellers.filter(function (dweller) {
+      return !!$scope.bulkDwellerSelection[String(dweller.serializeId)];
+    });
+  }
+
+  $scope.updateBulkDwellerSelection = function () {
+    $scope.bulkDwellerCount = selectedBulkDwellers().length;
+  };
+
+  $scope.selectFilteredDwellers = function () {
+    var dwellers = $scope.filteredDwellers || [];
+
+    for (var dwellerIndex = 0; dwellerIndex < dwellers.length; dwellerIndex++) {
+      if (!$scope.isChildDweller(dwellers[dwellerIndex])) {
+        $scope.bulkDwellerSelection[String(dwellers[dwellerIndex].serializeId)] = true;
+      }
+    }
+
+    $scope.updateBulkDwellerSelection();
+  };
+
+  $scope.clearBulkDwellerSelection = function () {
+    $scope.bulkDwellerSelection = {};
+    $scope.bulkDwellerCount = 0;
+    $scope.bulkDwellerEdit.outfitId = '';
+    $scope.bulkDwellerEdit.weaponId = '';
+    $scope.bulkDwellerEdit.petId = '';
+  };
+
+  $scope.hasBulkDwellerChanges = function () {
+    return !!($scope.bulkDwellerEdit.outfitId
+      || $scope.bulkDwellerEdit.weaponId
+      || $scope.bulkDwellerEdit.petId);
+  };
+
+  function setDwellerEquipment(dweller, fieldName, itemId, itemType) {
+    if (!dweller[fieldName]) {
+      dweller[fieldName] = {
+        id: itemId,
+        type: itemType,
+        hasBeenAssigned: false,
+        hasRandonWeaponBeenAssigned: false
+      };
+      return;
+    }
+
+    dweller[fieldName].id = itemId;
+    dweller[fieldName].type = itemType;
+  }
+
+  $scope.applyBulkDwellerEdit = function () {
+    var dwellers = selectedBulkDwellers();
+    var outfitId = $scope.bulkDwellerEdit.outfitId;
+    var weaponId = $scope.bulkDwellerEdit.weaponId;
+    var petId = $scope.bulkDwellerEdit.petId;
+    var changeNames = [];
+
+    if (!dwellers.length || !$scope.hasBulkDwellerChanges()) {
+      return;
+    }
+
+    if (petId && petId !== "__remove_pet__"
+      && (!$scope.petEditor.ready || !$scope.petEditor.catalog[petId])) {
+      alert("The selected Pet is not available for this save version.");
+      return;
+    }
+
+    if (outfitId) {
+      changeNames.push("Outfit");
+    }
+    if (weaponId) {
+      changeNames.push("Weapon");
+    }
+    if (petId) {
+      changeNames.push("Pet");
+    }
+
+    if (!window.confirm("Apply " + changeNames.join(", ") + " changes to "
+      + dwellers.length + " selected dwellers?")) {
+      return;
+    }
+
+    for (var dwellerIndex = 0; dwellerIndex < dwellers.length; dwellerIndex++) {
+      if (outfitId) {
+        setDwellerEquipment(dwellers[dwellerIndex], "equipedOutfit", outfitId, "Outfit");
+      }
+      if (weaponId) {
+        setDwellerEquipment(dwellers[dwellerIndex], "equipedWeapon", weaponId, "Weapon");
+      }
+      if (petId) {
+        setDwellerPet(dwellers[dwellerIndex], petId === "__remove_pet__" ? '' : petId);
+      }
+    }
+
+    refreshDwellerEquipmentFilters();
+    $scope.clearBulkDwellerSelection();
+    alert("Updated " + dwellers.length + " dwellers.");
+  };
+
   $scope.updateDwellerPregnancy = function () {
     if (!$scope.dweller.pregnant) {
       $scope.dweller.babyReady = false;
@@ -1042,39 +1158,28 @@ app.controller('dwellerController', function ($scope, $http) {
     }
   }
 
-  $scope.changeSelectedDwellerPet = function () {
-    if (!$scope.petEditor.ready || !$scope.dweller || !$scope.dweller.serializeId) {
-      return;
-    }
-
-    var petId = $scope.dwellerPetId;
-
+  function setDwellerPet(dweller, petId) {
     if (!petId) {
-      removeDwellerPet($scope.dweller);
-      refreshDwellerEquipmentFilters();
-      return;
+      removeDwellerPet(dweller);
+      return true;
     }
 
     var definition = $scope.petEditor.catalog[petId];
     if (!definition) {
-      alert("This Pet is not present in the Fallout Shelter 1.13.25 catalog.");
-      $scope.dwellerPetId = equippedPetId($scope.dweller) === "__no_pet__"
-        ? ''
-        : equippedPetId($scope.dweller);
-      return;
+      return false;
     }
 
-    var actor = findPetActorForDweller($scope.dweller.serializeId);
+    var actor = findPetActorForDweller(dweller.serializeId);
     if (!actor) {
-      actor = createPetActor($scope.dweller, definition);
+      actor = createPetActor(dweller, definition);
       $scope.save.dwellers.actors.push(actor);
     }
 
     actor.actorDataId = definition.id;
     actor.name = definition.name;
-    actor.FollowedID = $scope.dweller.serializeId;
+    actor.FollowedID = dweller.serializeId;
 
-    $scope.dweller.equippedPet = {
+    dweller.equippedPet = {
       id: definition.id,
       type: "Pet",
       hasBeenAssigned: false,
@@ -1086,11 +1191,27 @@ app.controller('dwellerController', function ($scope, $http) {
       }
     };
 
-    if (Object.prototype.hasOwnProperty.call($scope.dweller, "pet")) {
-      delete $scope.dweller.pet;
+    if (Object.prototype.hasOwnProperty.call(dweller, "pet")) {
+      delete dweller.pet;
     }
 
     $scope.petEditor.editedActorIds[actor.serializeId] = true;
+    return true;
+  }
+
+  $scope.changeSelectedDwellerPet = function () {
+    if (!$scope.petEditor.ready || !$scope.dweller || !$scope.dweller.serializeId) {
+      return;
+    }
+
+    if (!setDwellerPet($scope.dweller, $scope.dwellerPetId)) {
+      alert("This Pet is not present in the Fallout Shelter 1.13.25 catalog.");
+      $scope.dwellerPetId = equippedPetId($scope.dweller) === "__no_pet__"
+        ? ''
+        : equippedPetId($scope.dweller);
+      return;
+    }
+
     refreshDwellerEquipmentFilters();
   };
 

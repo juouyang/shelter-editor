@@ -27,7 +27,7 @@ Copyright (C) 2017
   <meta name="description"
     content="Web app to edit Fallout Shelter save games. You can change dwellers SPECIAL, other stats and vault's resources.">
   <link rel="stylesheet" href="css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/style.css?v=20260802-3">
+  <link rel="stylesheet" href="css/style.css?v=20260802-4">
 </head>
 
 <body ng-app="shelter" ng-controller="dwellerController">
@@ -253,17 +253,87 @@ Copyright (C) 2017
           </div>
         </div>
 
+        <div class="dweller_bulk_toolbar" ng-show="fileName">
+          <span>{{ bulkDwellerCount }} selected</span>
+          <button type="button" class="btn btn-link btn-xs" ng-click="selectFilteredDwellers()"
+            ng-disabled="!filteredDwellers.length">Select shown</button>
+          <button type="button" class="btn btn-link btn-xs" ng-click="clearBulkDwellerSelection()"
+            ng-disabled="!bulkDwellerCount">Clear</button>
+        </div>
+
         <div class="dweller_list list-group">
-          <a
+          <div
             ng-repeat="d in filteredDwellers = (save.dwellers.dwellers | filter:filterDwellerByEquipment | orderBy:['name', 'lastName'])"
-            ng-click="editDweller(d);" ng-class="{ 'active': dweller == d }"
-            class="list-group-item">{{ d.name }} {{ d.lastName }}</a>
+            ng-class="{ 'active': dweller == d && !bulkDwellerCount, 'bulk-selected': bulkDwellerSelection[d.serializeId] }"
+            class="list-group-item dweller_list_item">
+            <label class="dweller_select" title="{{ isChildDweller(d) ? 'Child dwellers cannot equip these items.' : 'Select for bulk editing' }}">
+              <input type="checkbox" ng-model="bulkDwellerSelection[d.serializeId]"
+                ng-change="updateBulkDwellerSelection()" ng-disabled="isChildDweller(d)">
+              <span class="sr-only">Select {{ d.name }} {{ d.lastName }}</span>
+            </label>
+            <button type="button" class="dweller_name_button" ng-click="editDweller(d);">
+              {{ d.name }} {{ d.lastName }}
+            </button>
+          </div>
           <div class="dweller_filter_empty" ng-show="fileName && filteredDwellers.length === 0">
             No dwellers match the selected filters.
           </div>
         </div>
       </div>
-      <div class="dweller_info col-sm-8" ng-hide="!dweller.name">
+
+      <div class="dweller_info bulk_dweller_info col-sm-8" ng-show="bulkDwellerCount > 0">
+        <a href="#" class="back_button glyphicon glyphicon-chevron-left"
+          ng-click="clearBulkDwellerSelection()">Back</a>
+        <h3>Bulk Edit Dwellers</h3>
+        <p class="text-muted">
+          {{ bulkDwellerCount }} dwellers selected. Leave a field on “Keep current” to preserve its existing value.
+        </p>
+
+        <form name="bulkDwellerForm">
+          <div class="form-group">
+            <label for="bulk-dweller-outfit">Equipped Outfit</label>
+            <select id="bulk-dweller-outfit" class="form-control" ng-model="bulkDwellerEdit.outfitId"
+              ng-options="id as label for (id, label) in dwelleroutfitslist">
+              <option value="">Keep current Outfit</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="bulk-dweller-weapon">Equipped Weapon</label>
+            <select id="bulk-dweller-weapon" class="form-control" ng-model="bulkDwellerEdit.weaponId"
+              ng-options="id as label for (id, label) in dwellerweaponlist">
+              <option value="">Keep current Weapon</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="bulk-dweller-pet">Equipped Pet</label>
+            <select id="bulk-dweller-pet" class="form-control" ng-model="bulkDwellerEdit.petId"
+              ng-disabled="!petEditor.ready">
+              <option value="">Keep current Pet</option>
+              <option value="__remove_pet__">Remove equipped Pet</option>
+              <option ng-repeat="option in petEditor.pets" value="{{ option.id }}">
+                {{ option.rarity }} — {{ option.label }}
+              </option>
+            </select>
+            <p class="help-block" ng-show="petEditor.loading">Loading the 1.13.25 Pet catalog…</p>
+            <p class="help-block" ng-show="!petEditor.supported">
+              Pet equipment editing is available only for Fallout Shelter 1.13.25.
+            </p>
+            <p class="help-block" ng-show="petEditor.ready">
+              Each selected dweller receives a separate Pet with its allowed maximum bonus.
+            </p>
+          </div>
+
+          <div class="bulk_dweller_actions">
+            <button type="button" class="btn btn-default" ng-click="clearBulkDwellerSelection()">Cancel</button>
+            <button type="button" class="btn btn-primary" ng-click="applyBulkDwellerEdit()"
+              ng-disabled="!hasBulkDwellerChanges()">Apply to {{ bulkDwellerCount }} Dwellers</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="dweller_info col-sm-8" ng-hide="!dweller.name || bulkDwellerCount">
         <a href="#" class="back_button glyphicon glyphicon-chevron-left" ng-click="closeDweller()">Back</a>
         <form name="dwellerForm">
           <div class="form-group row">
@@ -761,7 +831,7 @@ Copyright (C) 2017
   <script src="js/json2.min.js"></script>
   <script src="js/aes.js"></script>
   <script src="js/FileSaver.js"></script>
-  <script src="js/shelter.js?v=20260802-2"></script>
+  <script src="js/shelter.js?v=20260802-4"></script>
   <script src="js/jscolor.js"></script>
 </body>
 

@@ -137,10 +137,71 @@ a.tab:focus {
   float: right;
 }
 
+.dweller_bulk_toolbar {
+  align-items: center;
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
+  color: #555;
+  display: flex;
+  flex: 0 0 auto;
+  font-size: 12px;
+  min-height: 34px;
+  padding: 3px 8px 3px 12px;
+}
+
+.dweller_bulk_toolbar span {
+  margin-right: auto;
+}
+
+.dweller_bulk_toolbar .btn {
+  padding: 3px 6px;
+}
+
 .dweller_list {
   flex: 1 1 auto;
   margin-bottom: 0;
   min-height: 0;
+}
+
+.dweller_list_item {
+  align-items: center;
+  display: flex;
+  padding: 0;
+}
+
+.dweller_list_item.bulk-selected {
+  background-color: #eef5fb;
+}
+
+.dweller_select {
+  align-items: center;
+  align-self: stretch;
+  cursor: pointer;
+  display: flex;
+  flex: 0 0 38px;
+  justify-content: center;
+  margin: 0;
+}
+
+.dweller_select input {
+  margin: 0;
+}
+
+.dweller_name_button {
+  background: transparent;
+  border: 0;
+  flex: 1 1 auto;
+  padding: 10px 12px 10px 0;
+  text-align: left;
+}
+
+.dweller_name_button:focus {
+  outline: 1px dotted #333;
+  outline-offset: -2px;
+}
+
+.list-group-item.active .dweller_name_button {
+  color: #fff;
 }
 
 .dweller_filter_empty {
@@ -161,6 +222,23 @@ a.tab:focus {
 
 .vault_info {
   padding: 15px;
+}
+
+.bulk_dweller_info h3 {
+  margin-top: 0;
+}
+
+.bulk_dweller_info form {
+  max-width: 620px;
+}
+
+.bulk_dweller_actions {
+  border-top: 1px solid #eee;
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  margin-top: 20px;
+  padding-top: 15px;
 }
 
 .vault-action-group {
@@ -413,6 +491,7 @@ a.list-group-item, a.list-group-item, button.list-group-item, button.list-group-
   }
 
   .dweller_info,
+  .bulk_dweller_info,
   .other_info,
   .wasteland_info {
     position: absolute;
