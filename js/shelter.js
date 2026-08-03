@@ -2106,21 +2106,37 @@ app.controller('dwellerController', function ($scope, $http) {
   }
 
   function extractTeams() {
-    $scope.save.vault.wasteland.teams.forEach(function (team) {
-      $scope.wastelandTeams.push({
-        teamIndex: team.teamIndex,
-        dweller: findDweller(team.dwellers[0]),
-        elapsedTimeAliveExploring: team.elapsedTimeAliveExploring,
-        returnTripDuration: team.returnTripDuration,
-        teamEquipment: team.teamEquipment
-      });
-      $scope.wastelandTeams2.push({
-        teamIndex: team.teamIndex,
-        actor: findActor(team.actors[0]),
-        elapsedTimeAliveExploring: team.elapsedTimeAliveExploring,
-        returnTripDuration: team.returnTripDuration,
-        teamEquipment: team.teamEquipment
-      });
+    $scope.wastelandTeams = [];
+    $scope.wastelandTeams2 = [];
+
+    var wasteland = $scope.save && $scope.save.vault && $scope.save.vault.wasteland;
+    var teams = wasteland && Array.isArray(wasteland.teams) ? wasteland.teams : [];
+
+    teams.forEach(function (team) {
+      var dwellerIds = Array.isArray(team.dwellers) ? team.dwellers : [];
+      var actorIds = Array.isArray(team.actors) ? team.actors : [];
+      var dweller = dwellerIds.length ? findDweller(dwellerIds[0]) : null;
+      var actor = actorIds.length ? findActor(actorIds[0]) : null;
+
+      if (dweller) {
+        $scope.wastelandTeams.push({
+          teamIndex: team.teamIndex,
+          dweller: dweller,
+          elapsedTimeAliveExploring: team.elapsedTimeAliveExploring,
+          returnTripDuration: team.returnTripDuration,
+          teamEquipment: team.teamEquipment
+        });
+      }
+
+      if (actor) {
+        $scope.wastelandTeams2.push({
+          teamIndex: team.teamIndex,
+          actor: actor,
+          elapsedTimeAliveExploring: team.elapsedTimeAliveExploring,
+          returnTripDuration: team.returnTripDuration,
+          teamEquipment: team.teamEquipment
+        });
+      }
     });
   }
 
