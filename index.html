@@ -359,9 +359,12 @@ Copyright (C) 2017
               Permanently evict {{ bulkEvictableDwellerCount() }} eligible selected Dwellers.
               Equipped items and Pets are returned to Storage.
             </p>
+            <p class="help-block" ng-show="bulkSelectedLegendarySummary()">
+              Selected Legendary: <strong>{{ bulkSelectedLegendarySummary() }}</strong>
+            </p>
             <p class="help-block" ng-show="bulkBlockedDwellerCount()">
               {{ bulkBlockedDwellerCount() }} selected Dwellers are protected because they are children,
-              pregnant, Baby Ready, or assigned to a Wasteland / Quest team.
+              pregnant, Baby Ready, assigned to a Wasteland / Quest team, or not registered in the Survival Guide.
             </p>
             <button type="button" class="btn btn-danger" ng-click="evictSelectedDwellers()"
               ng-disabled="!bulkEvictableDwellerCount()">
@@ -805,12 +808,37 @@ Copyright (C) 2017
       </div>
     </div>
 
+    <div class="row box" ng-show="section == 'collection'">
+      <div class="col-sm-12 vault_info">
+        <h3>Survival Guide — Legendary Dwellers</h3>
+        <p class="text-muted">
+          {{ survivalGuideDwellers.length }} Legendary Dwellers are registered in this loaded save.
+          This list is read directly from <code>survivalW.dwellers</code>.
+        </p>
+        <div class="row">
+          <div class="col-sm-6" ng-repeat="entry in survivalGuideDwellers track by entry.id">
+            <div class="list-group-item">
+              <span class="label label-success pull-right">Registered</span>
+              <strong>{{ entry.name }}</strong><br />
+              <small class="text-muted">{{ entry.id }}</small>
+            </div>
+          </div>
+        </div>
+        <p class="text-muted" ng-show="!survivalGuideDwellers.length">
+          No Legendary Dwellers are registered in this save.
+        </p>
+      </div>
+    </div>
+
     <div class="row tabs">
       <a href="" class="tab">Fallout Shelter - Save Editor</a>
       <a href="" ng-hide="!save.dwellers" class="tab" ng-click="section = 'vault'"
         ng-class="{ 'active': section == 'vault' }">Vault {{ save.vault.VaultName }}<small></small></a>
       <a href="" ng-hide="!save.dwellers" class="tab" ng-click="section = 'dwellers'"
         ng-class="{ 'active': section == 'dwellers' }">Dwellers <small>({{ save.dwellers.dwellers.length }})</small></a>
+      <a href="" ng-hide="!save.dwellers" class="tab" ng-click="section = 'collection'"
+        ng-class="{ 'active': section == 'collection' }">Collection
+        <small>({{ survivalGuideDwellers.length }})</small></a>
       <a href="" ng-hide="!save.dwellers" class="tab" ng-click="section = 'mrHandies'"
         ng-class="{ 'active': section == 'mrHandies' }">Mr. Handy
         <small>({{ (save.dwellers.actors | filter:isMrHandy).length }})</small></a>
@@ -869,7 +897,7 @@ Copyright (C) 2017
   <script src="js/json2.min.js"></script>
   <script src="js/aes.js"></script>
   <script src="js/FileSaver.js"></script>
-  <script src="js/shelter.js?v=20260803-8"></script>
+  <script src="js/shelter.js?v=20260803-9"></script>
   <script src="js/jscolor.js"></script>
 </body>
 

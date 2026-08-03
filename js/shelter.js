@@ -199,6 +199,7 @@ app.controller('dwellerController', function ($scope, $http) {
   $scope.dwellerOutfitOptions = [];
   $scope.dwellerWeaponOptions = [];
   $scope.bulkPetOptions = [];
+  $scope.survivalGuideDwellers = [];
   $scope.other = {};
   $scope.petOwner = {};
   $scope.petItem = {};
@@ -331,6 +332,7 @@ app.controller('dwellerController', function ($scope, $http) {
       $scope.bulkDwellerEdit.weaponId = '';
       $scope.bulkDwellerEdit.petId = '';
       refreshDwellerEquipmentFilters();
+      refreshSurvivalGuideDwellers();
       extractCount();
       extractTeams();
     }
@@ -1051,6 +1053,62 @@ app.controller('dwellerController', function ($scope, $http) {
     return false;
   }
 
+  function isLegendaryDweller(dweller) {
+    return !!(dweller && String(dweller.rarity || '').toLowerCase() === "legendary");
+  }
+
+  function refreshSurvivalGuideDwellers() {
+    var collectedDwellers = $scope.save && $scope.save.survivalW
+      && Array.isArray($scope.save.survivalW.dwellers)
+      ? $scope.save.survivalW.dwellers
+      : [];
+    var seen = {};
+
+    $scope.survivalGuideDwellers = collectedDwellers.filter(function (guideId) {
+      var key = String(guideId);
+      if (seen[key]) {
+        return false;
+      }
+      seen[key] = true;
+      return true;
+    }).map(function (guideId) {
+      var id = String(guideId);
+      return {
+        id: id,
+        name: id.replace(/^OL_/, '')
+      };
+    }).sort(function (left, right) {
+      return left.name.localeCompare(right.name);
+    });
+  }
+
+  function legendarySurvivalGuideId(dweller) {
+    var uniqueData = dweller && dweller.uniqueData ? String(dweller.uniqueData) : '';
+    return uniqueData.indexOf("L_") === 0 ? "O" + uniqueData : '';
+  }
+
+  function legendaryIsRegisteredInSurvivalGuide(dweller) {
+    if (!isLegendaryDweller(dweller)) {
+      return true;
+    }
+
+    var guideId = legendarySurvivalGuideId(dweller);
+    var collectedDwellers = $scope.save && $scope.save.survivalW
+      && Array.isArray($scope.save.survivalW.dwellers)
+      ? $scope.save.survivalW.dwellers
+      : [];
+    return !!guideId && collectedDwellers.indexOf(guideId) !== -1;
+  }
+
+  $scope.bulkSelectedLegendarySummary = function () {
+    return selectedBulkDwellers().filter(isLegendaryDweller).map(function (dweller) {
+      var name = [dweller.name, dweller.lastName].filter(Boolean).join(" ");
+      return name + (legendaryIsRegisteredInSurvivalGuide(dweller)
+        ? " — Registered"
+        : " — NOT registered (protected)");
+    }).sort().join(", ");
+  };
+
   function dwellerEvictionBlockReason(dweller) {
     if ($scope.isChildDweller(dweller)) {
       return "Child";
@@ -1063,6 +1121,9 @@ app.controller('dwellerController', function ($scope, $http) {
     }
     if (dwellerIsInActiveTeam(dweller.serializeId)) {
       return "Wasteland / Quest";
+    }
+    if (!legendaryIsRegisteredInSurvivalGuide(dweller)) {
+      return "Legendary not in Survival Guide";
     }
 
     return '';
