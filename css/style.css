@@ -261,6 +261,29 @@ a.tab:focus {
   min-height: 68px;
 }
 
+.danger-zone {
+  background-color: #fff7f7;
+  border-color: #ebccd1;
+}
+
+.danger-zone h4,
+.vault-action-group.danger-zone h4 {
+  color: #a94442;
+}
+
+.bulk_dweller_danger {
+  border: 1px solid #ebccd1;
+  border-radius: 6px;
+  margin-top: 20px;
+  padding: 14px 15px;
+}
+
+.bulk_dweller_danger h4 {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 10px;
+}
+
 .stat {
   width: 14.285714286%;
 }

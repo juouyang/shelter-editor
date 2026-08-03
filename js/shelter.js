@@ -900,6 +900,77 @@ app.controller('dwellerController', function ($scope, $http) {
       || $scope.bulkDwellerEdit.petId);
   };
 
+  function storageItems() {
+    var vault = $scope.save && $scope.save.vault;
+    var inventory = vault && vault.inventory;
+
+    return inventory && Array.isArray(inventory.items) ? inventory.items : [];
+  }
+
+  $scope.storageItemCount = function () {
+    return storageItems().length;
+  };
+
+  function countItemsByType(items) {
+    var counts = {};
+
+    for (var itemIndex = 0; itemIndex < items.length; itemIndex++) {
+      var itemType = items[itemIndex] && items[itemIndex].type
+        ? items[itemIndex].type
+        : "Other";
+      counts[itemType] = (counts[itemType] || 0) + 1;
+    }
+
+    return counts;
+  }
+
+  function itemCountSummary(counts) {
+    var preferredOrder = ["Outfit", "Weapon", "Pet", "Junk", "Other"];
+    var parts = [];
+
+    for (var typeIndex = 0; typeIndex < preferredOrder.length; typeIndex++) {
+      var itemType = preferredOrder[typeIndex];
+      if (counts[itemType]) {
+        parts.push(itemType + ": " + counts[itemType]);
+      }
+    }
+
+    Object.keys(counts).sort().forEach(function (itemType) {
+      if (preferredOrder.indexOf(itemType) === -1) {
+        parts.push(itemType + ": " + counts[itemType]);
+      }
+    });
+
+    return parts.join(", ");
+  }
+
+  $scope.clearStorage = function () {
+    var items = storageItems();
+    var itemCount = items.length;
+
+    if (!itemCount) {
+      alert("Storage is already empty.");
+      return;
+    }
+
+    var summary = itemCountSummary(countItemsByType(items));
+    var warning = "Permanently remove all " + itemCount + " unassigned Storage items?\n\n"
+      + summary + "\n\n"
+      + "Equipped items, resources, recipes, and Survival Guide progress will not be changed.";
+
+    if (!window.confirm(warning)) {
+      return;
+    }
+
+    if (!window.confirm("Final confirmation: Clear all " + itemCount
+      + " Storage items from the loaded save? This cannot be undone after downloading the save.")) {
+      return;
+    }
+
+    items.splice(0, items.length);
+    alert("Cleared " + itemCount + " Storage items. Use Save to download the modified file.");
+  };
+
   function setDwellerEquipment(dweller, fieldName, itemId, itemType) {
     if (!dweller[fieldName]) {
       dweller[fieldName] = {
@@ -962,6 +1033,309 @@ app.controller('dwellerController', function ($scope, $http) {
     refreshDwellerEquipmentFilters();
     $scope.clearBulkDwellerSelection();
     alert("Updated " + dwellers.length + " dwellers.");
+  };
+
+  function dwellerIsInActiveTeam(dwellerId) {
+    var wasteland = $scope.save && $scope.save.vault && $scope.save.vault.wasteland;
+    var teams = wasteland && Array.isArray(wasteland.teams) ? wasteland.teams : [];
+
+    for (var teamIndex = 0; teamIndex < teams.length; teamIndex++) {
+      var teamDwellers = Array.isArray(teams[teamIndex].dwellers)
+        ? teams[teamIndex].dwellers
+        : [];
+      if (teamDwellers.indexOf(dwellerId) !== -1) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+  function dwellerEvictionBlockReason(dweller) {
+    if ($scope.isChildDweller(dweller)) {
+      return "Child";
+    }
+    if (dweller.pregnant) {
+      return "Pregnant";
+    }
+    if (dweller.babyReady) {
+      return "Baby Ready";
+    }
+    if (dwellerIsInActiveTeam(dweller.serializeId)) {
+      return "Wasteland / Quest";
+    }
+
+    return '';
+  }
+
+  function bulkEvictionPartition() {
+    var selected = selectedBulkDwellers();
+    var eligible = [];
+    var blocked = [];
+
+    for (var dwellerIndex = 0; dwellerIndex < selected.length; dwellerIndex++) {
+      var reason = dwellerEvictionBlockReason(selected[dwellerIndex]);
+      if (reason) {
+        blocked.push({
+          dweller: selected[dwellerIndex],
+          reason: reason
+        });
+      }
+      else {
+        eligible.push(selected[dwellerIndex]);
+      }
+    }
+
+    return {
+      eligible: eligible,
+      blocked: blocked
+    };
+  }
+
+  $scope.bulkEvictableDwellerCount = function () {
+    return bulkEvictionPartition().eligible.length;
+  };
+
+  $scope.bulkBlockedDwellerCount = function () {
+    return bulkEvictionPartition().blocked.length;
+  };
+
+  function cloneInventoryItem(item) {
+    return JSON.parse(JSON.stringify(item));
+  }
+
+  function returnDwellerItemsToStorage(dwellers) {
+    var vault = $scope.save.vault;
+    if (!vault.inventory) {
+      vault.inventory = { items: [] };
+    }
+    if (!Array.isArray(vault.inventory.items)) {
+      vault.inventory.items = [];
+    }
+
+    var items = vault.inventory.items;
+    var returned = 0;
+
+    for (var dwellerIndex = 0; dwellerIndex < dwellers.length; dwellerIndex++) {
+      var dweller = dwellers[dwellerIndex];
+      var outfit = dweller.equipedOutfit;
+      var weapon = dweller.equipedWeapon;
+      var pet = dweller.equippedPet;
+
+      if (outfit && outfit.id && outfit.id !== "jumpsuit") {
+        items.push(cloneInventoryItem(outfit));
+        returned++;
+      }
+      if (weapon && weapon.id && weapon.id !== "Fist") {
+        items.push(cloneInventoryItem(weapon));
+        returned++;
+      }
+      if (pet && pet.id && pet.type === "Pet") {
+        items.push(cloneInventoryItem(pet));
+        returned++;
+      }
+    }
+
+    return returned;
+  }
+
+  function evictionIdMap(dwellers) {
+    var ids = {};
+    for (var dwellerIndex = 0; dwellerIndex < dwellers.length; dwellerIndex++) {
+      ids[String(dwellers[dwellerIndex].serializeId)] = true;
+    }
+    return ids;
+  }
+
+  function containsEvictionId(ids, value) {
+    return value !== undefined && value !== null && !!ids[String(value)];
+  }
+
+  function scrubEvictedDwellerReferences(dwellers) {
+    var ids = evictionIdMap(dwellers);
+    var orphanTaskIds = {};
+    var save = $scope.save;
+    var rooms = save.vault && Array.isArray(save.vault.rooms) ? save.vault.rooms : [];
+
+    function rememberTask(taskId) {
+      if (typeof taskId === "number" && taskId > 0) {
+        orphanTaskIds[String(taskId)] = true;
+      }
+    }
+
+    for (var roomIndex = 0; roomIndex < rooms.length; roomIndex++) {
+      var room = rooms[roomIndex];
+
+      if (Array.isArray(room.dwellers)) {
+        room.dwellers = room.dwellers.filter(function (dwellerId) {
+          return !containsEvictionId(ids, dwellerId);
+        });
+      }
+      if (Array.isArray(room.deadDwellers)) {
+        room.deadDwellers = room.deadDwellers.filter(function (dwellerId) {
+          return !containsEvictionId(ids, dwellerId);
+        });
+      }
+      if (Array.isArray(room.slots)) {
+        for (var slotIndex = 0; slotIndex < room.slots.length; slotIndex++) {
+          var slot = room.slots[slotIndex];
+          if (containsEvictionId(ids, slot.dwellerID)) {
+            rememberTask(slot.taskID);
+            slot.dwellerID = -2;
+            slot.taskID = -2;
+          }
+        }
+      }
+      if (Array.isArray(room.partners)) {
+        var survivingPartners = [];
+        for (var partnerIndex = 0; partnerIndex < room.partners.length; partnerIndex++) {
+          var partnership = room.partners[partnerIndex];
+          if (containsEvictionId(ids, partnership.f)) {
+            rememberTask(partnership.t);
+            continue;
+          }
+          if (containsEvictionId(ids, partnership.fatherId)) {
+            partnership.fatherId = -1;
+          }
+          if (containsEvictionId(ids, partnership.templateID)) {
+            partnership.templateID = -1;
+          }
+          survivingPartners.push(partnership);
+        }
+        room.partners = survivingPartners;
+      }
+      if (Array.isArray(room.children)) {
+        room.children = room.children.filter(function (child) {
+          if (containsEvictionId(ids, child.dwellerID)) {
+            rememberTask(child.taskID);
+            return false;
+          }
+          return true;
+        });
+      }
+    }
+
+    var wasteland = save.vault && save.vault.wasteland;
+    var teams = wasteland && Array.isArray(wasteland.teams) ? wasteland.teams : [];
+    for (var teamIndex = teams.length - 1; teamIndex >= 0; teamIndex--) {
+      var team = teams[teamIndex];
+      if (!Array.isArray(team.dwellers)) {
+        continue;
+      }
+      team.dwellers = team.dwellers.filter(function (dwellerId) {
+        return !containsEvictionId(ids, dwellerId);
+      });
+      if (!team.dwellers.length && (!Array.isArray(team.actors) || !team.actors.length)) {
+        teams.splice(teamIndex, 1);
+      }
+    }
+
+    var spawner = save.dwellerSpawner;
+    if (spawner && Array.isArray(spawner.dwellersWaiting)) {
+      spawner.dwellersWaiting = spawner.dwellersWaiting.filter(function (waiting) {
+        return !waiting || !containsEvictionId(ids, waiting.dwellerId);
+      });
+    }
+
+    var actors = save.dwellers && Array.isArray(save.dwellers.actors)
+      ? save.dwellers.actors
+      : [];
+    var removedActorIds = [];
+    for (var actorIndex = actors.length - 1; actorIndex >= 0; actorIndex--) {
+      if (isPet(actors[actorIndex]) && containsEvictionId(ids, actors[actorIndex].FollowedID)) {
+        removedActorIds.push(actors[actorIndex].serializeId);
+        delete $scope.petEditor.editedActorIds[actors[actorIndex].serializeId];
+        actors.splice(actorIndex, 1);
+      }
+    }
+    removePetActorReferences(removedActorIds);
+
+    var taskManager = save.taskMgr;
+    if (taskManager) {
+      ["tasks", "pausedTasks"].forEach(function (taskListName) {
+        if (Array.isArray(taskManager[taskListName])) {
+          taskManager[taskListName] = taskManager[taskListName].filter(function (task) {
+            return !task || !orphanTaskIds[String(task.id)];
+          });
+        }
+      });
+    }
+
+    save.dwellers.dwellers = save.dwellers.dwellers.filter(function (dweller) {
+      return !containsEvictionId(ids, dweller.serializeId);
+    });
+
+    var vaultStats = save.StatsWindow && save.StatsWindow.vaultData;
+    if (vaultStats) {
+      var priorEvictions = parseInt(vaultStats.evictedDwellers, 10);
+      vaultStats.evictedDwellers = (isFinite(priorEvictions) ? priorEvictions : 0) + dwellers.length;
+    }
+
+    return ids;
+  }
+
+  function blockedEvictionSummary(blocked) {
+    var counts = {};
+    for (var blockedIndex = 0; blockedIndex < blocked.length; blockedIndex++) {
+      var reason = blocked[blockedIndex].reason;
+      counts[reason] = (counts[reason] || 0) + 1;
+    }
+    return itemCountSummary(counts);
+  }
+
+  $scope.evictSelectedDwellers = function () {
+    var partition = bulkEvictionPartition();
+    var dwellers = partition.eligible;
+
+    if (!dwellers.length) {
+      alert("None of the selected Dwellers are eligible for eviction.");
+      return;
+    }
+
+    var returnedItemCount = 0;
+    for (var dwellerIndex = 0; dwellerIndex < dwellers.length; dwellerIndex++) {
+      var dweller = dwellers[dwellerIndex];
+      returnedItemCount += dweller.equipedOutfit && dweller.equipedOutfit.id
+        && dweller.equipedOutfit.id !== "jumpsuit" ? 1 : 0;
+      returnedItemCount += dweller.equipedWeapon && dweller.equipedWeapon.id
+        && dweller.equipedWeapon.id !== "Fist" ? 1 : 0;
+      returnedItemCount += dweller.equippedPet && dweller.equippedPet.id
+        && dweller.equippedPet.type === "Pet" ? 1 : 0;
+    }
+
+    var warning = "Permanently evict " + dwellers.length + " selected Dwellers?\n\n"
+      + returnedItemCount + " equipped items and Pets will be returned to Storage.";
+    if (partition.blocked.length) {
+      warning += "\n" + partition.blocked.length + " protected selections will be skipped ("
+        + blockedEvictionSummary(partition.blocked) + ").";
+    }
+    warning += "\n\nRoom, training, family, task, door-queue, team, and Pet references will be cleaned.";
+
+    if (!window.confirm(warning)) {
+      return;
+    }
+    if (!window.confirm("Final confirmation: permanently evict " + dwellers.length
+      + " Dwellers from the loaded save? This cannot be undone after downloading the save.")) {
+      return;
+    }
+
+    returnDwellerItemsToStorage(dwellers);
+    var removedIds = scrubEvictedDwellerReferences(dwellers);
+
+    if ($scope.dweller && containsEvictionId(removedIds, $scope.dweller.serializeId)) {
+      $scope.closeDweller();
+    }
+
+    $scope.clearBulkDwellerSelection();
+    refreshDwellerEquipmentFilters();
+    extractTeams();
+
+    var result = "Evicted " + dwellers.length + " Dwellers and returned "
+      + returnedItemCount + " equipped items and Pets to Storage.";
+    if (partition.blocked.length) {
+      result += " Skipped " + partition.blocked.length + " protected selections.";
+    }
+    alert(result + " Use Save to download the modified file.");
   };
 
   $scope.updateDwellerPregnancy = function () {

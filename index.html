@@ -27,7 +27,7 @@ Copyright (C) 2017
   <meta name="description"
     content="Web app to edit Fallout Shelter save games. You can change dwellers SPECIAL, other stats and vault's resources.">
   <link rel="stylesheet" href="css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/style.css?v=20260803-5">
+  <link rel="stylesheet" href="css/style.css?v=20260803-6">
 </head>
 
 <body ng-app="shelter" ng-controller="dwellerController">
@@ -201,6 +201,21 @@ Copyright (C) 2017
             </div>
           </section>
 
+          <section class="vault-action-group danger-zone" aria-labelledby="danger-actions-title">
+            <h4 id="danger-actions-title">Danger Zone</h4>
+            <div class="row">
+              <div class="col-sm-12 vault-action">
+                <label>Clear Storage Space</label>
+                <p class="help-block">
+                  Permanently removes all {{ storageItemCount() }} unassigned items from Storage.
+                  Equipped items, resources, recipes, and Survival Guide progress are not changed.
+                </p>
+                <button type="button" class="btn btn-danger" ng-click="clearStorage()"
+                  ng-disabled="!storageItemCount()">Clear Storage</button>
+              </div>
+            </div>
+          </section>
+
           <div class="form-group row">
             <div class="col-sm-4">
               <label>Save app Version:</label><label ng-bind="save.appVersion"></label>
@@ -331,6 +346,22 @@ Copyright (C) 2017
             <button type="button" class="btn btn-primary" ng-click="applyBulkDwellerEdit()"
               ng-disabled="!hasBulkDwellerChanges()">Apply to {{ bulkDwellerCount }} Dwellers</button>
           </div>
+
+          <section class="bulk_dweller_danger danger-zone" aria-labelledby="bulk-evict-title">
+            <h4 id="bulk-evict-title">Danger Zone</h4>
+            <p>
+              Permanently evict {{ bulkEvictableDwellerCount() }} eligible selected Dwellers.
+              Equipped items and Pets are returned to Storage.
+            </p>
+            <p class="help-block" ng-show="bulkBlockedDwellerCount()">
+              {{ bulkBlockedDwellerCount() }} selected Dwellers are protected because they are children,
+              pregnant, Baby Ready, or assigned to a Wasteland / Quest team.
+            </p>
+            <button type="button" class="btn btn-danger" ng-click="evictSelectedDwellers()"
+              ng-disabled="!bulkEvictableDwellerCount()">
+              Evict {{ bulkEvictableDwellerCount() }} Selected Dwellers
+            </button>
+          </section>
         </form>
       </div>
 
@@ -832,7 +863,7 @@ Copyright (C) 2017
   <script src="js/json2.min.js"></script>
   <script src="js/aes.js"></script>
   <script src="js/FileSaver.js"></script>
-  <script src="js/shelter.js?v=20260803-4"></script>
+  <script src="js/shelter.js?v=20260803-6"></script>
   <script src="js/jscolor.js"></script>
 </body>
 
