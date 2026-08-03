@@ -313,12 +313,9 @@ Copyright (C) 2017
           <div class="form-group">
             <label for="bulk-dweller-pet">Equipped Pet</label>
             <select id="bulk-dweller-pet" class="form-control" ng-model="bulkDwellerEdit.petId"
-              ng-disabled="!petEditor.ready">
+              ng-disabled="!petEditor.ready"
+              ng-options="option.id as option.label group by option.rarity for option in bulkPetOptions">
               <option value="">Keep current Pet</option>
-              <option value="__remove_pet__">Remove equipped Pet</option>
-              <option ng-repeat="option in petEditor.pets" value="{{ option.id }}">
-                {{ option.rarity }} — {{ option.label }}
-              </option>
             </select>
             <p class="help-block" ng-show="petEditor.loading">Loading the 1.13.25 Pet catalog…</p>
             <p class="help-block" ng-show="!petEditor.supported">
@@ -835,7 +832,7 @@ Copyright (C) 2017
   <script src="js/json2.min.js"></script>
   <script src="js/aes.js"></script>
   <script src="js/FileSaver.js"></script>
-  <script src="js/shelter.js?v=20260803-2"></script>
+  <script src="js/shelter.js?v=20260803-3"></script>
   <script src="js/jscolor.js"></script>
 </body>
 

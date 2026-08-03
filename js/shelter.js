@@ -169,6 +169,9 @@ app.controller('dwellerController', function ($scope, $http) {
   var PET_CATALOG_URLS = {
     "1.13.25": "data/pets-1.13.25.json?v=20260731-2"
   };
+  var EQUIPMENT_CATALOG_URLS = {
+    "1.13.25": "data/equipment-1.13.25.json?v=20260803-1"
+  };
 
   $scope.section = 'vault';
 
@@ -195,6 +198,7 @@ app.controller('dwellerController', function ($scope, $http) {
   };
   $scope.dwellerOutfitOptions = [];
   $scope.dwellerWeaponOptions = [];
+  $scope.bulkPetOptions = [];
   $scope.other = {};
   $scope.petOwner = {};
   $scope.petItem = {};
@@ -208,6 +212,15 @@ app.controller('dwellerController', function ($scope, $http) {
     catalog: {},
     pets: [],
     editedActorIds: {}
+  };
+  $scope.equipmentEditor = {
+    saveVersion: '',
+    supported: false,
+    loading: false,
+    ready: false,
+    error: '',
+    outfits: {},
+    weapons: {}
   };
   $scope.wastelandTeams = [];
   $scope.wastelandTeams2 = [];
@@ -306,6 +319,7 @@ app.controller('dwellerController', function ($scope, $http) {
     },
     set: function (val) {
       _save = val;
+      configureEquipmentEditor();
       configurePetEditor();
       $scope.dwellerFilters.outfitId = '';
       $scope.dwellerFilters.weaponId = '';
@@ -457,24 +471,93 @@ app.controller('dwellerController', function ($scope, $http) {
     return '#';
   }
 
-  function buildEquipmentSelectionOptions(equipmentNames) {
+  function equipmentRarityGroup(rarity) {
+    if (rarity === 'Normal' || rarity === 'Common') {
+      return 'Common';
+    }
+    if (rarity === 'Rare' || rarity === 'Legendary') {
+      return rarity;
+    }
+
+    return 'Other';
+  }
+
+  function outfitBonusLabel(definition) {
+    var statOrder = ['S', 'P', 'E', 'C', 'I', 'A', 'L'];
+    var bonuses = definition && definition.special ? definition.special : {};
+    var labels = [];
+
+    for (var statIndex = 0; statIndex < statOrder.length; statIndex++) {
+      var stat = statOrder[statIndex];
+      var value = Number(bonuses[stat] || 0);
+      if (value) {
+        labels.push(stat + (value > 0 ? '+' : '') + value);
+      }
+    }
+
+    return labels.length ? labels.join(' ') : 'No SPECIAL bonus';
+  }
+
+  function equipmentDetailLabel(name, definition, equipmentType) {
+    if (!definition) {
+      return name;
+    }
+
+    if (equipmentType === 'weapon') {
+      return name + ' — ' + definition.damageMin + '–' + definition.damageMax + ' damage';
+    }
+
+    return name + ' — ' + outfitBonusLabel(definition);
+  }
+
+  function buildEquipmentSelectionOptions(equipmentNames, definitions, equipmentType) {
     var options = Object.keys(equipmentNames || {}).map(function (id) {
       var name = equipmentNames[id] || id;
+      var definition = definitions && definitions[id];
 
       return {
         id: id,
         name: name,
-        label: name,
-        group: equipmentAlphabeticalGroup(name)
+        label: equipmentDetailLabel(name, definition, equipmentType),
+        group: definition
+          ? equipmentRarityGroup(definition.rarity)
+          : equipmentAlphabeticalGroup(name)
       };
     });
 
     options.sort(function (left, right) {
+      var rarityOrder = {
+        Common: 0,
+        Rare: 1,
+        Legendary: 2,
+        Other: 3
+      };
+      var leftRarityOrder = rarityOrder[left.group];
+      var rightRarityOrder = rarityOrder[right.group];
+
+      if (leftRarityOrder !== undefined && rightRarityOrder !== undefined
+        && leftRarityOrder !== rightRarityOrder) {
+        return leftRarityOrder - rightRarityOrder;
+      }
+
       var nameDifference = left.name.localeCompare(right.name);
       return nameDifference || left.id.localeCompare(right.id);
     });
 
     return options;
+  }
+
+  function refreshEquipmentSelectionOptions() {
+    $scope.dwellerOutfitOptions = buildEquipmentSelectionOptions(
+      $scope.dwelleroutfitslist,
+      $scope.equipmentEditor.outfits,
+      'outfit'
+    );
+    $scope.dwellerWeaponOptions = buildEquipmentSelectionOptions(
+      $scope.dwellerweaponlist,
+      $scope.equipmentEditor.weapons,
+      'weapon'
+    );
   }
 
   function equippedPetId(dweller) {
@@ -973,6 +1056,7 @@ app.controller('dwellerController', function ($scope, $http) {
     $scope.petEditor.error = '';
     $scope.petEditor.catalog = {};
     $scope.petEditor.pets = [];
+    $scope.bulkPetOptions = [];
     $scope.petEditor.editedActorIds = {};
     $scope.petDefinition = {};
 
@@ -1004,6 +1088,12 @@ app.controller('dwellerController', function ($scope, $http) {
 
       $scope.petEditor.catalog = catalog;
       $scope.petEditor.pets = buildPetSelectionOptions(pets);
+      $scope.bulkPetOptions = [{
+        id: "__remove_pet__",
+        rarity: "Action",
+        name: "Remove equipped Pet",
+        label: "Remove equipped Pet"
+      }].concat($scope.petEditor.pets);
       $scope.petEditor.loading = false;
       $scope.petEditor.ready = true;
       refreshSelectedPetDefinition();
@@ -1019,6 +1109,56 @@ app.controller('dwellerController', function ($scope, $http) {
         ? error.message
         : "The Pet catalog could not be loaded.";
       refreshSelectedPetDefinition();
+    });
+  }
+
+  function configureEquipmentEditor() {
+    var version = normalizeAppVersion(_save);
+    var catalogUrl = EQUIPMENT_CATALOG_URLS[version];
+
+    $scope.equipmentEditor.saveVersion = version;
+    $scope.equipmentEditor.supported = !!catalogUrl;
+    $scope.equipmentEditor.loading = false;
+    $scope.equipmentEditor.ready = false;
+    $scope.equipmentEditor.error = '';
+    $scope.equipmentEditor.outfits = {};
+    $scope.equipmentEditor.weapons = {};
+    refreshEquipmentSelectionOptions();
+
+    if (!catalogUrl) {
+      return;
+    }
+
+    $scope.equipmentEditor.loading = true;
+    $http.get(catalogUrl, { cache: true }).then(function (response) {
+      if (normalizeAppVersion(_save) !== version) {
+        return;
+      }
+
+      var data = response.data || {};
+      if (String(data.appVersion || '').trim() !== version) {
+        throw new Error("The equipment catalog version does not match the loaded save.");
+      }
+      if (!data.outfits || !data.weapons) {
+        throw new Error("The equipment catalog is incomplete.");
+      }
+
+      $scope.equipmentEditor.outfits = data.outfits;
+      $scope.equipmentEditor.weapons = data.weapons;
+      $scope.equipmentEditor.loading = false;
+      $scope.equipmentEditor.ready = true;
+      refreshEquipmentSelectionOptions();
+    }).catch(function (error) {
+      if (normalizeAppVersion(_save) !== version) {
+        return;
+      }
+
+      $scope.equipmentEditor.loading = false;
+      $scope.equipmentEditor.ready = false;
+      $scope.equipmentEditor.error = error && error.message
+        ? error.message
+        : "The equipment catalog could not be loaded.";
+      refreshEquipmentSelectionOptions();
     });
   }
 
@@ -2371,8 +2511,7 @@ app.controller('dwellerController', function ($scope, $http) {
     WrestlerSpecial: 'Wrestler Outfit'
   };
 
-  $scope.dwellerOutfitOptions = buildEquipmentSelectionOptions($scope.dwelleroutfitslist);
-  $scope.dwellerWeaponOptions = buildEquipmentSelectionOptions($scope.dwellerweaponlist);
+  refreshEquipmentSelectionOptions();
 });
 
 function preset(preset, saveFileName) {
