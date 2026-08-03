@@ -2074,6 +2074,58 @@ app.controller('dwellerController', function ($scope, $http) {
     alert("Cleared Emergency on all rooms!");
   };
 
+  function waitingDwellers() {
+    var spawner = $scope.save && $scope.save.dwellerSpawner;
+    return spawner && Array.isArray(spawner.dwellersWaiting)
+      ? spawner.dwellersWaiting
+      : [];
+  }
+
+  $scope.waitingDwellerCount = function () {
+    return waitingDwellers().length;
+  };
+
+  $scope.acceptAllDwellersWaiting = function () {
+    var waiting = waitingDwellers();
+    var waitingCount = waiting.length;
+
+    if (!waitingCount) {
+      alert("There are no Dwellers waiting at the Vault door.");
+      return;
+    }
+
+    var acceptedIds = [];
+    for (var waitingIndex = 0; waitingIndex < waiting.length; waitingIndex++) {
+      var waitingDweller = waiting[waitingIndex] || {};
+      var dwellerId = waitingDweller.dwellerId !== undefined
+        ? waitingDweller.dwellerId
+        : waitingDweller.dwellerID;
+      if (dwellerId !== undefined && dwellerId !== null) {
+        acceptedIds.push(dwellerId);
+      }
+    }
+
+    waiting.splice(0, waiting.length);
+    $scope.clearBulkDwellerSelection();
+
+    for (var acceptedIndex = 0; acceptedIndex < acceptedIds.length; acceptedIndex++) {
+      var acceptedDweller = findDweller(acceptedIds[acceptedIndex]);
+      if (acceptedDweller && !$scope.isChildDweller(acceptedDweller)) {
+        $scope.bulkDwellerSelection[String(acceptedDweller.serializeId)] = true;
+      }
+    }
+
+    $scope.updateBulkDwellerSelection();
+    refreshDwellerEquipmentFilters();
+
+    var result = "Accepted " + waitingCount + " Dwellers waiting at the Vault door.";
+    if ($scope.bulkDwellerCount) {
+      result += " Selected " + $scope.bulkDwellerCount
+        + " of them in the Dwellers tab for bulk actions.";
+    }
+    alert(result);
+  };
+
   $scope.unlockthemes = function () {
     var themes = $scope.save.survivalW.collectedThemes.themeList || [];
 
