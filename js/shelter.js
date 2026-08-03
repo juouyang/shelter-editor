@@ -723,7 +723,7 @@ app.controller('dwellerController', function ($scope, $http) {
       if (!locations[dwellerLocationId]) {
         locations[dwellerLocationId] = {
           id: dwellerLocationId,
-          name: dwellerLocationId === "__wasteland__" ? "Wasteland / Quest" : "Unassigned",
+          name: dwellerLocationId === "__wasteland__" ? "Wasteland / Quest" : "Coffee Break / Unassigned",
           group: "Other",
           row: 999999,
           col: dwellerLocationId === "__wasteland__" ? 0 : 1,
@@ -772,7 +772,7 @@ app.controller('dwellerController', function ($scope, $http) {
   $scope.dwellerLocationLabel = function (dweller) {
     var locationId = dwellerLocationId(dweller);
     return _dwellerLocationLabels[locationId]
-      || (locationId === "__wasteland__" ? "Wasteland / Quest" : "Unassigned");
+      || (locationId === "__wasteland__" ? "Wasteland / Quest" : "Coffee Break / Unassigned");
   };
 
   $scope.isChildDweller = function (dweller) {
