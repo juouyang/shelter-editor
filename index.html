@@ -27,7 +27,7 @@ Copyright (C) 2017
   <meta name="description"
     content="Web app to edit Fallout Shelter save games. You can change dwellers SPECIAL, other stats and vault's resources.">
   <link rel="stylesheet" href="css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/style.css?v=20260804-3">
+  <link rel="stylesheet" href="css/style.css?v=20260804-4">
 </head>
 
 <body ng-app="shelter" ng-controller="dwellerController">
@@ -324,10 +324,32 @@ Copyright (C) 2017
             </select>
           </div>
 
+          <div class="dweller_secondary_filters">
+            <div class="form-group">
+              <label for="dweller-status-filter">Dweller Status</label>
+              <select id="dweller-status-filter" class="form-control" ng-model="dwellerFilters.statusId">
+                <option value="">All statuses</option>
+                <option value="pregnant">Pregnant</option>
+                <option value="babyReady">Baby Ready</option>
+                <option value="child">Kids</option>
+                <option value="adult">Adults</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="dweller-gender-filter">Gender</label>
+              <select id="dweller-gender-filter" class="form-control" ng-model="dwellerFilters.genderId">
+                <option value="">All genders</option>
+                <option value="1">Female</option>
+                <option value="2">Male</option>
+              </select>
+            </div>
+          </div>
+
           <div class="dweller_filter_summary">
             Showing {{ filteredDwellers.length || 0 }} of {{ save.dwellers.dwellers.length || 0 }}
             <a href="" ng-click="clearDwellerEquipmentFilters()"
-              ng-show="dwellerFilters.outfitId || dwellerFilters.weaponId || dwellerFilters.petId || dwellerFilters.locationId">
+              ng-show="dwellerFilters.outfitId || dwellerFilters.weaponId || dwellerFilters.petId || dwellerFilters.locationId || dwellerFilters.statusId || dwellerFilters.genderId">
               Clear filters</a>
           </div>
         </div>
@@ -958,7 +980,7 @@ Copyright (C) 2017
   <script src="js/json2.min.js"></script>
   <script src="js/aes.js"></script>
   <script src="js/FileSaver.js"></script>
-  <script src="js/shelter.js?v=20260804-3"></script>
+  <script src="js/shelter.js?v=20260804-4"></script>
   <script src="js/jscolor.js"></script>
 </body>
 

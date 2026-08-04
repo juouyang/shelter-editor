@@ -128,6 +128,16 @@ a.tab:focus {
   padding: 4px 8px;
 }
 
+.dweller_secondary_filters {
+  display: flex;
+  gap: 8px;
+}
+
+.dweller_secondary_filters .form-group {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
 .dweller_filter_summary {
   color: #666;
   font-size: 12px;
@@ -495,6 +505,10 @@ a.list-group-item, a.list-group-item, button.list-group-item, button.list-group-
 
   .box {
     height: 700px;
+  }
+
+  .dweller_box {
+    height: 780px;
   }
 
   .dweller_box .dweller_info {

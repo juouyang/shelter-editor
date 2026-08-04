@@ -183,6 +183,8 @@ app.controller('dwellerController', function ($scope, $http) {
     weaponId: '',
     petId: '',
     locationId: '',
+    statusId: '',
+    genderId: '',
     outfits: [],
     weapons: [],
     pets: [],
@@ -326,6 +328,8 @@ app.controller('dwellerController', function ($scope, $http) {
       $scope.dwellerFilters.weaponId = '';
       $scope.dwellerFilters.petId = '';
       $scope.dwellerFilters.locationId = '';
+      $scope.dwellerFilters.statusId = '';
+      $scope.dwellerFilters.genderId = '';
       $scope.bulkDwellerSelection = {};
       $scope.bulkDwellerCount = 0;
       $scope.bulkDwellerEdit.outfitId = '';
@@ -926,6 +930,13 @@ app.controller('dwellerController', function ($scope, $http) {
   $scope.refreshDwellerEquipmentFilters = refreshDwellerEquipmentFilters;
 
   $scope.filterDwellerByEquipment = function (dweller) {
+    var statusId = $scope.dwellerFilters.statusId;
+    var statusMatches = !statusId
+      || (statusId === "pregnant" && dweller.pregnant === true)
+      || (statusId === "babyReady" && dweller.babyReady === true)
+      || (statusId === "child" && $scope.isChildDweller(dweller))
+      || (statusId === "adult" && !$scope.isChildDweller(dweller));
+
     return (!$scope.dwellerFilters.outfitId
       || equipmentId(dweller, "equipedOutfit") === $scope.dwellerFilters.outfitId)
       && (!$scope.dwellerFilters.weaponId
@@ -933,7 +944,10 @@ app.controller('dwellerController', function ($scope, $http) {
       && (!$scope.dwellerFilters.petId
         || equippedPetId(dweller) === $scope.dwellerFilters.petId)
       && (!$scope.dwellerFilters.locationId
-        || dwellerLocationId(dweller) === $scope.dwellerFilters.locationId);
+        || dwellerLocationId(dweller) === $scope.dwellerFilters.locationId)
+      && (!$scope.dwellerFilters.genderId
+        || String(dweller.gender) === $scope.dwellerFilters.genderId)
+      && statusMatches;
   };
 
   $scope.clearDwellerEquipmentFilters = function () {
@@ -941,6 +955,8 @@ app.controller('dwellerController', function ($scope, $http) {
     $scope.dwellerFilters.weaponId = '';
     $scope.dwellerFilters.petId = '';
     $scope.dwellerFilters.locationId = '';
+    $scope.dwellerFilters.statusId = '';
+    $scope.dwellerFilters.genderId = '';
   };
 
   function selectedBulkDwellers() {
