@@ -271,6 +271,50 @@ a.tab:focus {
   color: #a94442;
 }
 
+.vault-statistics {
+  padding-bottom: 10px;
+}
+
+.vault-stat-category-title {
+  border-bottom: 1px solid #e1e6eb;
+  color: #66727d;
+  font-size: 13px;
+  font-weight: 600;
+  margin: 12px 0;
+  padding-bottom: 6px;
+  text-transform: uppercase;
+}
+
+.vault-stat-category-title:first-of-type {
+  margin-top: 0;
+}
+
+.vault-statistic {
+  margin-bottom: 14px;
+}
+
+.vault-statistic span,
+.vault-statistic strong {
+  display: block;
+}
+
+.vault-statistic span {
+  color: #66727d;
+  font-size: 13px;
+  min-height: 18px;
+}
+
+.vault-statistic strong {
+  color: #2f3b46;
+  font-size: 22px;
+  line-height: 1.2;
+}
+
+.save-version {
+  color: #66727d;
+  margin: 6px 0 0;
+}
+
 .bulk_dweller_danger {
   border: 1px solid #ebccd1;
   border-radius: 6px;

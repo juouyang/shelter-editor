@@ -791,6 +791,87 @@ app.controller('dwellerController', function ($scope, $http) {
       : "Unknown";
   };
 
+  $scope.vaultStatistics = function () {
+    var stats = {
+      totalDwellers: 0,
+      femaleDwellers: 0,
+      maleDwellers: 0,
+      unknownGenderDwellers: 0,
+      adultDwellers: 0,
+      childDwellers: 0,
+      pregnantDwellers: 0,
+      babyReadyDwellers: 0,
+      roomDwellers: 0,
+      wastelandDwellers: 0,
+      unassignedDwellers: 0,
+      awaitingDwellers: 0,
+      equippedPets: 0,
+      mrHandies: 0
+    };
+    var dwellers = $scope.save && $scope.save.dwellers
+      && Array.isArray($scope.save.dwellers.dwellers)
+      ? $scope.save.dwellers.dwellers
+      : [];
+    var actors = $scope.save && $scope.save.dwellers
+      && Array.isArray($scope.save.dwellers.actors)
+      ? $scope.save.dwellers.actors
+      : [];
+
+    stats.totalDwellers = dwellers.length;
+
+    for (var dwellerIndex = 0; dwellerIndex < dwellers.length; dwellerIndex++) {
+      var dweller = dwellers[dwellerIndex];
+      var locationId = dwellerLocationId(dweller);
+
+      if (dweller.gender === 1) {
+        stats.femaleDwellers++;
+      }
+      else if (dweller.gender === 2) {
+        stats.maleDwellers++;
+      }
+      else {
+        stats.unknownGenderDwellers++;
+      }
+
+      if ($scope.isChildDweller(dweller)) {
+        stats.childDwellers++;
+      }
+      else {
+        stats.adultDwellers++;
+      }
+
+      if (dweller.pregnant) {
+        stats.pregnantDwellers++;
+      }
+      if (dweller.babyReady) {
+        stats.babyReadyDwellers++;
+      }
+      if (dweller.equippedPet && dweller.equippedPet.id) {
+        stats.equippedPets++;
+      }
+
+      if (locationId === "__wasteland__") {
+        stats.wastelandDwellers++;
+      }
+      else if (locationId.indexOf("room:") === 0) {
+        stats.roomDwellers++;
+      }
+      else {
+        stats.unassignedDwellers++;
+      }
+    }
+
+    stats.awaitingDwellers = waitingDwellers().filter(isWaitingDweller).length;
+
+    for (var actorIndex = 0; actorIndex < actors.length; actorIndex++) {
+      if (isMrHandy(actors[actorIndex])) {
+        stats.mrHandies++;
+      }
+    }
+
+    return stats;
+  };
+
   function optionExists(options, id) {
     for (var optionIndex = 0; optionIndex < options.length; optionIndex++) {
       if (options[optionIndex].id === id) {

@@ -27,7 +27,7 @@ Copyright (C) 2017
   <meta name="description"
     content="Web app to edit Fallout Shelter save games. You can change dwellers SPECIAL, other stats and vault's resources.">
   <link rel="stylesheet" href="css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/style.css?v=20260803-6">
+  <link rel="stylesheet" href="css/style.css?v=20260804-3">
 </head>
 
 <body ng-app="shelter" ng-controller="dwellerController">
@@ -222,11 +222,65 @@ Copyright (C) 2017
             </div>
           </section>
 
-          <div class="form-group row">
-            <div class="col-sm-4">
-              <label>Save app Version:</label><label ng-bind="save.appVersion"></label>
+          <section class="vault-action-group vault-statistics" aria-labelledby="vault-statistics-title">
+            <h4 id="vault-statistics-title">Vault Statistics</h4>
+
+            <h5 class="vault-stat-category-title">Population</h5>
+            <div class="row">
+              <div class="col-xs-6 col-sm-3 vault-statistic">
+                <span>Total Dwellers</span><strong>{{ vaultStatistics().totalDwellers }}</strong>
+              </div>
+              <div class="col-xs-6 col-sm-3 vault-statistic">
+                <span>Female</span><strong>{{ vaultStatistics().femaleDwellers }}</strong>
+              </div>
+              <div class="col-xs-6 col-sm-3 vault-statistic">
+                <span>Male</span><strong>{{ vaultStatistics().maleDwellers }}</strong>
+              </div>
+              <div class="col-xs-6 col-sm-3 vault-statistic" ng-show="vaultStatistics().unknownGenderDwellers">
+                <span>Unknown Gender</span><strong>{{ vaultStatistics().unknownGenderDwellers }}</strong>
+              </div>
+              <div class="col-xs-6 col-sm-3 vault-statistic">
+                <span>Adults</span><strong>{{ vaultStatistics().adultDwellers }}</strong>
+              </div>
+              <div class="col-xs-6 col-sm-3 vault-statistic">
+                <span>Kids</span><strong>{{ vaultStatistics().childDwellers }}</strong>
+              </div>
+              <div class="col-xs-6 col-sm-3 vault-statistic">
+                <span>Pregnant</span><strong>{{ vaultStatistics().pregnantDwellers }}</strong>
+              </div>
+              <div class="col-xs-6 col-sm-3 vault-statistic">
+                <span>Baby Ready</span><strong>{{ vaultStatistics().babyReadyDwellers }}</strong>
+              </div>
             </div>
-          </div>
+
+            <h5 class="vault-stat-category-title">Location</h5>
+            <div class="row">
+              <div class="col-xs-6 col-sm-3 vault-statistic">
+                <span>In Rooms</span><strong>{{ vaultStatistics().roomDwellers }}</strong>
+              </div>
+              <div class="col-xs-6 col-sm-3 vault-statistic">
+                <span>Wasteland / Quest</span><strong>{{ vaultStatistics().wastelandDwellers }}</strong>
+              </div>
+              <div class="col-xs-6 col-sm-3 vault-statistic">
+                <span>Coffee Break / Unassigned</span><strong>{{ vaultStatistics().unassignedDwellers }}</strong>
+              </div>
+              <div class="col-xs-6 col-sm-3 vault-statistic">
+                <span>Awaiting Dwellers</span><strong>{{ vaultStatistics().awaitingDwellers }}</strong>
+              </div>
+            </div>
+
+            <h5 class="vault-stat-category-title">Other</h5>
+            <div class="row">
+              <div class="col-xs-6 col-sm-3 vault-statistic">
+                <span>Equipped Pets</span><strong>{{ vaultStatistics().equippedPets }}</strong>
+              </div>
+              <div class="col-xs-6 col-sm-3 vault-statistic">
+                <span>Mr. Handies</span><strong>{{ vaultStatistics().mrHandies }}</strong>
+              </div>
+            </div>
+          </section>
+
+          <p class="save-version"><strong>Save app Version:</strong> <span ng-bind="save.appVersion"></span></p>
 
         </form>
 
@@ -904,7 +958,7 @@ Copyright (C) 2017
   <script src="js/json2.min.js"></script>
   <script src="js/aes.js"></script>
   <script src="js/FileSaver.js"></script>
-  <script src="js/shelter.js?v=20260804-2"></script>
+  <script src="js/shelter.js?v=20260804-3"></script>
   <script src="js/jscolor.js"></script>
 </body>
 
