@@ -1879,6 +1879,51 @@ app.controller('dwellerController', function ($scope, $http) {
     return isMrHandy(other) && isActorInWasteland(other.serializeId);
   };
 
+  $scope.mrHandyLocationLabel = function (other) {
+    if (!isMrHandy(other)) {
+      return "";
+    }
+
+    var actorId = String(other.serializeId);
+    var wasteland = $scope.save.vault.wasteland || {};
+    var teams = wasteland.teams || [];
+    var rooms = $scope.save.vault.rooms || [];
+    var waiting = waitingDwellers();
+
+    for (var teamIndex = 0; teamIndex < teams.length; teamIndex++) {
+      var teamActors = teams[teamIndex].actors || [];
+      for (var teamActorIndex = 0; teamActorIndex < teamActors.length; teamActorIndex++) {
+        if (String(teamActors[teamActorIndex]) === actorId) {
+          return "Wasteland / Quest";
+        }
+      }
+    }
+
+    for (var roomIndex = 0; roomIndex < rooms.length; roomIndex++) {
+      var mrHandyList = rooms[roomIndex].mrHandyList || [];
+      for (var handyIndex = 0; handyIndex < mrHandyList.length; handyIndex++) {
+        if (String(mrHandyList[handyIndex]) === actorId) {
+          return roomLocationName(rooms[roomIndex]);
+        }
+      }
+    }
+
+    for (var waitingIndex = 0; waitingIndex < waiting.length; waitingIndex++) {
+      var waitingActorId = waiting[waitingIndex] && waiting[waitingIndex].serializeId;
+      if (waitingActorId !== undefined && String(waitingActorId) === actorId) {
+        return "Vault Door / Awaiting";
+      }
+    }
+
+    for (var savedRoomIndex = 0; savedRoomIndex < rooms.length; savedRoomIndex++) {
+      if (String(rooms[savedRoomIndex].deserializeID) === String(other.savedRoom)) {
+        return roomLocationName(rooms[savedRoomIndex]) + " (saved room)";
+      }
+    }
+
+    return "Unassigned";
+  };
+
   $scope.deleteMrHandy = function () {
     if (!isMrHandy($scope.other)) {
       return;
@@ -2142,13 +2187,42 @@ app.controller('dwellerController', function ($scope, $http) {
       : [];
   }
 
+  function waitingDwellerId(waiting) {
+    if (!waiting) {
+      return null;
+    }
+
+    if (waiting.dwellerId !== undefined) {
+      return waiting.dwellerId;
+    }
+
+    return waiting.dwellerID !== undefined ? waiting.dwellerID : null;
+  }
+
+  function isWaitingDweller(waiting) {
+    if (!waiting) {
+      return false;
+    }
+
+    if (waiting.charType !== undefined && waiting.charType !== null) {
+      return String(waiting.charType).toLowerCase() === "dweller";
+    }
+
+    var dwellerId = waitingDwellerId(waiting);
+    return dwellerId !== null && !!findDweller(dwellerId);
+  }
+
   $scope.waitingDwellerCount = function () {
-    return waitingDwellers().length;
+    return waitingDwellers().filter(isWaitingDweller).length;
   };
 
   $scope.acceptAllDwellersWaiting = function () {
     var waiting = waitingDwellers();
-    var waitingCount = waiting.length;
+    var acceptedWaiting = waiting.filter(isWaitingDweller);
+    var preservedWaiting = waiting.filter(function (entry) {
+      return !isWaitingDweller(entry);
+    });
+    var waitingCount = acceptedWaiting.length;
 
     if (!waitingCount) {
       alert("There are no Dwellers waiting at the Vault door.");
@@ -2156,17 +2230,17 @@ app.controller('dwellerController', function ($scope, $http) {
     }
 
     var acceptedIds = [];
-    for (var waitingIndex = 0; waitingIndex < waiting.length; waitingIndex++) {
-      var waitingDweller = waiting[waitingIndex] || {};
-      var dwellerId = waitingDweller.dwellerId !== undefined
-        ? waitingDweller.dwellerId
-        : waitingDweller.dwellerID;
-      if (dwellerId !== undefined && dwellerId !== null) {
+    for (var waitingIndex = 0; waitingIndex < acceptedWaiting.length; waitingIndex++) {
+      var dwellerId = waitingDwellerId(acceptedWaiting[waitingIndex]);
+      if (dwellerId !== null) {
         acceptedIds.push(dwellerId);
       }
     }
 
     waiting.splice(0, waiting.length);
+    for (var preservedIndex = 0; preservedIndex < preservedWaiting.length; preservedIndex++) {
+      waiting.push(preservedWaiting[preservedIndex]);
+    }
     $scope.clearBulkDwellerSelection();
 
     for (var acceptedIndex = 0; acceptedIndex < acceptedIds.length; acceptedIndex++) {
@@ -2183,6 +2257,11 @@ app.controller('dwellerController', function ($scope, $http) {
     if ($scope.bulkDwellerCount) {
       result += " Selected " + $scope.bulkDwellerCount
         + " of them in the Dwellers tab for bulk actions.";
+    }
+    if (preservedWaiting.length) {
+      result += " Kept " + preservedWaiting.length
+        + " non-Dweller entr" + (preservedWaiting.length === 1 ? "y" : "ies")
+        + " at the Vault door.";
     }
     alert(result);
   };
