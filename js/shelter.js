@@ -174,7 +174,8 @@ app.controller('dwellerController', function ($scope, $http) {
     "2.5.1": "data/dwellers-2.5.1.json?v=20260812-1"
   };
   var EQUIPMENT_CATALOG_URLS = {
-    "1.13.25": "data/equipment-1.13.25.json?v=20260803-1"
+    "1.13.25": "data/equipment-1.13.25.json?v=20260803-1",
+    "2.5.1": "data/equipment-2.5.1.json?v=20260812-1"
   };
 
   $scope.section = 'vault';
@@ -566,14 +567,50 @@ app.controller('dwellerController', function ($scope, $http) {
     return options;
   }
 
+  function equipmentCatalogNames(fallbackNames, definitions) {
+    var ids = Object.keys(definitions || {});
+    var catalogNames = {};
+
+    if (!ids.length) {
+      return fallbackNames || {};
+    }
+
+    for (var idIndex = 0; idIndex < ids.length; idIndex++) {
+      var id = ids[idIndex];
+      var definition = definitions[id];
+
+      if (!definition || !definition.name) {
+        return fallbackNames || {};
+      }
+
+      catalogNames[id] = definition.name;
+    }
+
+    return catalogNames;
+  }
+
+  function currentOutfitNames() {
+    return equipmentCatalogNames(
+      $scope.dwelleroutfitslist,
+      $scope.equipmentEditor.outfits
+    );
+  }
+
+  function currentWeaponNames() {
+    return equipmentCatalogNames(
+      $scope.dwellerweaponlist,
+      $scope.equipmentEditor.weapons
+    );
+  }
+
   function refreshEquipmentSelectionOptions() {
     $scope.dwellerOutfitOptions = buildEquipmentSelectionOptions(
-      $scope.dwelleroutfitslist,
+      currentOutfitNames(),
       $scope.equipmentEditor.outfits,
       'outfit'
     );
     $scope.dwellerWeaponOptions = buildEquipmentSelectionOptions(
-      $scope.dwellerweaponlist,
+      currentWeaponNames(),
       $scope.equipmentEditor.weapons,
       'weapon'
     );
@@ -907,13 +944,13 @@ app.controller('dwellerController', function ($scope, $http) {
     $scope.dwellerFilters.outfits = buildEquippedOptions(
       dwellers,
       "equipedOutfit",
-      $scope.dwelleroutfitslist || {},
+      currentOutfitNames(),
       "No Outfit"
     );
     $scope.dwellerFilters.weapons = buildEquippedOptions(
       dwellers,
       "equipedWeapon",
-      $scope.dwellerweaponlist || {},
+      currentWeaponNames(),
       "No Weapon"
     );
     $scope.dwellerFilters.pets = buildEquippedPetOptions(dwellers);
@@ -1760,6 +1797,7 @@ app.controller('dwellerController', function ($scope, $http) {
       $scope.equipmentEditor.loading = false;
       $scope.equipmentEditor.ready = true;
       refreshEquipmentSelectionOptions();
+      refreshDwellerEquipmentFilters();
     }).catch(function (error) {
       if (normalizeAppVersion(_save) !== version) {
         return;
@@ -1771,6 +1809,7 @@ app.controller('dwellerController', function ($scope, $http) {
         ? error.message
         : "The equipment catalog could not be loaded.";
       refreshEquipmentSelectionOptions();
+      refreshDwellerEquipmentFilters();
     });
   }
 

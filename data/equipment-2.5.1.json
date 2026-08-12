@@ -1,0 +1,4335 @@
+{
+  "schemaVersion": 1,
+  "appVersion": "2.5.1",
+  "source": {
+    "platform": "Android",
+    "unityVersion": "6000.0.58f2",
+    "gameParameters": "Installed 2.5.1 GameParameters m_outfitList, m_weaponsList, and m_ultraciteWeapons",
+    "localization": "Installed 2.5.1 I2.Loc.LanguageSource English terms",
+    "apkSha256": "20a11be7996e4b2018c2c8215c0972f268150bb4a80b00ae999027d9b33a3b69",
+    "obbSha256": "e5645dcc90ea9a7b2aa694f43d804cc6f11b0173a846b7210f182597be2e8129"
+  },
+  "outfits": {
+    "AbrahamSpecial": {
+      "name": "Abraham's Relaxedwear",
+      "rarity": "Legendary",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 1,
+        "C": 0,
+        "I": 2,
+        "A": 2,
+        "L": 2
+      }
+    },
+    "ActionWeddingDress": {
+      "name": "Action Wedding Dress",
+      "rarity": "Rare",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 0,
+        "C": 0,
+        "I": 0,
+        "A": 2,
+        "L": 2
+      }
+    },
+    "AlienSpaceSuit": {
+      "name": "Alien Space Suit",
+      "rarity": "Legendary",
+      "special": {
+        "S": 0,
+        "P": 2,
+        "E": 0,
+        "C": 0,
+        "I": 4,
+        "A": 2,
+        "L": 0
+      }
+    },
+    "AlienSpaceSuitEnemy": {
+      "name": "Alien Space Suit",
+      "rarity": "Legendary",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 1,
+        "C": 0,
+        "I": 2,
+        "A": 2,
+        "L": 2
+      }
+    },
+    "AlistairSpecial": {
+      "name": "Tenpenny's Suit",
+      "rarity": "Legendary",
+      "special": {
+        "S": 0,
+        "P": 2,
+        "E": 0,
+        "C": 2,
+        "I": 2,
+        "A": 0,
+        "L": 1
+      }
+    },
+    "AllNightware": {
+      "name": "Nightwear",
+      "rarity": "Normal",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 0,
+        "C": 3,
+        "I": 0,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "AllNightware_Lucky": {
+      "name": "Lucky Nightwear",
+      "rarity": "Legendary",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 0,
+        "C": 7,
+        "I": 0,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "AllNightware_Naughty": {
+      "name": "Naughty Nightwear",
+      "rarity": "Rare",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 0,
+        "C": 5,
+        "I": 0,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "AmataSpecial": {
+      "name": "Amata's Jumpsuit",
+      "rarity": "None",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 0,
+        "C": 2,
+        "I": 2,
+        "A": 0,
+        "L": 2
+      }
+    },
+    "ArgyleSweater": {
+      "name": "Accountant Outfit",
+      "rarity": "Normal",
+      "special": {
+        "S": 0,
+        "P": 4,
+        "E": 0,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "BaseballUniform": {
+      "name": "Baseball Uniform",
+      "rarity": "Rare",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 0,
+        "C": 0,
+        "I": 0,
+        "A": 4,
+        "L": 1
+      }
+    },
+    "BattleArmor": {
+      "name": "Battle Armor",
+      "rarity": "Normal",
+      "special": {
+        "S": 2,
+        "P": 0,
+        "E": 1,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "BattleArmor_Heavy": {
+      "name": "Heavy Battle Armor",
+      "rarity": "Legendary",
+      "special": {
+        "S": 4,
+        "P": 0,
+        "E": 3,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "BattleArmor_Sturdy": {
+      "name": "Sturdy Battle Armor",
+      "rarity": "Rare",
+      "special": {
+        "S": 3,
+        "P": 0,
+        "E": 2,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "BishopSpecial": {
+      "name": "Clergy Outfit",
+      "rarity": "Rare",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 0,
+        "C": 4,
+        "I": 0,
+        "A": 0,
+        "L": 1
+      }
+    },
+    "BittercupSpecial": {
+      "name": "Bittercup's Outfit",
+      "rarity": "Legendary",
+      "special": {
+        "S": 2,
+        "P": 2,
+        "E": 2,
+        "C": 1,
+        "I": 0,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "BOSCasual": {
+      "name": "BOS Casual",
+      "rarity": "Rare",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 2,
+        "C": 0,
+        "I": 0,
+        "A": 2,
+        "L": 0
+      }
+    },
+    "BOSUniform": {
+      "name": "BoS Uniform",
+      "rarity": "Normal",
+      "special": {
+        "S": 0,
+        "P": 2,
+        "E": 0,
+        "C": 1,
+        "I": 0,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "BOSUniform_Advanced": {
+      "name": "Advanced BoS Uniform",
+      "rarity": "Rare",
+      "special": {
+        "S": 0,
+        "P": 3,
+        "E": 0,
+        "C": 2,
+        "I": 0,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "BOSUniform_Expert": {
+      "name": "Expert BoS Uniform",
+      "rarity": "Legendary",
+      "special": {
+        "S": 0,
+        "P": 4,
+        "E": 0,
+        "C": 3,
+        "I": 0,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "BowlingShirt": {
+      "name": "Drag Racer",
+      "rarity": "Rare",
+      "special": {
+        "S": 1,
+        "P": 0,
+        "E": 1,
+        "C": 0,
+        "I": 0,
+        "A": 1,
+        "L": 1
+      }
+    },
+    "BusinessDress": {
+      "name": "Agent Provocateur",
+      "rarity": "Normal",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 0,
+        "C": 0,
+        "I": 4,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "BusinessSuit": {
+      "name": "Business Suit",
+      "rarity": "Normal",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 0,
+        "C": 4,
+        "I": 0,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "ButchSpecial": {
+      "name": "Tunnel Snakes' Outfit",
+      "rarity": "Legendary",
+      "special": {
+        "S": 0,
+        "P": 2,
+        "E": 1,
+        "C": 2,
+        "I": 0,
+        "A": 2,
+        "L": 0
+      }
+    },
+    "CaitsCorset": {
+      "name": "Cait's Corset",
+      "rarity": "Legendary",
+      "special": {
+        "S": 3,
+        "P": 0,
+        "E": 4,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "CheckeredShirt": {
+      "name": "Spring Casualwear",
+      "rarity": "Normal",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 1,
+        "C": 0,
+        "I": 0,
+        "A": 1,
+        "L": 0
+      }
+    },
+    "ColonelSpecial": {
+      "name": "Autumn's Uniform",
+      "rarity": "Legendary",
+      "special": {
+        "S": 2,
+        "P": 2,
+        "E": 2,
+        "C": 1,
+        "I": 0,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "CombatArmor": {
+      "name": "Combat Armor",
+      "rarity": "Normal",
+      "special": {
+        "S": 2,
+        "P": 0,
+        "E": 0,
+        "C": 0,
+        "I": 0,
+        "A": 1,
+        "L": 0
+      }
+    },
+    "CombatArmor_Heavy": {
+      "name": "Heavy Combat Armor",
+      "rarity": "Legendary",
+      "special": {
+        "S": 4,
+        "P": 0,
+        "E": 0,
+        "C": 0,
+        "I": 0,
+        "A": 3,
+        "L": 0
+      }
+    },
+    "CombatArmor_Sturdy": {
+      "name": "Sturdy Combat Armor",
+      "rarity": "Rare",
+      "special": {
+        "S": 3,
+        "P": 0,
+        "E": 0,
+        "C": 0,
+        "I": 0,
+        "A": 2,
+        "L": 0
+      }
+    },
+    "ComedianSpecial": {
+      "name": "Comedian Outfit",
+      "rarity": "Rare",
+      "special": {
+        "S": 0,
+        "P": 2,
+        "E": 0,
+        "C": 2,
+        "I": 0,
+        "A": 0,
+        "L": 1
+      }
+    },
+    "costume_01": {
+      "name": "Casual01",
+      "rarity": "None",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 0,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "costume_02": {
+      "name": "Casual02",
+      "rarity": "None",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 0,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "costume_03": {
+      "name": "Casual03",
+      "rarity": "None",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 0,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "costume_04": {
+      "name": "Casual04",
+      "rarity": "None",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 0,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "costume_05": {
+      "name": "Casual05",
+      "rarity": "None",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 0,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "costume_06": {
+      "name": "Casual06",
+      "rarity": "None",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 0,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "costume_07": {
+      "name": "Casual07",
+      "rarity": "None",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 0,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "costume_08": {
+      "name": "Casual08",
+      "rarity": "None",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 0,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "costume_09": {
+      "name": "Casual09",
+      "rarity": "None",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 0,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "costume_10": {
+      "name": "Casual10",
+      "rarity": "None",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 0,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "CourserUniform": {
+      "name": "Courser Uniform",
+      "rarity": "Legendary",
+      "special": {
+        "S": 0,
+        "P": 5,
+        "E": 5,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "CromwellSpecial": {
+      "name": "Confessor Cromwell's Rags",
+      "rarity": "Legendary",
+      "special": {
+        "S": 0,
+        "P": 2,
+        "E": 2,
+        "C": 0,
+        "I": 1,
+        "A": 0,
+        "L": 2
+      }
+    },
+    "Detective": {
+      "name": "Detective Outfit",
+      "rarity": "Legendary",
+      "special": {
+        "S": 0,
+        "P": 4,
+        "E": 4,
+        "C": 0,
+        "I": 4,
+        "A": 0,
+        "L": 4
+      }
+    },
+    "DooWopOutfit": {
+      "name": "Doo-Wop Singer",
+      "rarity": "Rare",
+      "special": {
+        "S": 1,
+        "P": 0,
+        "E": 0,
+        "C": 1,
+        "I": 0,
+        "A": 1,
+        "L": 1
+      }
+    },
+    "DrLiSpecial": {
+      "name": "Doctor Li's Outfit",
+      "rarity": "None",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 0,
+        "C": 0,
+        "I": 3,
+        "A": 0,
+        "L": 2
+      }
+    },
+    "ElderLyonsSpecial": {
+      "name": "Elder Lyon's Robe",
+      "rarity": "None",
+      "special": {
+        "S": 0,
+        "P": 2,
+        "E": 1,
+        "C": 6,
+        "I": 2,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "EmpressSpecial": {
+      "name": "Republic Robes",
+      "rarity": "Rare",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 0,
+        "C": 4,
+        "I": 0,
+        "A": 0,
+        "L": 1
+      }
+    },
+    "EnclaveOfficerUniform": {
+      "name": "Enclave Officer Uniform",
+      "rarity": "Legendary",
+      "special": {
+        "S": 0,
+        "P": 4,
+        "E": 2,
+        "C": 4,
+        "I": 2,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "EnclaveOfficerUniform_Helmetless": {
+      "name": "Enclave Officer Uniform",
+      "rarity": "Legendary",
+      "special": {
+        "S": 0,
+        "P": 4,
+        "E": 2,
+        "C": 4,
+        "I": 2,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "EnclavePowerArmor": {
+      "name": "Enclave Power Armor",
+      "rarity": "Legendary",
+      "special": {
+        "S": 6,
+        "P": 0,
+        "E": 6,
+        "C": 0,
+        "I": 2,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "EnclaveSecurityOutfit": {
+      "name": "Enclave Security Outfit",
+      "rarity": "Rare",
+      "special": {
+        "S": 2,
+        "P": 0,
+        "E": 2,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "EnclaveSecurityOutfit_Helmetless": {
+      "name": "Enclave Security Outfit",
+      "rarity": "Rare",
+      "special": {
+        "S": 2,
+        "P": 0,
+        "E": 2,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "EngineerSpecial": {
+      "name": "Engineer Outfit",
+      "rarity": "Rare",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 2,
+        "C": 0,
+        "I": 2,
+        "A": 0,
+        "L": 1
+      }
+    },
+    "EulogyJonesSpecial": {
+      "name": "Eulogy Jones' Suit",
+      "rarity": "Legendary",
+      "special": {
+        "S": 0,
+        "P": 2,
+        "E": 0,
+        "C": 2,
+        "I": 1,
+        "A": 0,
+        "L": 2
+      }
+    },
+    "FarHarborSpecial": {
+      "name": "Tattered Longcoat",
+      "rarity": "Legendary",
+      "special": {
+        "S": 2,
+        "P": 0,
+        "E": 2,
+        "C": 2,
+        "I": 0,
+        "A": 0,
+        "L": 2
+      }
+    },
+    "FlightSuit": {
+      "name": "Flight Suit",
+      "rarity": "Normal",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 1,
+        "C": 0,
+        "I": 0,
+        "A": 2,
+        "L": 0
+      }
+    },
+    "FlightSuit_Advanced": {
+      "name": "Advanced Flight Suit",
+      "rarity": "Rare",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 2,
+        "C": 0,
+        "I": 0,
+        "A": 3,
+        "L": 0
+      }
+    },
+    "FlightSuit_Expert": {
+      "name": "Expert Flight Suit",
+      "rarity": "Legendary",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 3,
+        "C": 0,
+        "I": 0,
+        "A": 4,
+        "L": 0
+      }
+    },
+    "FormalWear": {
+      "name": "Formal Wear",
+      "rarity": "Normal",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 0,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 3
+      }
+    },
+    "FormalWear_Fancy": {
+      "name": "Fancy Formal Wear",
+      "rarity": "Rare",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 0,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 5
+      }
+    },
+    "FormalWear_Lucky": {
+      "name": "Lucky Formal Wear",
+      "rarity": "Legendary",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 0,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 7
+      }
+    },
+    "Gen1Synth": {
+      "name": "Gen 1 Synth",
+      "rarity": "Legendary",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 0,
+        "C": 3,
+        "I": 0,
+        "A": 0,
+        "L": 4
+      }
+    },
+    "Gen2SynthEnemy": {
+      "name": "Gen 2 Synth (Enemy)",
+      "rarity": "None",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 0,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "GreaserSpecial": {
+      "name": "Greaser Outfit",
+      "rarity": "Rare",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 0,
+        "C": 2,
+        "I": 0,
+        "A": 2,
+        "L": 1
+      }
+    },
+    "HandymanJumpsuit": {
+      "name": "Handyman Jumpsuit",
+      "rarity": "Normal",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 0,
+        "C": 0,
+        "I": 0,
+        "A": 3,
+        "L": 0
+      }
+    },
+    "HandymanJumpsuit_Advanced": {
+      "name": "Advanced Jumpsuit",
+      "rarity": "Rare",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 0,
+        "C": 0,
+        "I": 0,
+        "A": 5,
+        "L": 0
+      }
+    },
+    "HandymanJumpsuit_Expert": {
+      "name": "Expert Jumpsuit",
+      "rarity": "Legendary",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 0,
+        "C": 0,
+        "I": 0,
+        "A": 7,
+        "L": 0
+      }
+    },
+    "HanksPowerArmor": {
+      "name": "Hank's Power Armor",
+      "rarity": "Legendary",
+      "special": {
+        "S": 2,
+        "P": 0,
+        "E": 3,
+        "C": 2,
+        "I": 0,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "HarknessSpecial": {
+      "name": "Harkness' Security Uniform",
+      "rarity": "None",
+      "special": {
+        "S": 0,
+        "P": 5,
+        "E": 0,
+        "C": 0,
+        "I": 0,
+        "A": 3,
+        "L": 2
+      }
+    },
+    "HazmatSuit": {
+      "name": "Wasteland Gear",
+      "rarity": "Normal",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 3,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "HazmatSuit_Heavy": {
+      "name": "Heavy Wasteland Gear",
+      "rarity": "Legendary",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 7,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "HazmatSuit_Sturdy": {
+      "name": "Sturdy Wasteland Gear",
+      "rarity": "Rare",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 5,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "Horseman_DeathJacket": {
+      "name": "Death's Jacket",
+      "rarity": "Legendary",
+      "special": {
+        "S": 0,
+        "P": 4,
+        "E": 4,
+        "C": 0,
+        "I": 0,
+        "A": 4,
+        "L": 4
+      }
+    },
+    "Horseman_FamineVestment": {
+      "name": "Famine's Vestment",
+      "rarity": "Legendary",
+      "special": {
+        "S": 4,
+        "P": 0,
+        "E": 4,
+        "C": 0,
+        "I": 4,
+        "A": 0,
+        "L": 4
+      }
+    },
+    "Horseman_PestilencePlating": {
+      "name": "Pestilence's Plating",
+      "rarity": "Legendary",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 4,
+        "C": 4,
+        "I": 4,
+        "A": 4,
+        "L": 0
+      }
+    },
+    "Horseman_WarArmor": {
+      "name": "War's Armor",
+      "rarity": "Legendary",
+      "special": {
+        "S": 4,
+        "P": 4,
+        "E": 4,
+        "C": 4,
+        "I": 0,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "HunterGear_Bounty": {
+      "name": "Bounty Hunter Gear",
+      "rarity": "Rare",
+      "special": {
+        "S": 3,
+        "P": 2,
+        "E": 0,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "HunterGear_Mutant": {
+      "name": "Mutant Hunter Gear",
+      "rarity": "Legendary",
+      "special": {
+        "S": 4,
+        "P": 3,
+        "E": 0,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "HunterGear_Treasure": {
+      "name": "Treasure Hunter Gear",
+      "rarity": "Normal",
+      "special": {
+        "S": 2,
+        "P": 1,
+        "E": 0,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "Incognito": {
+      "name": "Incognito Leisurewear",
+      "rarity": "Legendary",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 0,
+        "C": 2,
+        "I": 2,
+        "A": 2,
+        "L": 2
+      }
+    },
+    "InstituteJumper_Advanced": {
+      "name": "Advanced Institute Jumper",
+      "rarity": "Rare",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 0,
+        "C": 0,
+        "I": 3,
+        "A": 2,
+        "L": 0
+      }
+    },
+    "InstituteJumper_Expert": {
+      "name": "Expert Institute Jumper",
+      "rarity": "Legendary",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 0,
+        "C": 0,
+        "I": 4,
+        "A": 3,
+        "L": 0
+      }
+    },
+    "JacketTshirt": {
+      "name": "Motorcycle Jacket",
+      "rarity": "Rare",
+      "special": {
+        "S": 6,
+        "P": 0,
+        "E": 0,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "JailhouseRocker": {
+      "name": "Jailhouse Rocker",
+      "rarity": "Legendary",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 0,
+        "C": 0,
+        "I": 0,
+        "A": 4,
+        "L": 4
+      }
+    },
+    "JamesSpecial": {
+      "name": "Dad's Lab Uniform",
+      "rarity": "None",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 0,
+        "C": 0,
+        "I": 5,
+        "A": 0,
+        "L": 2
+      }
+    },
+    "JerichoSpecial": {
+      "name": "Jericho's Leather Armor",
+      "rarity": "None",
+      "special": {
+        "S": 2,
+        "P": 0,
+        "E": 6,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "JobinsonsJersey": {
+      "name": "Rackie Jobinson's Jersey",
+      "rarity": "Legendary",
+      "special": {
+        "S": 4,
+        "P": 4,
+        "E": 0,
+        "C": 4,
+        "I": 0,
+        "A": 4,
+        "L": 0
+      }
+    },
+    "jumpsuit": {
+      "name": "Vault Suit",
+      "rarity": "Normal",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 0,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "KelloggsOutfit": {
+      "name": "Kellogg's Armor",
+      "rarity": "Legendary",
+      "special": {
+        "S": 2,
+        "P": 0,
+        "E": 4,
+        "C": 0,
+        "I": 0,
+        "A": 6,
+        "L": 0
+      }
+    },
+    "KingSpecial": {
+      "name": "Medieval Ruler Outfit",
+      "rarity": "Rare",
+      "special": {
+        "S": 0,
+        "P": 2,
+        "E": 0,
+        "C": 2,
+        "I": 0,
+        "A": 0,
+        "L": 1
+      }
+    },
+    "KnightSpecial": {
+      "name": "Knight Armor",
+      "rarity": "Rare",
+      "special": {
+        "S": 2,
+        "P": 2,
+        "E": 0,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 1
+      }
+    },
+    "LabCoat": {
+      "name": "Lab Coat",
+      "rarity": "Normal",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 0,
+        "C": 0,
+        "I": 3,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "LabCoat_Advanced": {
+      "name": "Advanced Lab Coat",
+      "rarity": "Rare",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 0,
+        "C": 0,
+        "I": 5,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "LabCoat_Expert": {
+      "name": "Expert Lab Coat",
+      "rarity": "Legendary",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 0,
+        "C": 0,
+        "I": 7,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "LegatesArmor": {
+      "name": "Legate's Armor",
+      "rarity": "Legendary",
+      "special": {
+        "S": 4,
+        "P": 0,
+        "E": 6,
+        "C": 4,
+        "I": 0,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "LibrarianSpecial": {
+      "name": "Librarian Outfit",
+      "rarity": "Rare",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 0,
+        "C": 0,
+        "I": 4,
+        "A": 0,
+        "L": 1
+      }
+    },
+    "LifeguardOutfit": {
+      "name": "Lifeguard Outfit",
+      "rarity": "Rare",
+      "special": {
+        "S": 0,
+        "P": 4,
+        "E": 0,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 1
+      }
+    },
+    "LoungeShirt": {
+      "name": "Bowling Shirt",
+      "rarity": "Rare",
+      "special": {
+        "S": 0,
+        "P": 6,
+        "E": 0,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "LucasSpecial": {
+      "name": "Sheriff's Duster",
+      "rarity": "Legendary",
+      "special": {
+        "S": 0,
+        "P": 2,
+        "E": 5,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "LucysVaultSuit": {
+      "name": "Lucy's Vault Suit",
+      "rarity": "Legendary",
+      "special": {
+        "S": 0,
+        "P": 3,
+        "E": 2,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 3
+      }
+    },
+    "LucysYellowDress": {
+      "name": "Lucy's Yellow Dress",
+      "rarity": "Legendary",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 0,
+        "C": 6,
+        "I": 0,
+        "A": 4,
+        "L": 2
+      }
+    },
+    "MaJuneJacket": {
+      "name": "Ma June Jacket",
+      "rarity": "Rare",
+      "special": {
+        "S": 0,
+        "P": 2,
+        "E": 0,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 2
+      }
+    },
+    "MaximusJacket": {
+      "name": "Maximus' Jacket",
+      "rarity": "Legendary",
+      "special": {
+        "S": 2,
+        "P": 0,
+        "E": 0,
+        "C": 2,
+        "I": 0,
+        "A": 4,
+        "L": 4
+      }
+    },
+    "MayorSpecial": {
+      "name": "Mayor Outfit",
+      "rarity": "Rare",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 0,
+        "C": 2,
+        "I": 2,
+        "A": 0,
+        "L": 1
+      }
+    },
+    "MechanicJumpsuit": {
+      "name": "Mechanic Jumpsuit",
+      "rarity": "Normal",
+      "special": {
+        "S": 1,
+        "P": 0,
+        "E": 0,
+        "C": 1,
+        "I": 0,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "MetalArmor_Heavy": {
+      "name": "Heavy Metal Armor",
+      "rarity": "Legendary",
+      "special": {
+        "S": 4,
+        "P": 0,
+        "E": 0,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 3
+      }
+    },
+    "MetalArmor_Sturdy": {
+      "name": "Sturdy Metal Armor",
+      "rarity": "Rare",
+      "special": {
+        "S": 3,
+        "P": 0,
+        "E": 0,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 2
+      }
+    },
+    "MetalArmorRaiderBoss": {
+      "name": "Raider Boss Metal Armor",
+      "rarity": "Common",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 0,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "MilitaryJumpsuit": {
+      "name": "Military Fatigues",
+      "rarity": "Normal",
+      "special": {
+        "S": 3,
+        "P": 0,
+        "E": 0,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "MilitaryJumpsuit_Commander": {
+      "name": "Commander Fatigues",
+      "rarity": "Legendary",
+      "special": {
+        "S": 7,
+        "P": 0,
+        "E": 0,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "MilitaryJumpsuit_Officer": {
+      "name": "Officer Fatigues",
+      "rarity": "Rare",
+      "special": {
+        "S": 5,
+        "P": 0,
+        "E": 0,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "MoiraSpecial": {
+      "name": "Moira's RobCo Jumpsuit",
+      "rarity": "None",
+      "special": {
+        "S": 0,
+        "P": 3,
+        "E": 1,
+        "C": 0,
+        "I": 2,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "MojaveWastelandSurvivor": {
+      "name": "Mojave Wasteland Survivor",
+      "rarity": "Legendary",
+      "special": {
+        "S": 0,
+        "P": 1,
+        "E": 5,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 2
+      }
+    },
+    "MoldaversArmor": {
+      "name": "Moldaver's Armor",
+      "rarity": "Legendary",
+      "special": {
+        "S": 2,
+        "P": 2,
+        "E": 4,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 4
+      }
+    },
+    "MoviefanSpecial": {
+      "name": "Movie Fan Outfit",
+      "rarity": "Rare",
+      "special": {
+        "S": 0,
+        "P": 4,
+        "E": 0,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 1
+      }
+    },
+    "MrBurkeSpecial": {
+      "name": "Mr. Burke's Businesswear",
+      "rarity": "None",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 0,
+        "C": 4,
+        "I": 0,
+        "A": 0,
+        "L": 4
+      }
+    },
+    "MrHousesSuit": {
+      "name": "Mr. House's Suit",
+      "rarity": "Legendary",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 0,
+        "C": 4,
+        "I": 2,
+        "A": 0,
+        "L": 2
+      }
+    },
+    "NCR_Ranger": {
+      "name": "NCR Ranger Outfit",
+      "rarity": "Rare",
+      "special": {
+        "S": 0,
+        "P": 4,
+        "E": 0,
+        "C": 2,
+        "I": 0,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "NCR_Ranger_Helmetless": {
+      "name": "NCR Ranger Outfit",
+      "rarity": "Rare",
+      "special": {
+        "S": 0,
+        "P": 4,
+        "E": 0,
+        "C": 2,
+        "I": 0,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "NCRPowerArmor": {
+      "name": "NCR Power Armor",
+      "rarity": "Legendary",
+      "special": {
+        "S": 1,
+        "P": 2,
+        "E": 4,
+        "C": 2,
+        "I": 0,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "NinjaSuit": {
+      "name": "Ninja Outfit",
+      "rarity": "Rare",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 0,
+        "C": 0,
+        "I": 0,
+        "A": 4,
+        "L": 1
+      }
+    },
+    "NormalClothing": {
+      "name": "Normal Clothing",
+      "rarity": "Normal",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 0,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "OrionsExplorerGear": {
+      "name": "Orion's Explorer Gear",
+      "rarity": "Legendary",
+      "special": {
+        "S": 3,
+        "P": 5,
+        "E": 4,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "OverseerClaffsJumpsuit": {
+      "name": "Pioneer Overseer Suit",
+      "rarity": "Legendary",
+      "special": {
+        "S": 0,
+        "P": 2,
+        "E": 3,
+        "C": 4,
+        "I": 5,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "PaladinDansesPowerArmor": {
+      "name": "Paladin Danse's Power Armor",
+      "rarity": "Legendary",
+      "special": {
+        "S": 5,
+        "P": 1,
+        "E": 1,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "PaladinDansesPowerArmorWithHelmet": {
+      "name": "Paladin Danse's Power Armor",
+      "rarity": "Legendary",
+      "special": {
+        "S": 5,
+        "P": 1,
+        "E": 1,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "PaladinJacket": {
+      "name": "BoS Paladin Jacket",
+      "rarity": "Legendary",
+      "special": {
+        "S": 2,
+        "P": 4,
+        "E": 0,
+        "C": 2,
+        "I": 0,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "PiperSpecial": {
+      "name": "Piper's Outfit",
+      "rarity": "Legendary",
+      "special": {
+        "S": 0,
+        "P": 2,
+        "E": 2,
+        "C": 0,
+        "I": 0,
+        "A": 2,
+        "L": 2
+      }
+    },
+    "PolkaDotDress": {
+      "name": "Polka Dot Sundress",
+      "rarity": "Normal",
+      "special": {
+        "S": 1,
+        "P": 0,
+        "E": 0,
+        "C": 0,
+        "I": 1,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "PowerArmor": {
+      "name": "T-45a Power Armor",
+      "rarity": "Legendary",
+      "special": {
+        "S": 2,
+        "P": 3,
+        "E": 0,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "PowerArmor_51a": {
+      "name": "T-51a Power Armor",
+      "rarity": "Legendary",
+      "special": {
+        "S": 3,
+        "P": 1,
+        "E": 0,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "PowerArmor_51d": {
+      "name": "T-51d Power Armor",
+      "rarity": "Legendary",
+      "special": {
+        "S": 3,
+        "P": 2,
+        "E": 0,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "PowerArmor_51f": {
+      "name": "T-51f Power Armor",
+      "rarity": "Legendary",
+      "special": {
+        "S": 4,
+        "P": 3,
+        "E": 0,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "PowerArmor_MkI": {
+      "name": "X-01 Mk I Power Armor",
+      "rarity": "Legendary",
+      "special": {
+        "S": 3,
+        "P": 1,
+        "E": 1,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "PowerArmor_MkIV": {
+      "name": "X-01 Mk IV Power Armor",
+      "rarity": "Legendary",
+      "special": {
+        "S": 4,
+        "P": 1,
+        "E": 1,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "PowerArmor_MkVI": {
+      "name": "X-01 Mk VI Power Armor",
+      "rarity": "Legendary",
+      "special": {
+        "S": 5,
+        "P": 1,
+        "E": 1,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "PowerArmor_T45d": {
+      "name": "T-45d Power Armor",
+      "rarity": "Legendary",
+      "special": {
+        "S": 2,
+        "P": 4,
+        "E": 0,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "PowerArmor_T45f": {
+      "name": "T-45f Power Armor",
+      "rarity": "Legendary",
+      "special": {
+        "S": 2,
+        "P": 5,
+        "E": 0,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "PowerArmor_T60a": {
+      "name": "T-60a Power Armor",
+      "rarity": "Legendary",
+      "special": {
+        "S": 2,
+        "P": 0,
+        "E": 3,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "PowerArmor_T60d": {
+      "name": "T-60d Power Armor",
+      "rarity": "Legendary",
+      "special": {
+        "S": 2,
+        "P": 0,
+        "E": 4,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "PowerArmor_T60f": {
+      "name": "T-60f Power Armor",
+      "rarity": "Legendary",
+      "special": {
+        "S": 1,
+        "P": 1,
+        "E": 5,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "PrestonSpecial": {
+      "name": "Minuteman Uniform",
+      "rarity": "Legendary",
+      "special": {
+        "S": 2,
+        "P": 2,
+        "E": 0,
+        "C": 0,
+        "I": 2,
+        "A": 2,
+        "L": 0
+      }
+    },
+    "PrewarCowboy": {
+      "name": "Prewar Cowboy Costume",
+      "rarity": "Rare",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 0,
+        "C": 2,
+        "I": 0,
+        "A": 2,
+        "L": 0
+      }
+    },
+    "PrinceSpecial": {
+      "name": "Nobility Outfit",
+      "rarity": "Rare",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 2,
+        "C": 0,
+        "I": 2,
+        "A": 0,
+        "L": 1
+      }
+    },
+    "ProfessorSpecial": {
+      "name": "Professor Outfit",
+      "rarity": "Rare",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 0,
+        "C": 0,
+        "I": 4,
+        "A": 0,
+        "L": 1
+      }
+    },
+    "RadiationSuit": {
+      "name": "Radiation Suit",
+      "rarity": "Normal",
+      "special": {
+        "S": 0,
+        "P": 1,
+        "E": 2,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "RadiationSuit_Advanced": {
+      "name": "Advanced Radiation Suit",
+      "rarity": "Rare",
+      "special": {
+        "S": 0,
+        "P": 2,
+        "E": 3,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "RadiationSuit_Expert": {
+      "name": "Expert Radiation Suit",
+      "rarity": "Legendary",
+      "special": {
+        "S": 0,
+        "P": 3,
+        "E": 4,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "RaiderArmor": {
+      "name": "Raider Armor",
+      "rarity": "Normal",
+      "special": {
+        "S": 0,
+        "P": 1,
+        "E": 0,
+        "C": 0,
+        "I": 0,
+        "A": 2,
+        "L": 0
+      }
+    },
+    "RaiderArmor_Heavy": {
+      "name": "Heavy Raider Armor",
+      "rarity": "Legendary",
+      "special": {
+        "S": 0,
+        "P": 3,
+        "E": 0,
+        "C": 0,
+        "I": 0,
+        "A": 4,
+        "L": 0
+      }
+    },
+    "RaiderArmor_Sturdy": {
+      "name": "Sturdy Raider Armor",
+      "rarity": "Rare",
+      "special": {
+        "S": 0,
+        "P": 2,
+        "E": 0,
+        "C": 0,
+        "I": 0,
+        "A": 3,
+        "L": 0
+      }
+    },
+    "RegsDirtyBlackSuit": {
+      "name": "Regs' Dirty Black Suit",
+      "rarity": "Legendary",
+      "special": {
+        "S": 0,
+        "P": 6,
+        "E": 0,
+        "C": 0,
+        "I": 4,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "RiotGear": {
+      "name": "Merc Gear",
+      "rarity": "Normal",
+      "special": {
+        "S": 0,
+        "P": 1,
+        "E": 0,
+        "C": 0,
+        "I": 0,
+        "A": 1,
+        "L": 1
+      }
+    },
+    "RiotGear_Heavy": {
+      "name": "Heavy Merc Gear",
+      "rarity": "Legendary",
+      "special": {
+        "S": 0,
+        "P": 2,
+        "E": 0,
+        "C": 0,
+        "I": 0,
+        "A": 3,
+        "L": 2
+      }
+    },
+    "RiotGear_Sturdy": {
+      "name": "Sturdy Merc Gear",
+      "rarity": "Rare",
+      "special": {
+        "S": 0,
+        "P": 1,
+        "E": 0,
+        "C": 0,
+        "I": 0,
+        "A": 2,
+        "L": 2
+      }
+    },
+    "RobCoFactoryUniform": {
+      "name": "RobCo Factory Uniform",
+      "rarity": "Normal",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 2,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 2
+      }
+    },
+    "RobCoRdSuit": {
+      "name": "RobCo R&D Suit",
+      "rarity": "Rare",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 2,
+        "C": 0,
+        "I": 4,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "RobCoRdSuit_Helmetless": {
+      "name": "RobCo R&D Suit",
+      "rarity": "Rare",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 2,
+        "C": 0,
+        "I": 4,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "RobotArmor": {
+      "name": "Robot Armor",
+      "rarity": "Rare",
+      "special": {
+        "S": 2,
+        "P": 0,
+        "E": 2,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 2
+      }
+    },
+    "RothchildSpecial": {
+      "name": "Scribe Rothchild's Robe",
+      "rarity": "Legendary",
+      "special": {
+        "S": 0,
+        "P": 2,
+        "E": 1,
+        "C": 2,
+        "I": 2,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "RottedDuster": {
+      "name": "The Ghoul's Coat",
+      "rarity": "Legendary",
+      "special": {
+        "S": 0,
+        "P": 2,
+        "E": 2,
+        "C": 2,
+        "I": 0,
+        "A": 2,
+        "L": 0
+      }
+    },
+    "SantaSuit_Original": {
+      "name": "Original Santa Suit",
+      "rarity": "Legendary",
+      "special": {
+        "S": 0,
+        "P": 4,
+        "E": 3,
+        "C": 4,
+        "I": 0,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "SarahSpecial": {
+      "name": "Lyon's Pride Armor",
+      "rarity": "None",
+      "special": {
+        "S": 4,
+        "P": 3,
+        "E": 0,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 1
+      }
+    },
+    "ScarredPowerArmor": {
+      "name": "Scarred Power Armor",
+      "rarity": "Legendary",
+      "special": {
+        "S": 4,
+        "P": 2,
+        "E": 4,
+        "C": 2,
+        "I": 0,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "ScientistScrubs": {
+      "name": "Junior Officer Uniform",
+      "rarity": "Normal",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 0,
+        "C": 1,
+        "I": 2,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "ScientistScrubs_Commander": {
+      "name": "Commander Uniform",
+      "rarity": "Legendary",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 0,
+        "C": 3,
+        "I": 4,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "ScientistScrubs_Officer": {
+      "name": "Officer Uniform",
+      "rarity": "Rare",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 0,
+        "C": 2,
+        "I": 3,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "ScifiSpecial": {
+      "name": "Sci-Fi Fan Outfit",
+      "rarity": "Rare",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 0,
+        "C": 0,
+        "I": 2,
+        "A": 2,
+        "L": 1
+      }
+    },
+    "Scorched": {
+      "name": "Scorched",
+      "rarity": "Legendary",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 1,
+        "C": 0,
+        "I": 2,
+        "A": 2,
+        "L": 2
+      }
+    },
+    "ScorchedHeavy": {
+      "name": "Scorched",
+      "rarity": "Legendary",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 1,
+        "C": 0,
+        "I": 2,
+        "A": 2,
+        "L": 2
+      }
+    },
+    "ScribeRobe": {
+      "name": "Scribe Robe",
+      "rarity": "Rare",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 0,
+        "C": 3,
+        "I": 0,
+        "A": 2,
+        "L": 0
+      }
+    },
+    "ScribeRobe_Elder": {
+      "name": "Elder Robe",
+      "rarity": "Legendary",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 0,
+        "C": 4,
+        "I": 0,
+        "A": 3,
+        "L": 0
+      }
+    },
+    "ScribeRobe_Initiate": {
+      "name": "Initiate Robe",
+      "rarity": "Normal",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 0,
+        "C": 2,
+        "I": 0,
+        "A": 1,
+        "L": 0
+      }
+    },
+    "SequinDress": {
+      "name": "Vault Socialite",
+      "rarity": "Normal",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 0,
+        "C": 1,
+        "I": 0,
+        "A": 1,
+        "L": 0
+      }
+    },
+    "SlasherSpecial": {
+      "name": "Horror Fan Outfit",
+      "rarity": "Rare",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 4,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 1
+      }
+    },
+    "SleazySuit": {
+      "name": "Sleazy Suit",
+      "rarity": "Rare",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 0,
+        "C": 2,
+        "I": 2,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "SleekSuit": {
+      "name": "Sleek Suit",
+      "rarity": "Legendary",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 0,
+        "C": 2,
+        "I": 2,
+        "A": 4,
+        "L": 4
+      }
+    },
+    "SodaFountainDress": {
+      "name": "Soda Fountain Dress",
+      "rarity": "Rare",
+      "special": {
+        "S": 0,
+        "P": 1,
+        "E": 1,
+        "C": 0,
+        "I": 1,
+        "A": 0,
+        "L": 1
+      }
+    },
+    "SoldierSpecial": {
+      "name": "Soldier Uniform",
+      "rarity": "Rare",
+      "special": {
+        "S": 2,
+        "P": 0,
+        "E": 2,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 1
+      }
+    },
+    "SpecialThemeHalloween": {
+      "name": "Ghost Costume",
+      "rarity": "Rare",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 2,
+        "C": 0,
+        "I": 0,
+        "A": 3,
+        "L": 0
+      }
+    },
+    "SpecialThemeHalloween2": {
+      "name": "Skeleton Costume",
+      "rarity": "Rare",
+      "special": {
+        "S": 2,
+        "P": 0,
+        "E": 0,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 3
+      }
+    },
+    "SpecialThemeThanksGiving": {
+      "name": "Pilgrim Outfit",
+      "rarity": "Rare",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 0,
+        "C": 3,
+        "I": 2,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "SpecialThemeXmas": {
+      "name": "Santa Suit",
+      "rarity": "Rare",
+      "special": {
+        "S": 0,
+        "P": 3,
+        "E": 0,
+        "C": 2,
+        "I": 0,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "SpecialThemeXmas2": {
+      "name": "Elf Outfit",
+      "rarity": "Rare",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 0,
+        "C": 0,
+        "I": 3,
+        "A": 0,
+        "L": 2
+      }
+    },
+    "SportsfanSpecial": {
+      "name": "Sports Fan Outfit",
+      "rarity": "Rare",
+      "special": {
+        "S": 4,
+        "P": 0,
+        "E": 0,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 1
+      }
+    },
+    "StarPaladinSpecial": {
+      "name": "Cross' Power Armor",
+      "rarity": "None",
+      "special": {
+        "S": 5,
+        "P": 2,
+        "E": 2,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "SurgeonSpecial": {
+      "name": "Surgeon Outfit",
+      "rarity": "Rare",
+      "special": {
+        "S": 0,
+        "P": 2,
+        "E": 0,
+        "C": 0,
+        "I": 0,
+        "A": 2,
+        "L": 1
+      }
+    },
+    "SurvivorSpecial": {
+      "name": "Survivor Armor",
+      "rarity": "Rare",
+      "special": {
+        "S": 2,
+        "P": 0,
+        "E": 0,
+        "C": 0,
+        "I": 0,
+        "A": 2,
+        "L": 1
+      }
+    },
+    "Suspenders": {
+      "name": "Bespoke Attire",
+      "rarity": "Normal",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 4,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "SweaterVest": {
+      "name": "Pre-War Suburbanite",
+      "rarity": "Normal",
+      "special": {
+        "S": 0,
+        "P": 1,
+        "E": 0,
+        "C": 0,
+        "I": 1,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "Swimsuit": {
+      "name": "Swimsuit",
+      "rarity": "Rare",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 2,
+        "C": 2,
+        "I": 0,
+        "A": 0,
+        "L": 1
+      }
+    },
+    "SwingDress": {
+      "name": "Swing Dress",
+      "rarity": "Rare",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 0,
+        "C": 0,
+        "I": 0,
+        "A": 6,
+        "L": 0
+      }
+    },
+    "SynthArmor_Heavy": {
+      "name": "Heavy Synth Armor",
+      "rarity": "Legendary",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 4,
+        "C": 0,
+        "I": 3,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "ThreedogSpecial": {
+      "name": "Three Dog's Outfit",
+      "rarity": "Legendary",
+      "special": {
+        "S": 0,
+        "P": 2,
+        "E": 0,
+        "C": 5,
+        "I": 0,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "TiedBlouse": {
+      "name": "Country Girl",
+      "rarity": "Normal",
+      "special": {
+        "S": 4,
+        "P": 0,
+        "E": 0,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "UtilityJumpsuit": {
+      "name": "Armored Vault Suit",
+      "rarity": "Normal",
+      "special": {
+        "S": 0,
+        "P": 3,
+        "E": 0,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "UtilityJumpsuit_Heavy": {
+      "name": "Heavy Vault Suit",
+      "rarity": "Legendary",
+      "special": {
+        "S": 0,
+        "P": 7,
+        "E": 0,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "UtilityJumpsuit_Sturdy": {
+      "name": "Sturdy Vault Suit",
+      "rarity": "Rare",
+      "special": {
+        "S": 0,
+        "P": 5,
+        "E": 0,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "ValentinesTrenchCoat": {
+      "name": "Valentine's Trench Coat",
+      "rarity": "Legendary",
+      "special": {
+        "S": 0,
+        "P": 6,
+        "E": 0,
+        "C": 0,
+        "I": 4,
+        "A": 4,
+        "L": 0
+      }
+    },
+    "Vault33Suit": {
+      "name": "Vault 33 Suit",
+      "rarity": "Rare",
+      "special": {
+        "S": 0,
+        "P": 3,
+        "E": 0,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 2
+      }
+    },
+    "VaultSecurityOutfit": {
+      "name": "Vault Security Outfit",
+      "rarity": "Rare",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 2,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 2
+      }
+    },
+    "Vest": {
+      "name": "Post-War Casanova",
+      "rarity": "Rare",
+      "special": {
+        "S": 0,
+        "P": 1,
+        "E": 0,
+        "C": 1,
+        "I": 1,
+        "A": 0,
+        "L": 1
+      }
+    },
+    "WaitressUniform": {
+      "name": "Waitress Uniform",
+      "rarity": "Normal",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 0,
+        "C": 0,
+        "I": 0,
+        "A": 4,
+        "L": 0
+      }
+    },
+    "WandererArmor": {
+      "name": "Leather Armor",
+      "rarity": "Normal",
+      "special": {
+        "S": 1,
+        "P": 0,
+        "E": 2,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "WandererArmor_Heavy": {
+      "name": "Heavy Leather Armor",
+      "rarity": "Legendary",
+      "special": {
+        "S": 3,
+        "P": 0,
+        "E": 4,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "WandererArmor_Sturdy": {
+      "name": "Sturdy Leather Armor",
+      "rarity": "Rare",
+      "special": {
+        "S": 2,
+        "P": 0,
+        "E": 3,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "WastelandSurgeon": {
+      "name": "Wasteland Surgeon",
+      "rarity": "Legendary",
+      "special": {
+        "S": 0,
+        "P": 4,
+        "E": 0,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 3
+      }
+    },
+    "WastelandSurgeon_Doctor": {
+      "name": "Wasteland Doctor",
+      "rarity": "Rare",
+      "special": {
+        "S": 0,
+        "P": 3,
+        "E": 0,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 2
+      }
+    },
+    "WastelandSurgeon_Settler": {
+      "name": "Wasteland Medic",
+      "rarity": "Normal",
+      "special": {
+        "S": 0,
+        "P": 2,
+        "E": 0,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 1
+      }
+    },
+    "WeddingDress": {
+      "name": "Wedding Dress",
+      "rarity": "Rare",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 0,
+        "C": 2,
+        "I": 0,
+        "A": 0,
+        "L": 2
+      }
+    },
+    "WilzigsTravelwear": {
+      "name": "Wilzig's Travelwear",
+      "rarity": "Legendary",
+      "special": {
+        "S": 0,
+        "P": 4,
+        "E": 2,
+        "C": 0,
+        "I": 0,
+        "A": 2,
+        "L": 4
+      }
+    },
+    "WorkDress": {
+      "name": "Rural Schoolmarm",
+      "rarity": "Normal",
+      "special": {
+        "S": 0,
+        "P": 1,
+        "E": 1,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 0
+      }
+    },
+    "WrestlerSpecial": {
+      "name": "Wrestler Outfit",
+      "rarity": "Rare",
+      "special": {
+        "S": 2,
+        "P": 0,
+        "E": 2,
+        "C": 0,
+        "I": 0,
+        "A": 0,
+        "L": 1
+      }
+    },
+    "ZekesJacketAndJeans": {
+      "name": "Zeke's Jacket and Jeans",
+      "rarity": "Legendary",
+      "special": {
+        "S": 0,
+        "P": 0,
+        "E": 0,
+        "C": 3,
+        "I": 0,
+        "A": 0,
+        "L": 4
+      }
+    }
+  },
+  "weapons": {
+    "032Pistol": {
+      "name": ".32 Pistol",
+      "rarity": "Normal",
+      "damageMin": 1,
+      "damageMax": 2
+    },
+    "032Pistol_ArmorPiercing": {
+      "name": "Armor Piercing .32 Pistol",
+      "rarity": "Rare",
+      "damageMin": 1,
+      "damageMax": 5
+    },
+    "032Pistol_Enhanced": {
+      "name": "Enhanced .32 Pistol",
+      "rarity": "Normal",
+      "damageMin": 1,
+      "damageMax": 3
+    },
+    "032Pistol_Hardened": {
+      "name": "Hardened .32 Pistol",
+      "rarity": "Rare",
+      "damageMin": 1,
+      "damageMax": 4
+    },
+    "032Pistol_Rusty": {
+      "name": "Rusty .32 Pistol",
+      "rarity": "Normal",
+      "damageMin": 1,
+      "damageMax": 1
+    },
+    "032Pistol_WildBillsSidearm": {
+      "name": "Wild Bill's Sidearm",
+      "rarity": "Legendary",
+      "damageMin": 1,
+      "damageMax": 6
+    },
+    "50CalMachineGun": {
+      "name": ".50 Cal Machine Gun",
+      "rarity": "Rare",
+      "damageMin": 11,
+      "damageMax": 14
+    },
+    "50CalMachineGun_ArmorPiercing": {
+      "name": "Armor Piercing .50 Cal Machine Gun",
+      "rarity": "Rare",
+      "damageMin": 15,
+      "damageMax": 16
+    },
+    "50CalMachineGun_Enhanced": {
+      "name": "Enhanced .50 Cal Machine Gun",
+      "rarity": "Rare",
+      "damageMin": 12,
+      "damageMax": 14
+    },
+    "50CalMachineGun_Hardened": {
+      "name": "Hardened .50 Cal Machine Gun",
+      "rarity": "Rare",
+      "damageMin": 13,
+      "damageMax": 15
+    },
+    "50CalMachineGun_Rusty": {
+      "name": "Rusty .50 Cal Machine Gun",
+      "rarity": "Rare",
+      "damageMin": 10,
+      "damageMax": 12
+    },
+    "AlienBlaster": {
+      "name": "Alien Blaster",
+      "rarity": "Legendary",
+      "damageMin": 18,
+      "damageMax": 19
+    },
+    "AlienBlaster_Amplified": {
+      "name": "Amplified Alien Blaster",
+      "rarity": "Legendary",
+      "damageMin": 18,
+      "damageMax": 22
+    },
+    "AlienBlaster_Destabilizer": {
+      "name": "Destabilizer",
+      "rarity": "Legendary",
+      "damageMin": 18,
+      "damageMax": 23
+    },
+    "AlienBlaster_Focused": {
+      "name": "Focused Alien Blaster",
+      "rarity": "Legendary",
+      "damageMin": 18,
+      "damageMax": 21
+    },
+    "AlienBlaster_Rusty": {
+      "name": "Rusty Alien Blaster",
+      "rarity": "Legendary",
+      "damageMin": 18,
+      "damageMax": 18
+    },
+    "AlienBlaster_Tuned": {
+      "name": "Tuned Alien Blaster",
+      "rarity": "Legendary",
+      "damageMin": 18,
+      "damageMax": 20
+    },
+    "AlienDisintegrator": {
+      "name": "Alien Disintegrator",
+      "rarity": "Legendary",
+      "damageMin": 17,
+      "damageMax": 17
+    },
+    "AlienDisintegrator_Enhanced": {
+      "name": "Enhanced Alien Disintegrator",
+      "rarity": "Legendary",
+      "damageMin": 18,
+      "damageMax": 18
+    },
+    "AlienDisintegrator_Hardened": {
+      "name": "Hardened Alien Disintegrator",
+      "rarity": "Legendary",
+      "damageMin": 19,
+      "damageMax": 19
+    },
+    "AlienDisintegrator_Rusty": {
+      "name": "Rusty Alien Disintegrator",
+      "rarity": "Legendary",
+      "damageMin": 16,
+      "damageMax": 16
+    },
+    "AmataPistol": {
+      "name": "Amata's Pistol",
+      "rarity": "None",
+      "damageMin": 2,
+      "damageMax": 5
+    },
+    "AssaultRifle": {
+      "name": "Assault Rifle",
+      "rarity": "Rare",
+      "damageMin": 8,
+      "damageMax": 9
+    },
+    "AssaultRifle_ArmorPiercing": {
+      "name": "Armor Piercing Assault Rifle",
+      "rarity": "Rare",
+      "damageMin": 8,
+      "damageMax": 12
+    },
+    "AssaultRifle_Enhanced": {
+      "name": "Enhanced Assault Rifle",
+      "rarity": "Rare",
+      "damageMin": 8,
+      "damageMax": 10
+    },
+    "AssaultRifle_Hardened": {
+      "name": "Hardened Assault Rifle",
+      "rarity": "Rare",
+      "damageMin": 8,
+      "damageMax": 11
+    },
+    "AssaultRifle_Infiltrator": {
+      "name": "Infiltrator",
+      "rarity": "Legendary",
+      "damageMin": 8,
+      "damageMax": 13
+    },
+    "AssaultRifle_Rusty": {
+      "name": "Rusty Assault Rifle",
+      "rarity": "Rare",
+      "damageMin": 8,
+      "damageMax": 8
+    },
+    "AssaultronHead": {
+      "name": "Assaultron Head",
+      "rarity": "Rare",
+      "damageMin": 8,
+      "damageMax": 12
+    },
+    "AssaultronHead_Enhanced": {
+      "name": "Enhanced Assaultron Head",
+      "rarity": "Rare",
+      "damageMin": 9,
+      "damageMax": 13
+    },
+    "AssaultronHead_Hardened": {
+      "name": "Hardened Assaultron Head",
+      "rarity": "Rare",
+      "damageMin": 10,
+      "damageMax": 14
+    },
+    "AssaultronHead_Rusty": {
+      "name": "Rusty Assaultron Head",
+      "rarity": "Rare",
+      "damageMin": 7,
+      "damageMax": 11
+    },
+    "BBGun": {
+      "name": "BB Gun",
+      "rarity": "Normal",
+      "damageMin": 0,
+      "damageMax": 2
+    },
+    "BBGun_ArmorPiercing": {
+      "name": "Armor Piercing BB Gun",
+      "rarity": "Rare",
+      "damageMin": 0,
+      "damageMax": 5
+    },
+    "BBGun_Enhanced": {
+      "name": "Enhanced BB Gun",
+      "rarity": "Normal",
+      "damageMin": 0,
+      "damageMax": 3
+    },
+    "BBGun_Hardened": {
+      "name": "Hardened BB Gun",
+      "rarity": "Rare",
+      "damageMin": 0,
+      "damageMax": 4
+    },
+    "BBGun_RedRocket": {
+      "name": "Red Rocket",
+      "rarity": "Legendary",
+      "damageMin": 0,
+      "damageMax": 6
+    },
+    "BBGun_Rusty": {
+      "name": "Rusty BB Gun",
+      "rarity": "Normal",
+      "damageMin": 0,
+      "damageMax": 1
+    },
+    "BOSAssaultRifle": {
+      "name": "BOS Assault Rifle",
+      "rarity": "Rare",
+      "damageMin": 16,
+      "damageMax": 16
+    },
+    "BOSAssaultRifle_ArmorPiercing": {
+      "name": "Armor Piercing BOS Assault Rifle",
+      "rarity": "Rare",
+      "damageMin": 19,
+      "damageMax": 21
+    },
+    "BOSAssaultRifle_Enhanced": {
+      "name": "Enhanced BOS Assault Rifle",
+      "rarity": "Rare",
+      "damageMin": 16,
+      "damageMax": 18
+    },
+    "BOSAssaultRifle_Hardened": {
+      "name": "Hardened BOS Assault Rifle",
+      "rarity": "Rare",
+      "damageMin": 17,
+      "damageMax": 19
+    },
+    "BOSAssaultRifle_Rusty": {
+      "name": "Rusty BOS Assault Rifle",
+      "rarity": "Rare",
+      "damageMin": 15,
+      "damageMax": 15
+    },
+    "CombatShotgun": {
+      "name": "Combat Shotgun",
+      "rarity": "Rare",
+      "damageMin": 13,
+      "damageMax": 14
+    },
+    "CombatShotgun_CharonsShotgun": {
+      "name": "Charon's Shotgun",
+      "rarity": "Legendary",
+      "damageMin": 13,
+      "damageMax": 18
+    },
+    "CombatShotgun_DoubleBarrelled": {
+      "name": "Double-Barrel Combat Shotgun",
+      "rarity": "Legendary",
+      "damageMin": 13,
+      "damageMax": 17
+    },
+    "CombatShotgun_Enhanced": {
+      "name": "Enhanced Combat Shotgun",
+      "rarity": "Rare",
+      "damageMin": 13,
+      "damageMax": 15
+    },
+    "CombatShotgun_Hardened": {
+      "name": "Hardened Combat Shotgun",
+      "rarity": "Rare",
+      "damageMin": 13,
+      "damageMax": 16
+    },
+    "CombatShotgun_Rusty": {
+      "name": "Rusty Combat Shotgun",
+      "rarity": "Rare",
+      "damageMin": 13,
+      "damageMax": 13
+    },
+    "Cryolator": {
+      "name": "Cryolator",
+      "rarity": "Legendary",
+      "damageMin": 20,
+      "damageMax": 24
+    },
+    "EnclavePlasmaRifle": {
+      "name": "Enclave Plasma Rifle",
+      "rarity": "Legendary",
+      "damageMin": 18,
+      "damageMax": 22
+    },
+    "Fatman": {
+      "name": "Fat Man",
+      "rarity": "Legendary",
+      "damageMin": 22,
+      "damageMax": 23
+    },
+    "Fatman_Enhanced": {
+      "name": "Enhanced Fat Man",
+      "rarity": "Legendary",
+      "damageMin": 22,
+      "damageMax": 24
+    },
+    "Fatman_Guided": {
+      "name": "Guided Fat Man",
+      "rarity": "Legendary",
+      "damageMin": 22,
+      "damageMax": 26
+    },
+    "Fatman_Hardened": {
+      "name": "Hardened Fat Man",
+      "rarity": "Legendary",
+      "damageMin": 22,
+      "damageMax": 25
+    },
+    "Fatman_Mirv": {
+      "name": "MIRV",
+      "rarity": "Legendary",
+      "damageMin": 22,
+      "damageMax": 27
+    },
+    "Fatman_Rusty": {
+      "name": "Rusty Fat Man",
+      "rarity": "Legendary",
+      "damageMin": 22,
+      "damageMax": 22
+    },
+    "Fist": {
+      "name": "Fist",
+      "rarity": "None",
+      "damageMin": 1,
+      "damageMax": 1
+    },
+    "Flamer": {
+      "name": "Flamer",
+      "rarity": "Rare",
+      "damageMin": 15,
+      "damageMax": 16
+    },
+    "Flamer_Burnmaster": {
+      "name": "Burnmaster",
+      "rarity": "Legendary",
+      "damageMin": 15,
+      "damageMax": 20
+    },
+    "Flamer_Enhanced": {
+      "name": "Enhanced Flamer",
+      "rarity": "Rare",
+      "damageMin": 15,
+      "damageMax": 17
+    },
+    "Flamer_Hardened": {
+      "name": "Hardened Flamer",
+      "rarity": "Rare",
+      "damageMin": 15,
+      "damageMax": 18
+    },
+    "Flamer_Pressurized": {
+      "name": "Pressurized Flamer",
+      "rarity": "Rare",
+      "damageMin": 15,
+      "damageMax": 19
+    },
+    "Flamer_Rusty": {
+      "name": "Rusty Flamer",
+      "rarity": "Rare",
+      "damageMin": 15,
+      "damageMax": 15
+    },
+    "GatlingLaser": {
+      "name": "Gatling Laser",
+      "rarity": "Legendary",
+      "damageMin": 21,
+      "damageMax": 22
+    },
+    "GatlingLaser_Amplified": {
+      "name": "Amplified Gatling Laser",
+      "rarity": "Legendary",
+      "damageMin": 21,
+      "damageMax": 25
+    },
+    "GatlingLaser_Focused": {
+      "name": "Focused Gatling Laser",
+      "rarity": "Legendary",
+      "damageMin": 21,
+      "damageMax": 24
+    },
+    "GatlingLaser_Rusty": {
+      "name": "Rusty Gatling Laser",
+      "rarity": "Legendary",
+      "damageMin": 21,
+      "damageMax": 21
+    },
+    "GatlingLaser_Tuned": {
+      "name": "Tuned Gatling Laser",
+      "rarity": "Legendary",
+      "damageMin": 21,
+      "damageMax": 23
+    },
+    "GatlingLaser_Vengeance": {
+      "name": "Vengeance",
+      "rarity": "Legendary",
+      "damageMin": 21,
+      "damageMax": 26
+    },
+    "GaussPistol_Enhanced": {
+      "name": "Enhanced Gauss Pistol",
+      "rarity": "Rare",
+      "damageMin": 14,
+      "damageMax": 14
+    },
+    "GaussPistol_Focused": {
+      "name": "Focused Gauss Pistol",
+      "rarity": "Rare",
+      "damageMin": 13,
+      "damageMax": 13
+    },
+    "GaussPistol_Hardened": {
+      "name": "Hardened Gauss Pistol",
+      "rarity": "Rare",
+      "damageMin": 15,
+      "damageMax": 15
+    },
+    "GaussPistol_Rusty": {
+      "name": "Rusty Gauss Pistol",
+      "rarity": "Rare",
+      "damageMin": 12,
+      "damageMax": 12
+    },
+    "GaussRifle": {
+      "name": "Gauss Rifle",
+      "rarity": "Rare",
+      "damageMin": 16,
+      "damageMax": 17
+    },
+    "GaussRifle_Accelerated": {
+      "name": "Accelerated Gauss Rifle",
+      "rarity": "Legendary",
+      "damageMin": 16,
+      "damageMax": 20
+    },
+    "GaussRifle_Enhanced": {
+      "name": "Enhanced Gauss Rifle",
+      "rarity": "Legendary",
+      "damageMin": 16,
+      "damageMax": 18
+    },
+    "GaussRifle_Hardened": {
+      "name": "Hardened Gauss Rifle",
+      "rarity": "Legendary",
+      "damageMin": 16,
+      "damageMax": 19
+    },
+    "GaussRifle_Magnetro4000": {
+      "name": "Magnetron 4000",
+      "rarity": "Legendary",
+      "damageMin": 16,
+      "damageMax": 21
+    },
+    "GaussRifle_Rusty": {
+      "name": "Rusty Gauss Rifle",
+      "rarity": "Rare",
+      "damageMin": 16,
+      "damageMax": 16
+    },
+    "GhoulRevolver": {
+      "name": "Ghoul Revolver",
+      "rarity": "Legendary",
+      "damageMin": 8,
+      "damageMax": 12
+    },
+    "GrognaksAxe": {
+      "name": "Grognak's Axe",
+      "rarity": "Legendary",
+      "damageMin": 18,
+      "damageMax": 26
+    },
+    "HuntingRifle": {
+      "name": "Hunting Rifle",
+      "rarity": "Normal",
+      "damageMin": 5,
+      "damageMax": 6
+    },
+    "HuntingRifle_ArmorPiercing": {
+      "name": "Armor Piercing Hunting Rifle",
+      "rarity": "Rare",
+      "damageMin": 5,
+      "damageMax": 9
+    },
+    "HuntingRifle_Enhanced": {
+      "name": "Enhanced Hunting Rifle",
+      "rarity": "Normal",
+      "damageMin": 5,
+      "damageMax": 7
+    },
+    "HuntingRifle_Hardened": {
+      "name": "Hardened Hunting Rifle",
+      "rarity": "Rare",
+      "damageMin": 5,
+      "damageMax": 8
+    },
+    "HuntingRifle_OlPainless": {
+      "name": "Ol' Painless",
+      "rarity": "Legendary",
+      "damageMin": 5,
+      "damageMax": 10
+    },
+    "HuntingRifle_Rusty": {
+      "name": "Rusty Hunting Rifle",
+      "rarity": "Normal",
+      "damageMin": 5,
+      "damageMax": 5
+    },
+    "InstitutePistol": {
+      "name": "Institute Pistol",
+      "rarity": "Rare",
+      "damageMin": 9,
+      "damageMax": 11
+    },
+    "InstitutePistol_Apotheosis": {
+      "name": "Apotheosis",
+      "rarity": "Legendary",
+      "damageMin": 14,
+      "damageMax": 21
+    },
+    "InstitutePistol_Improved": {
+      "name": "Improved Institute Pistol",
+      "rarity": "Rare",
+      "damageMin": 11,
+      "damageMax": 15
+    },
+    "InstitutePistol_Incendiary": {
+      "name": "Incendiary Institute Pistol",
+      "rarity": "Rare",
+      "damageMin": 10,
+      "damageMax": 13
+    },
+    "InstitutePistol_Scattered": {
+      "name": "Scattered Institute Pistol",
+      "rarity": "Legendary",
+      "damageMin": 13,
+      "damageMax": 19
+    },
+    "InstitutePistol_Scoped": {
+      "name": "Scoped Institute Pistol",
+      "rarity": "Rare",
+      "damageMin": 12,
+      "damageMax": 17
+    },
+    "InstituteRifle": {
+      "name": "Institute Rifle",
+      "rarity": "Rare",
+      "damageMin": 14,
+      "damageMax": 16
+    },
+    "InstituteRifle_Excited": {
+      "name": "Excited Institute Rifle",
+      "rarity": "Rare",
+      "damageMin": 15,
+      "damageMax": 18
+    },
+    "InstituteRifle_Long": {
+      "name": "Long Institute Rifle",
+      "rarity": "Legendary",
+      "damageMin": 16,
+      "damageMax": 20
+    },
+    "InstituteRifle_NightVision": {
+      "name": "Night-Vision Institute Rifle",
+      "rarity": "Legendary",
+      "damageMin": 17,
+      "damageMax": 22
+    },
+    "InstituteRifle_Targeting": {
+      "name": "Targeting Institute Rifle",
+      "rarity": "Legendary",
+      "damageMin": 18,
+      "damageMax": 24
+    },
+    "InstituteRifle_VirgilsRifle": {
+      "name": "Virgil's Rifle",
+      "rarity": "Legendary",
+      "damageMin": 19,
+      "damageMax": 26
+    },
+    "JunkJet": {
+      "name": "Junk Jet",
+      "rarity": "Rare",
+      "damageMin": 13,
+      "damageMax": 15
+    },
+    "JunkJet_Electrified": {
+      "name": "Electrified Junk Jet",
+      "rarity": "Legendary",
+      "damageMin": 16,
+      "damageMax": 21
+    },
+    "JunkJet_Flaming": {
+      "name": "Flaming Junk Jet",
+      "rarity": "Legendary",
+      "damageMin": 17,
+      "damageMax": 23
+    },
+    "JunkJet_RecoilCompensated": {
+      "name": "Recoil Compensated Junk Jet",
+      "rarity": "Rare",
+      "damageMin": 14,
+      "damageMax": 17
+    },
+    "JunkJet_Tactical": {
+      "name": "Tactical Junk Jet",
+      "rarity": "Rare",
+      "damageMin": 15,
+      "damageMax": 19
+    },
+    "JunkJet_TechniciansRevenge": {
+      "name": "Technician's Revenge",
+      "rarity": "Legendary",
+      "damageMin": 18,
+      "damageMax": 25
+    },
+    "KelloggsPistol": {
+      "name": "Kellogg's Pistol",
+      "rarity": "Legendary",
+      "damageMin": 15,
+      "damageMax": 27
+    },
+    "LaserMusket": {
+      "name": "Laser Musket",
+      "rarity": "Legendary",
+      "damageMin": 10,
+      "damageMax": 13
+    },
+    "LaserPistol": {
+      "name": "Laser Pistol",
+      "rarity": "Rare",
+      "damageMin": 7,
+      "damageMax": 8
+    },
+    "LaserPistol_Amplified": {
+      "name": "Amplified Laser Pistol",
+      "rarity": "Rare",
+      "damageMin": 7,
+      "damageMax": 11
+    },
+    "LaserPistol_Focused": {
+      "name": "Focused Laser Pistol",
+      "rarity": "Rare",
+      "damageMin": 7,
+      "damageMax": 10
+    },
+    "LaserPistol_Rusty": {
+      "name": "Rusty Laser Pistol",
+      "rarity": "Normal",
+      "damageMin": 7,
+      "damageMax": 7
+    },
+    "LaserPistol_SmugglersEnd": {
+      "name": "Smuggler's End",
+      "rarity": "Legendary",
+      "damageMin": 7,
+      "damageMax": 12
+    },
+    "LaserPistol_Tuned": {
+      "name": "Tuned Laser Pistol",
+      "rarity": "Rare",
+      "damageMin": 7,
+      "damageMax": 9
+    },
+    "LaserRifle": {
+      "name": "Laser Rifle",
+      "rarity": "Rare",
+      "damageMin": 12,
+      "damageMax": 13
+    },
+    "LaserRifle_Amplified": {
+      "name": "Amplified Laser Rifle",
+      "rarity": "Legendary",
+      "damageMin": 12,
+      "damageMax": 16
+    },
+    "LaserRifle_Focused": {
+      "name": "Focused Laser Rifle",
+      "rarity": "Rare",
+      "damageMin": 12,
+      "damageMax": 15
+    },
+    "LaserRifle_Rusty": {
+      "name": "Rusty Laser Rifle",
+      "rarity": "Rare",
+      "damageMin": 12,
+      "damageMax": 12
+    },
+    "LaserRifle_Tuned": {
+      "name": "Tuned Laser Rifle",
+      "rarity": "Rare",
+      "damageMin": 12,
+      "damageMax": 14
+    },
+    "LaserRifle_WaserWifle": {
+      "name": "Wazer Wifle",
+      "rarity": "Legendary",
+      "damageMin": 12,
+      "damageMax": 17
+    },
+    "LeverActionRifle_Henrietta": {
+      "name": "Henrietta",
+      "rarity": "Legendary",
+      "damageMin": 13,
+      "damageMax": 16
+    },
+    "Magnum": {
+      "name": "Scoped .44",
+      "rarity": "Normal",
+      "damageMin": 3,
+      "damageMax": 4
+    },
+    "Magnum_ArmorPiercing": {
+      "name": "Armor Piercing Scoped .44",
+      "rarity": "Rare",
+      "damageMin": 3,
+      "damageMax": 7
+    },
+    "Magnum_Blackhawk": {
+      "name": "Blackhawk",
+      "rarity": "Legendary",
+      "damageMin": 3,
+      "damageMax": 8
+    },
+    "Magnum_Enhanced": {
+      "name": "Enhanced Scoped .44",
+      "rarity": "Normal",
+      "damageMin": 3,
+      "damageMax": 5
+    },
+    "Magnum_Hardened": {
+      "name": "Hardened Scoped .44",
+      "rarity": "Rare",
+      "damageMin": 3,
+      "damageMax": 6
+    },
+    "Magnum_Rusty": {
+      "name": "Rusty Scoped .44",
+      "rarity": "Normal",
+      "damageMin": 3,
+      "damageMax": 3
+    },
+    "MaresLeg": {
+      "name": "Mare's Leg",
+      "rarity": "Legendary",
+      "damageMin": 9,
+      "damageMax": 13
+    },
+    "Melee_BaseballBat": {
+      "name": "Baseball Bat",
+      "rarity": "Rare",
+      "damageMin": 5,
+      "damageMax": 15
+    },
+    "Melee_ButcherKnife": {
+      "name": "Butcher Knife",
+      "rarity": "Rare",
+      "damageMin": 8,
+      "damageMax": 18
+    },
+    "Melee_FireHydrantBat": {
+      "name": "Fire Hydrant Bat",
+      "rarity": "Legendary",
+      "damageMin": 19,
+      "damageMax": 31
+    },
+    "Melee_KitchenKnife": {
+      "name": "Kitchen Knife",
+      "rarity": "Rare",
+      "damageMin": 3,
+      "damageMax": 11
+    },
+    "Melee_Pickaxe": {
+      "name": "Pickaxe",
+      "rarity": "Rare",
+      "damageMin": 11,
+      "damageMax": 21
+    },
+    "Melee_PoolCue": {
+      "name": "Pool Cue",
+      "rarity": "Rare",
+      "damageMin": 0,
+      "damageMax": 8
+    },
+    "Melee_RaiderSword": {
+      "name": "Relentless Raider Sword",
+      "rarity": "Legendary",
+      "damageMin": 16,
+      "damageMax": 28
+    },
+    "Minigun": {
+      "name": "Minigun",
+      "rarity": "Legendary",
+      "damageMin": 19,
+      "damageMax": 20
+    },
+    "Minigun_ArmorPiercing": {
+      "name": "Armor Piercing Minigun",
+      "rarity": "Legendary",
+      "damageMin": 19,
+      "damageMax": 23
+    },
+    "Minigun_Enhanced": {
+      "name": "Enhanced Minigun",
+      "rarity": "Legendary",
+      "damageMin": 19,
+      "damageMax": 21
+    },
+    "Minigun_Hardened": {
+      "name": "Hardened Minigun",
+      "rarity": "Legendary",
+      "damageMin": 19,
+      "damageMax": 22
+    },
+    "Minigun_LeadBelcher": {
+      "name": "Lead Belcher",
+      "rarity": "Legendary",
+      "damageMin": 19,
+      "damageMax": 24
+    },
+    "Minigun_Rusty": {
+      "name": "Rusty Minigun",
+      "rarity": "Legendary",
+      "damageMin": 19,
+      "damageMax": 19
+    },
+    "MissilLauncher": {
+      "name": "Missile Launcher",
+      "rarity": "Legendary",
+      "damageMin": 20,
+      "damageMax": 21
+    },
+    "MissilLauncher_Enhanced": {
+      "name": "Enhanced Missile Launcher",
+      "rarity": "Legendary",
+      "damageMin": 20,
+      "damageMax": 22
+    },
+    "MissilLauncher_Guided": {
+      "name": "Guided Missile Launcher",
+      "rarity": "Legendary",
+      "damageMin": 20,
+      "damageMax": 24
+    },
+    "MissilLauncher_Hardened": {
+      "name": "Hardened Missile Launcher",
+      "rarity": "Legendary",
+      "damageMin": 20,
+      "damageMax": 23
+    },
+    "MissilLauncher_MissLauncher": {
+      "name": "Miss Launcher",
+      "rarity": "Legendary",
+      "damageMin": 20,
+      "damageMax": 25
+    },
+    "MissilLauncher_Rusty": {
+      "name": "Rusty Missile Launcher",
+      "rarity": "Legendary",
+      "damageMin": 20,
+      "damageMax": 20
+    },
+    "MountainMomma": {
+      "name": "Mountain Momma",
+      "rarity": "Legendary",
+      "damageMin": 14,
+      "damageMax": 19
+    },
+    "PipePistol": {
+      "name": "Pipe Pistol",
+      "rarity": "Normal",
+      "damageMin": 1,
+      "damageMax": 3
+    },
+    "PipePistol_Auto": {
+      "name": "Auto Pipe Pistol",
+      "rarity": "Rare",
+      "damageMin": 5,
+      "damageMax": 11
+    },
+    "PipePistol_HairTrigger": {
+      "name": "Hair Trigger Pipe Pistol",
+      "rarity": "Normal",
+      "damageMin": 2,
+      "damageMax": 5
+    },
+    "PipePistol_Heavy": {
+      "name": "Heavy Pipe Pistol",
+      "rarity": "Normal",
+      "damageMin": 3,
+      "damageMax": 7
+    },
+    "PipePistol_LittleBrother": {
+      "name": "Little Brother",
+      "rarity": "Legendary",
+      "damageMin": 6,
+      "damageMax": 13
+    },
+    "PipePistol_Scoped": {
+      "name": "Scoped Pipe Pistol",
+      "rarity": "Rare",
+      "damageMin": 4,
+      "damageMax": 9
+    },
+    "PipeRifle": {
+      "name": "Pipe Rifle",
+      "rarity": "Normal",
+      "damageMin": 5,
+      "damageMax": 7
+    },
+    "PipeRifle_Bayoneted": {
+      "name": "Bayoneted Pipe Rifle",
+      "rarity": "Rare",
+      "damageMin": 9,
+      "damageMax": 15
+    },
+    "PipeRifle_BigSister": {
+      "name": "Big Sister",
+      "rarity": "Legendary",
+      "damageMin": 10,
+      "damageMax": 17
+    },
+    "PipeRifle_Calibrated": {
+      "name": "Calibrated Pipe Rifle",
+      "rarity": "Rare",
+      "damageMin": 6,
+      "damageMax": 9
+    },
+    "PipeRifle_Long": {
+      "name": "Long Pipe Rifle",
+      "rarity": "Rare",
+      "damageMin": 7,
+      "damageMax": 11
+    },
+    "PipeRifle_NightVision": {
+      "name": "Night-Vision Pipe Rifle",
+      "rarity": "Rare",
+      "damageMin": 8,
+      "damageMax": 13
+    },
+    "Pistol": {
+      "name": "10mm Pistol",
+      "rarity": "Normal",
+      "damageMin": 2,
+      "damageMax": 3
+    },
+    "Pistol_ArmorPiercing": {
+      "name": "Armor Piercing 10mm Pistol",
+      "rarity": "Rare",
+      "damageMin": 2,
+      "damageMax": 6
+    },
+    "Pistol_Enhanced": {
+      "name": "Enhanced 10mm Pistol",
+      "rarity": "Normal",
+      "damageMin": 2,
+      "damageMax": 4
+    },
+    "Pistol_Hardened": {
+      "name": "Hardened 10mm Pistol",
+      "rarity": "Rare",
+      "damageMin": 2,
+      "damageMax": 5
+    },
+    "Pistol_LoneWanderer": {
+      "name": "Lone Wanderer",
+      "rarity": "Legendary",
+      "damageMin": 2,
+      "damageMax": 7
+    },
+    "Pistol_Rusty": {
+      "name": "Rusty 10mm Pistol",
+      "rarity": "Normal",
+      "damageMin": 2,
+      "damageMax": 2
+    },
+    "PlasmaCaster": {
+      "name": "Plasma Caster",
+      "rarity": "Legendary",
+      "damageMin": 17,
+      "damageMax": 21
+    },
+    "PlasmaCaster_Enhanced": {
+      "name": "Enhanced Plasma Caster",
+      "rarity": "Legendary",
+      "damageMin": 18,
+      "damageMax": 22
+    },
+    "PlasmaCaster_Hardened": {
+      "name": "Hardened Plasma Caster",
+      "rarity": "Legendary",
+      "damageMin": 19,
+      "damageMax": 23
+    },
+    "PlasmaCaster_Rusty": {
+      "name": "Rusty Plasma Caster",
+      "rarity": "Legendary",
+      "damageMin": 16,
+      "damageMax": 20
+    },
+    "PlasmaPistol": {
+      "name": "Plasma Pistol",
+      "rarity": "Rare",
+      "damageMin": 11,
+      "damageMax": 12
+    },
+    "PlasmaPistol_Amplified": {
+      "name": "Amplified Plasma Pistol",
+      "rarity": "Legendary",
+      "damageMin": 11,
+      "damageMax": 15
+    },
+    "PlasmaPistol_Focused": {
+      "name": "Focused Plasma Pistol",
+      "rarity": "Rare",
+      "damageMin": 11,
+      "damageMax": 14
+    },
+    "PlasmaPistol_MPLXNovasurge": {
+      "name": "MPLX Novasurge",
+      "rarity": "Legendary",
+      "damageMin": 11,
+      "damageMax": 16
+    },
+    "PlasmaPistol_Rusty": {
+      "name": "Rusty Plasma Pistol",
+      "rarity": "Rare",
+      "damageMin": 11,
+      "damageMax": 11
+    },
+    "PlasmaPistol_Tuned": {
+      "name": "Tuned Plasma Pistol",
+      "rarity": "Rare",
+      "damageMin": 11,
+      "damageMax": 13
+    },
+    "PlasmaRifle": {
+      "name": "Plasma Rifle",
+      "rarity": "Rare",
+      "damageMin": 17,
+      "damageMax": 18
+    },
+    "PlasmaRifle_Amplified": {
+      "name": "Amplified Plasma Rifle",
+      "rarity": "Legendary",
+      "damageMin": 17,
+      "damageMax": 22
+    },
+    "PlasmaRifle_Focused": {
+      "name": "Focused Plasma Rifle",
+      "rarity": "Legendary",
+      "damageMin": 17,
+      "damageMax": 20
+    },
+    "PlasmaRifle_MeanGreenMonster": {
+      "name": "Mean Green Monster",
+      "rarity": "Legendary",
+      "damageMin": 17,
+      "damageMax": 23
+    },
+    "PlasmaRifle_Rusty": {
+      "name": "Rusty Plasma Rifle",
+      "rarity": "Rare",
+      "damageMin": 17,
+      "damageMax": 17
+    },
+    "PlasmaRifle_Tuned": {
+      "name": "Tuned Plasma Rifle",
+      "rarity": "Legendary",
+      "damageMin": 17,
+      "damageMax": 19
+    },
+    "PlasmaThrower": {
+      "name": "Plasma Thrower",
+      "rarity": "Legendary",
+      "damageMin": 17,
+      "damageMax": 19
+    },
+    "PlasmaThrower_Agitated": {
+      "name": "Agitated Plasma Thrower",
+      "rarity": "Legendary",
+      "damageMin": 18,
+      "damageMax": 21
+    },
+    "PlasmaThrower_Boosted": {
+      "name": "Boosted Plasma Thrower",
+      "rarity": "Legendary",
+      "damageMin": 20,
+      "damageMax": 25
+    },
+    "PlasmaThrower_DragonsMaw": {
+      "name": "Dragon's Maw",
+      "rarity": "Legendary",
+      "damageMin": 22,
+      "damageMax": 29
+    },
+    "PlasmaThrower_Overcharged": {
+      "name": "Overcharged Plasma Thrower",
+      "rarity": "Legendary",
+      "damageMin": 21,
+      "damageMax": 27
+    },
+    "PlasmaThrower_Tactical": {
+      "name": "Tactical Plasma Thrower",
+      "rarity": "Legendary",
+      "damageMin": 19,
+      "damageMax": 23
+    },
+    "PoliceBaton": {
+      "name": "Police Baton",
+      "rarity": "None",
+      "damageMin": 1,
+      "damageMax": 1
+    },
+    "PowerFist": {
+      "name": "Power Fist",
+      "rarity": "Legendary",
+      "damageMin": 13,
+      "damageMax": 18
+    },
+    "PowerFist_Enhanced": {
+      "name": "Enhanced Power Fist",
+      "rarity": "Legendary",
+      "damageMin": 14,
+      "damageMax": 19
+    },
+    "PowerFist_Hardened": {
+      "name": "Hardened Power Fist",
+      "rarity": "Legendary",
+      "damageMin": 15,
+      "damageMax": 20
+    },
+    "PowerFist_Rusty": {
+      "name": "Rusty Power Fist",
+      "rarity": "Legendary",
+      "damageMin": 12,
+      "damageMax": 17
+    },
+    "PowerFistEd": {
+      "name": "Ed's Custom Power Fist",
+      "rarity": "Legendary",
+      "damageMin": 16,
+      "damageMax": 22
+    },
+    "PulseRifle": {
+      "name": "Pulse Rifle",
+      "rarity": "Legendary",
+      "damageMin": 18,
+      "damageMax": 19
+    },
+    "PulseRifle_Enhanced": {
+      "name": "Enhanced Pulse Rifle",
+      "rarity": "Legendary",
+      "damageMin": 19,
+      "damageMax": 20
+    },
+    "PulseRifle_Hardened": {
+      "name": "Hardened Pulse Rifle",
+      "rarity": "Legendary",
+      "damageMin": 20,
+      "damageMax": 21
+    },
+    "PulseRifle_Rusty": {
+      "name": "Rusty Pulse Rifle",
+      "rarity": "Legendary",
+      "damageMin": 17,
+      "damageMax": 18
+    },
+    "RadiumRifle": {
+      "name": "Radium Rifle",
+      "rarity": "Legendary",
+      "damageMin": 18,
+      "damageMax": 22
+    },
+    "Railgun": {
+      "name": "Railway Rifle",
+      "rarity": "Rare",
+      "damageMin": 14,
+      "damageMax": 15
+    },
+    "Railgun_Accelerated": {
+      "name": "Accelerated Railway Rifle",
+      "rarity": "Legendary",
+      "damageMin": 14,
+      "damageMax": 18
+    },
+    "Railgun_Enhanced": {
+      "name": "Enhanced Railway Rifle",
+      "rarity": "Rare",
+      "damageMin": 14,
+      "damageMax": 16
+    },
+    "Railgun_Hardened": {
+      "name": "Hardened Railway Rifle",
+      "rarity": "Legendary",
+      "damageMin": 14,
+      "damageMax": 17
+    },
+    "Railgun_Railmaster": {
+      "name": "Railmaster",
+      "rarity": "Legendary",
+      "damageMin": 14,
+      "damageMax": 19
+    },
+    "Railgun_Rusty": {
+      "name": "Rusty Railway Rifle",
+      "rarity": "Rare",
+      "damageMin": 14,
+      "damageMax": 14
+    },
+    "Rifle": {
+      "name": "Lever-Action Rifle",
+      "rarity": "Normal",
+      "damageMin": 4,
+      "damageMax": 5
+    },
+    "Rifle_ArmorPiercing": {
+      "name": "Armor Piercing Lever-Action Rifle",
+      "rarity": "Rare",
+      "damageMin": 4,
+      "damageMax": 8
+    },
+    "Rifle_Enhanced": {
+      "name": "Enhanced Lever-Action Rifle",
+      "rarity": "Normal",
+      "damageMin": 4,
+      "damageMax": 6
+    },
+    "Rifle_Hardened": {
+      "name": "Hardened Lever-Action Rifle",
+      "rarity": "Rare",
+      "damageMin": 4,
+      "damageMax": 7
+    },
+    "Rifle_LincolnsRepeater": {
+      "name": "Lincoln's Repeater",
+      "rarity": "Legendary",
+      "damageMin": 4,
+      "damageMax": 9
+    },
+    "Rifle_Rusty": {
+      "name": "Rusty Lever-Action Rifle",
+      "rarity": "Normal",
+      "damageMin": 4,
+      "damageMax": 4
+    },
+    "Ripper": {
+      "name": "Ripper",
+      "rarity": "Rare",
+      "damageMin": 11,
+      "damageMax": 16
+    },
+    "Ripper_Enhanced": {
+      "name": "Enhanced Ripper",
+      "rarity": "Rare",
+      "damageMin": 12,
+      "damageMax": 17
+    },
+    "Ripper_Hardened": {
+      "name": "Hardened Ripper",
+      "rarity": "Rare",
+      "damageMin": 13,
+      "damageMax": 18
+    },
+    "Ripper_Rusty": {
+      "name": "Rusty Ripper",
+      "rarity": "Rare",
+      "damageMin": 10,
+      "damageMax": 15
+    },
+    "SawedOffShotgun": {
+      "name": "Sawed-Off Shotgun",
+      "rarity": "Normal",
+      "damageMin": 6,
+      "damageMax": 7
+    },
+    "SawedOffShotgun_DoubleBarrelled": {
+      "name": "Double-Barrel Sawed-Off Shotgun",
+      "rarity": "Rare",
+      "damageMin": 6,
+      "damageMax": 10
+    },
+    "SawedOffShotgun_Enhanced": {
+      "name": "Enhanced Sawed-Off Shotgun",
+      "rarity": "Normal",
+      "damageMin": 6,
+      "damageMax": 8
+    },
+    "SawedOffShotgun_Hardened": {
+      "name": "Hardened Sawed-Off Shotgun",
+      "rarity": "Rare",
+      "damageMin": 6,
+      "damageMax": 9
+    },
+    "SawedOffShotgun_Kneecapper": {
+      "name": "Kneecapper",
+      "rarity": "Legendary",
+      "damageMin": 6,
+      "damageMax": 11
+    },
+    "SawedOffShotgun_Rusty": {
+      "name": "Rusty Sawed-Off Shotgun",
+      "rarity": "Normal",
+      "damageMin": 6,
+      "damageMax": 6
+    },
+    "Shotgun": {
+      "name": "Shotgun",
+      "rarity": "Rare",
+      "damageMin": 9,
+      "damageMax": 10
+    },
+    "Shotgun_DoubleBarrelled": {
+      "name": "Double-Barrel Shotgun",
+      "rarity": "Rare",
+      "damageMin": 9,
+      "damageMax": 13
+    },
+    "Shotgun_Enhanced": {
+      "name": "Enhanced Shotgun",
+      "rarity": "Rare",
+      "damageMin": 9,
+      "damageMax": 11
+    },
+    "Shotgun_FarmersDaughter": {
+      "name": "Farmer's Daughter",
+      "rarity": "Legendary",
+      "damageMin": 9,
+      "damageMax": 14
+    },
+    "Shotgun_Hardened": {
+      "name": "Hardened Shotgun",
+      "rarity": "Rare",
+      "damageMin": 9,
+      "damageMax": 12
+    },
+    "Shotgun_Rusty": {
+      "name": "Rusty Shotgun",
+      "rarity": "Rare",
+      "damageMin": 9,
+      "damageMax": 9
+    },
+    "SniperRifle": {
+      "name": "Sniper Rifle",
+      "rarity": "Rare",
+      "damageMin": 10,
+      "damageMax": 11
+    },
+    "SniperRifle_ArmorPiercing": {
+      "name": "Armor Piercing Sniper Rifle",
+      "rarity": "Rare",
+      "damageMin": 10,
+      "damageMax": 14
+    },
+    "SniperRifle_Enhanced": {
+      "name": "Enhanced Sniper Rifle",
+      "rarity": "Rare",
+      "damageMin": 10,
+      "damageMax": 12
+    },
+    "SniperRifle_Hardened": {
+      "name": "Hardened Sniper Rifle",
+      "rarity": "Rare",
+      "damageMin": 10,
+      "damageMax": 13
+    },
+    "SniperRifle_Rusty": {
+      "name": "Rusty Sniper Rifle",
+      "rarity": "Rare",
+      "damageMin": 10,
+      "damageMax": 10
+    },
+    "SniperRifle_VictoryRifle": {
+      "name": "Victory Rifle",
+      "rarity": "Legendary",
+      "damageMin": 10,
+      "damageMax": 15
+    },
+    "SuperSledge": {
+      "name": "Super Sledge",
+      "rarity": "Legendary",
+      "damageMin": 18,
+      "damageMax": 32
+    },
+    "SurgicalRipper": {
+      "name": "Surgical Ripper",
+      "rarity": "Rare",
+      "damageMin": 13,
+      "damageMax": 14
+    },
+    "SurgicalRipper_Enhanced": {
+      "name": "Enhanced Surgical Ripper",
+      "rarity": "Rare",
+      "damageMin": 14,
+      "damageMax": 15
+    },
+    "SurgicalRipper_Hardened": {
+      "name": "Hardened Surgical Ripper",
+      "rarity": "Rare",
+      "damageMin": 16,
+      "damageMax": 17
+    },
+    "SurgicalRipper_Rusty": {
+      "name": "Rusty Surgical Ripper",
+      "rarity": "Rare",
+      "damageMin": 12,
+      "damageMax": 12
+    },
+    "T60Pistol": {
+      "name": "T60 Pistol",
+      "rarity": "Rare",
+      "damageMin": 10,
+      "damageMax": 14
+    },
+    "T60Pistol_ArmorPiercing": {
+      "name": "Armor Piercing T60 Pistol",
+      "rarity": "Rare",
+      "damageMin": 13,
+      "damageMax": 16
+    },
+    "T60Pistol_Enhanced": {
+      "name": "Enhanced T60 Pistol",
+      "rarity": "Rare",
+      "damageMin": 11,
+      "damageMax": 14
+    },
+    "T60Pistol_Hardened": {
+      "name": "Hardened T60 Pistol",
+      "rarity": "Rare",
+      "damageMin": 12,
+      "damageMax": 15
+    },
+    "T60Pistol_Rusty": {
+      "name": "Rusty T60 Pistol",
+      "rarity": "Rare",
+      "damageMin": 9,
+      "damageMax": 13
+    },
+    "TranqPistol": {
+      "name": "Tranq Gun",
+      "rarity": "Rare",
+      "damageMin": 2,
+      "damageMax": 12
+    },
+    "TranqPistol_Enhanced": {
+      "name": "Enhanced Tranq Gun",
+      "rarity": "Rare",
+      "damageMin": 4,
+      "damageMax": 12
+    },
+    "TranqPistol_Hardened": {
+      "name": "Hardened Tranq Gun",
+      "rarity": "Rare",
+      "damageMin": 6,
+      "damageMax": 12
+    },
+    "TranqPistol_Rusty": {
+      "name": "Rusty Tranq Gun",
+      "rarity": "Rare",
+      "damageMin": 1,
+      "damageMax": 10
+    },
+    "TriBeamLaserRifle": {
+      "name": "Tri-Beam Laser Rifle",
+      "rarity": "Legendary",
+      "damageMin": 16,
+      "damageMax": 24
+    },
+    "UltraciteGatling1": {
+      "name": "Ultracite Gatling Laser",
+      "rarity": "Rare",
+      "damageMin": 7,
+      "damageMax": 12
+    },
+    "UltraciteGatling2": {
+      "name": "Maximized Ultracite Gatling Laser",
+      "rarity": "Legendary",
+      "damageMin": 20,
+      "damageMax": 22
+    },
+    "UltracitePlasma1": {
+      "name": "Ultracite Plasma Rifle",
+      "rarity": "Normal",
+      "damageMin": 6,
+      "damageMax": 8
+    },
+    "UltracitePlasma2": {
+      "name": "Optimized Ultracite Plasma Rifle",
+      "rarity": "Legendary",
+      "damageMin": 16,
+      "damageMax": 18
+    },
+    "UltraciteSword1": {
+      "name": "Ultracite Sword",
+      "rarity": "Normal",
+      "damageMin": 3,
+      "damageMax": 6
+    },
+    "UltraciteSword2": {
+      "name": "Ultracite Terror Sword",
+      "rarity": "Rare",
+      "damageMin": 10,
+      "damageMax": 14
+    }
+  }
+}
