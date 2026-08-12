@@ -167,7 +167,11 @@ var app = angular.module('shelter', []);
 
 app.controller('dwellerController', function ($scope, $http) {
   var PET_CATALOG_URLS = {
-    "1.13.25": "data/pets-1.13.25.json?v=20260731-2"
+    "1.13.25": "data/pets-1.13.25.json?v=20260731-2",
+    "2.5.1": "data/pets-2.5.1.json?v=20260812-1"
+  };
+  var COLLECTION_DWELLER_CATALOG_URLS = {
+    "2.5.1": "data/dwellers-2.5.1.json?v=20260812-1"
   };
   var EQUIPMENT_CATALOG_URLS = {
     "1.13.25": "data/equipment-1.13.25.json?v=20260803-1"
@@ -202,6 +206,14 @@ app.controller('dwellerController', function ($scope, $http) {
   $scope.dwellerWeaponOptions = [];
   $scope.bulkPetOptions = [];
   $scope.survivalGuideDwellers = [];
+  $scope.collectionEditor = {
+    saveVersion: '',
+    supported: false,
+    loading: false,
+    ready: false,
+    error: '',
+    names: {}
+  };
   $scope.other = {};
   $scope.petOwner = {};
   $scope.petItem = {};
@@ -324,6 +336,7 @@ app.controller('dwellerController', function ($scope, $http) {
       _save = val;
       configureEquipmentEditor();
       configurePetEditor();
+      configureCollectionEditor();
       $scope.dwellerFilters.outfitId = '';
       $scope.dwellerFilters.weaponId = '';
       $scope.dwellerFilters.petId = '';
@@ -1172,10 +1185,65 @@ app.controller('dwellerController', function ($scope, $http) {
       var id = String(guideId);
       return {
         id: id,
-        name: id.replace(/^OL_/, '')
+        name: $scope.collectionEditor.names[id] || id.replace(/^OL_/, '')
       };
     }).sort(function (left, right) {
       return left.name.localeCompare(right.name);
+    });
+  }
+
+  function configureCollectionEditor() {
+    var version = normalizeAppVersion(_save);
+    var catalogUrl = COLLECTION_DWELLER_CATALOG_URLS[version];
+
+    $scope.collectionEditor.saveVersion = version;
+    $scope.collectionEditor.supported = !!catalogUrl;
+    $scope.collectionEditor.loading = false;
+    $scope.collectionEditor.ready = false;
+    $scope.collectionEditor.error = '';
+    $scope.collectionEditor.names = {};
+
+    if (!catalogUrl) {
+      return;
+    }
+
+    $scope.collectionEditor.loading = true;
+    $http.get(catalogUrl, { cache: true }).then(function (response) {
+      if (normalizeAppVersion(_save) !== version) {
+        return;
+      }
+
+      var data = response.data || {};
+      var dwellers = data.dwellers || [];
+      var names = {};
+
+      if (String(data.appVersion || '').trim() !== version) {
+        throw new Error("The Dweller collection catalog version does not match the loaded save.");
+      }
+
+      for (var dwellerIndex = 0; dwellerIndex < dwellers.length; dwellerIndex++) {
+        names[dwellers[dwellerIndex].id] = dwellers[dwellerIndex].name;
+      }
+
+      if (!dwellers.length) {
+        throw new Error("The Dweller collection catalog is empty.");
+      }
+
+      $scope.collectionEditor.names = names;
+      $scope.collectionEditor.loading = false;
+      $scope.collectionEditor.ready = true;
+      refreshSurvivalGuideDwellers();
+    }).catch(function (error) {
+      if (normalizeAppVersion(_save) !== version) {
+        return;
+      }
+
+      $scope.collectionEditor.loading = false;
+      $scope.collectionEditor.ready = false;
+      $scope.collectionEditor.error = error && error.message
+        ? error.message
+        : "The Dweller collection catalog could not be loaded.";
+      refreshSurvivalGuideDwellers();
     });
   }
 
@@ -1535,6 +1603,18 @@ app.controller('dwellerController', function ($scope, $http) {
     return owner.equippedPet;
   }
 
+  $scope.petDisplayName = function (other) {
+    var equippedPet = getEquippedPetForActor(other);
+    var uniqueName = equippedPet && equippedPet.extraData
+      ? equippedPet.extraData.uniqueName
+      : '';
+    var petId = equippedPet && equippedPet.id ? equippedPet.id : other && other.actorDataId;
+    var definition = petId ? $scope.petEditor.catalog[petId] : null;
+
+    return uniqueName || (definition && definition.name) || (other && other.name)
+      || petId || "Unknown Pet";
+  };
+
   function normalizeAppVersion(save) {
     if (!save || save.appVersion === undefined || save.appVersion === null) {
       return '';
@@ -1724,7 +1804,8 @@ app.controller('dwellerController', function ($scope, $http) {
       var bonusValue = pet && pet.extraData && pet.extraData.bonusValue;
 
       if (!actor || !pet || !definition || pet.extraData.bonus !== definition.bonus) {
-        return "An edited Pet no longer matches the Fallout Shelter 1.13.25 catalog.";
+        return "An edited Pet no longer matches the Fallout Shelter "
+          + ($scope.petEditor.saveVersion || "save version") + " catalog.";
       }
 
       if (typeof bonusValue !== "number" || !isFinite(bonusValue)
@@ -1921,7 +2002,8 @@ app.controller('dwellerController', function ($scope, $http) {
     }
 
     if (!setDwellerPet($scope.dweller, $scope.dwellerPetId)) {
-      alert("This Pet is not present in the Fallout Shelter 1.13.25 catalog.");
+      alert("This Pet is not present in the Fallout Shelter "
+        + ($scope.petEditor.saveVersion || "save version") + " catalog.");
       $scope.dwellerPetId = equippedPetId($scope.dweller) === "__no_pet__"
         ? ''
         : equippedPetId($scope.dweller);
@@ -2778,10 +2860,13 @@ app.controller('dwellerController', function ($scope, $http) {
     teams.forEach(function (team) {
       var dwellerIds = Array.isArray(team.dwellers) ? team.dwellers : [];
       var actorIds = Array.isArray(team.actors) ? team.actors : [];
-      var dweller = dwellerIds.length ? findDweller(dwellerIds[0]) : null;
-      var actor = actorIds.length ? findActor(actorIds[0]) : null;
 
-      if (dweller) {
+      dwellerIds.forEach(function (dwellerId) {
+        var dweller = findDweller(dwellerId);
+        if (!dweller) {
+          return;
+        }
+
         $scope.wastelandTeams.push({
           teamIndex: team.teamIndex,
           dweller: dweller,
@@ -2789,9 +2874,14 @@ app.controller('dwellerController', function ($scope, $http) {
           returnTripDuration: team.returnTripDuration,
           teamEquipment: team.teamEquipment
         });
-      }
+      });
 
-      if (actor) {
+      actorIds.forEach(function (actorId) {
+        var actor = findActor(actorId);
+        if (!isMrHandy(actor)) {
+          return;
+        }
+
         $scope.wastelandTeams2.push({
           teamIndex: team.teamIndex,
           actor: actor,
@@ -2799,7 +2889,7 @@ app.controller('dwellerController', function ($scope, $http) {
           returnTripDuration: team.returnTripDuration,
           teamEquipment: team.teamEquipment
         });
-      }
+      });
     });
   }
 

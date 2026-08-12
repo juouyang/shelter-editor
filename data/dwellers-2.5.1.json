@@ -1,0 +1,255 @@
+{
+  "schemaVersion": 1,
+  "format": "fallout-shelter-dweller-collection-catalog",
+  "appVersion": "2.5.1",
+  "source": {
+    "platform": "Android",
+    "packageName": "com.bethsoft.falloutshelter",
+    "gameVersion": "2.5.1",
+    "versionCode": 227,
+    "unityVersion": "6000.0.58f2",
+    "assetBundle": "assets/bin/Data/data.unity3d",
+    "assetFile": "sharedassets261.assets",
+    "obbSha256": "e5645dcc90ea9a7b2aa694f43d804cc6f11b0173a846b7210f182597be2e8129",
+    "apkSha256": "20a11be7996e4b2018c2c8215c0972f268150bb4a80b00ae999027d9b33a3b69"
+  },
+  "dwellerCount": 59,
+  "dwellers": [
+    {
+      "id": "OL_Abraham Washington",
+      "name": "Abraham Washington"
+    },
+    {
+      "id": "OL_AlistairTenpenny",
+      "name": "Allistair Tenpenny"
+    },
+    {
+      "id": "OL_Amata",
+      "name": "Amata"
+    },
+    {
+      "id": "OL_Betty",
+      "name": "Betty"
+    },
+    {
+      "id": "OL_Bittercup",
+      "name": "Bittercup"
+    },
+    {
+      "id": "OL_Butch",
+      "name": "Butch"
+    },
+    {
+      "id": "OL_Cait",
+      "name": "Cait"
+    },
+    {
+      "id": "OL_Chet",
+      "name": "Chet"
+    },
+    {
+      "id": "OL_ColonelAutumn",
+      "name": "Colonel Autumn"
+    },
+    {
+      "id": "OL_ConfessorCromwell",
+      "name": "Confessor Cromwell"
+    },
+    {
+      "id": "OL_ConradKellogg",
+      "name": "Conrad Kellogg"
+    },
+    {
+      "id": "OL_Cooper",
+      "name": "The Ghoul"
+    },
+    {
+      "id": "OL_CooperHoward",
+      "name": "Cooper Howard"
+    },
+    {
+      "id": "OL_Desdemona",
+      "name": "Desdemona"
+    },
+    {
+      "id": "OL_Doug",
+      "name": "Luc The Human"
+    },
+    {
+      "id": "OL_Dr. Henry",
+      "name": "Dr. Henry"
+    },
+    {
+      "id": "OL_Dr. Li",
+      "name": "Dr. Li"
+    },
+    {
+      "id": "OL_Ed",
+      "name": "Ed The Ghoul"
+    },
+    {
+      "id": "OL_ElderLyons",
+      "name": "Elder Lyons"
+    },
+    {
+      "id": "OL_Eulogy Jones",
+      "name": "Eulogy Jones"
+    },
+    {
+      "id": "OL_FarHarbor",
+      "name": "Old Longfellow"
+    },
+    {
+      "id": "OL_GhoulKing",
+      "name": "Ghoul King"
+    },
+    {
+      "id": "OL_Hank",
+      "name": "Hank"
+    },
+    {
+      "id": "OL_HankNewVegas",
+      "name": "Hank (New Vegas)"
+    },
+    {
+      "id": "OL_Harkness",
+      "name": "Harkness"
+    },
+    {
+      "id": "OL_James",
+      "name": "James"
+    },
+    {
+      "id": "OL_Jericho",
+      "name": "Jericho"
+    },
+    {
+      "id": "OL_Legate",
+      "name": "Legate"
+    },
+    {
+      "id": "OL_LiamBinet",
+      "name": "Liam Binet"
+    },
+    {
+      "id": "OL_Lucas Simms",
+      "name": "Lucas Simms"
+    },
+    {
+      "id": "OL_Lucy",
+      "name": "Lucy"
+    },
+    {
+      "id": "OL_LucyNewVegas",
+      "name": "Lucy (New Vegas)"
+    },
+    {
+      "id": "OL_Ma June",
+      "name": "Ma June"
+    },
+    {
+      "id": "OL_Max",
+      "name": "Maximus"
+    },
+    {
+      "id": "OL_Moira Brown",
+      "name": "Moira Brown"
+    },
+    {
+      "id": "OL_Moldaver",
+      "name": "Moldaver"
+    },
+    {
+      "id": "OL_Mr. Burque",
+      "name": "Mr. Burke"
+    },
+    {
+      "id": "OL_MrHouse",
+      "name": "Mr. House"
+    },
+    {
+      "id": "OL_NickValentine",
+      "name": "Nick Valentine"
+    },
+    {
+      "id": "OL_Norm",
+      "name": "Norm"
+    },
+    {
+      "id": "OL_OrionMoreno",
+      "name": "Orion Moreno"
+    },
+    {
+      "id": "OL_OverseerClaff",
+      "name": "Overseer Claff"
+    },
+    {
+      "id": "OL_Paladin",
+      "name": "Paladin"
+    },
+    {
+      "id": "OL_PaladinDanse",
+      "name": "Paladin Danse"
+    },
+    {
+      "id": "OL_Piper",
+      "name": "Piper"
+    },
+    {
+      "id": "OL_Preston",
+      "name": "Preston Garvey"
+    },
+    {
+      "id": "OL_Regs",
+      "name": "Regs"
+    },
+    {
+      "id": "OL_Sarah Lyons",
+      "name": "Sarah Lyons"
+    },
+    {
+      "id": "OL_Scribe Rothchild",
+      "name": "Scribe Rothchild"
+    },
+    {
+      "id": "OL_ScribeValdez",
+      "name": "Scribe Valdez"
+    },
+    {
+      "id": "OL_Snake Oil Salesman",
+      "name": "Snake Oil Salesman"
+    },
+    {
+      "id": "OL_SnipSnip",
+      "name": "Snip Snip"
+    },
+    {
+      "id": "OL_Star Paladin Cross",
+      "name": "Star Paladin Cross"
+    },
+    {
+      "id": "OL_Stephanie",
+      "name": "Stephanie"
+    },
+    {
+      "id": "OL_TheGhoulNewVegas",
+      "name": "The Ghoul (New Vegas)"
+    },
+    {
+      "id": "OL_ThreeDog",
+      "name": "Three Dog"
+    },
+    {
+      "id": "OL_Vault76Overseer",
+      "name": "76 Overseer"
+    },
+    {
+      "id": "OL_Wilzig",
+      "name": "Wilzig"
+    },
+    {
+      "id": "OL_Zeke",
+      "name": "Zeke"
+    }
+  ]
+}

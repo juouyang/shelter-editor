@@ -414,9 +414,11 @@ Copyright (C) 2017
               ng-options="option.id as option.label group by option.rarity for option in bulkPetOptions">
               <option value="">Keep current Pet</option>
             </select>
-            <p class="help-block" ng-show="petEditor.loading">Loading the 1.13.25 Pet catalog…</p>
+            <p class="help-block" ng-show="petEditor.loading">
+              Loading the {{ petEditor.saveVersion }} Pet catalog…
+            </p>
             <p class="help-block" ng-show="!petEditor.supported">
-              Pet equipment editing is available only for Fallout Shelter 1.13.25.
+              Pet equipment editing supports Fallout Shelter 1.13.25 and 2.5.1.
             </p>
             <p class="help-block" ng-show="petEditor.ready">
               Each selected dweller receives a separate Pet with its allowed maximum bonus.
@@ -574,9 +576,11 @@ Copyright (C) 2017
                 ng-options="option.id as option.label group by option.rarity for option in petEditor.pets">
                 <option value="">No Pet</option>
               </select>
-              <p class="help-block" ng-show="petEditor.loading">Loading the 1.13.25 Pet catalog…</p>
+              <p class="help-block" ng-show="petEditor.loading">
+                Loading the {{ petEditor.saveVersion }} Pet catalog…
+              </p>
               <p class="help-block" ng-show="!petEditor.supported">
-                Pet equipment editing is available only for Fallout Shelter 1.13.25.
+                Pet equipment editing supports Fallout Shelter 1.13.25 and 2.5.1.
               </p>
               <p class="help-block" ng-show="petEditor.ready">
                 New Pet bonus values use the allowed maximum for this game version.
@@ -660,9 +664,9 @@ Copyright (C) 2017
 
     <div class="row box" ng-show="section == 'pets'">
       <div class="Others list-group col-sm-4">
-        <a ng-repeat="o in save.dwellers.actors | filter:isPet | orderBy:['name', 'serializeId']"
+        <a ng-repeat="o in save.dwellers.actors | filter:isPet | orderBy:[petDisplayName, 'serializeId']"
           ng-click="editOthers(o);" ng-class="{ 'active': other == o }"
-          class="list-group-item">{{ o.name }}</a>
+          class="list-group-item">{{ petDisplayName(o) }}</a>
       </div>
       <div class="other_info col-sm-8" ng-hide="!isPet(other)">
         <a href="#" class="back_button glyphicon glyphicon-chevron-left" ng-click="closeOther()">Back</a>
@@ -752,11 +756,13 @@ Copyright (C) 2017
             The equipped pet data for this actor could not be resolved. Bonus editing is unavailable.
           </p>
           <p class="help-block" ng-show="petEditor.ready && petItem.id && !petDefinition.id">
-            Pet ID {{ petItem.id }} is not present in the Fallout Shelter 1.13.25 catalog. This Pet is read-only.
+            Pet ID {{ petItem.id }} is not present in the Fallout Shelter {{ petEditor.saveVersion }} catalog.
+            This Pet is read-only.
           </p>
           <p class="help-block"
             ng-show="petDefinition.id && petItem.extraData && petItem.extraData.bonus != petDefinition.bonus">
-            This Pet's bonus type does not match the Fallout Shelter 1.13.25 catalog. This Pet is read-only.
+            This Pet's bonus type does not match the Fallout Shelter {{ petEditor.saveVersion }} catalog.
+            This Pet is read-only.
           </p>
         </form>
       </div>
@@ -862,13 +868,13 @@ Copyright (C) 2017
             <div class="col-sm-6">
               <label>Stimpack</label>
               <input type="number" class="form-control" name="stimpack"
-                ng-model="team.actor.equipment.storage.resources.StimPack">
+                ng-model="teamEquipment.storage.resources.StimPack">
             </div>
 
             <div class="col-sm-6">
               <label>RadAway</label>
               <input type="number" class="form-control" name="radaway"
-                ng-model="team.actor.equipment.storage.resources.RadAway">
+                ng-model="teamEquipment.storage.resources.RadAway">
             </div>
           </div>
 
@@ -876,13 +882,13 @@ Copyright (C) 2017
             <div class="col-sm-6">
               <label>Caps</label>
               <input type="number" class="form-control" name="wcaps"
-                ng-model="team.actor.equipment.storage.resources.Nuka">
+                ng-model="teamEquipment.storage.resources.Nuka">
             </div>
 
             <div class="col-sm-6">
               <label>Nuka Cola Quantum</label>
               <input type="number" class="form-control" name="wquantum"
-                ng-model="team.actor.equipment.storage.resources.NukaColaQuantum">
+                ng-model="teamEquipment.storage.resources.NukaColaQuantum">
             </div>
           </div>
 
@@ -894,6 +900,12 @@ Copyright (C) 2017
     <div class="row box" ng-show="section == 'collection'">
       <div class="col-sm-12 vault_info">
         <h3>Survival Guide — Legendary Dwellers</h3>
+        <div class="alert alert-info" ng-show="collectionEditor.loading">
+          Loading Fallout Shelter {{ collectionEditor.saveVersion }} Dweller names…
+        </div>
+        <div class="alert alert-warning" ng-show="collectionEditor.error">
+          Exact collection names could not be loaded: {{ collectionEditor.error }}
+        </div>
         <p class="text-muted">
           {{ survivalGuideDwellers.length }} Legendary Dwellers are registered in this loaded save.
           This list is read directly from <code>survivalW.dwellers</code>.
@@ -980,7 +992,7 @@ Copyright (C) 2017
   <script src="js/json2.min.js"></script>
   <script src="js/aes.js"></script>
   <script src="js/FileSaver.js"></script>
-  <script src="js/shelter.js?v=20260804-4"></script>
+  <script src="js/shelter.js?v=20260812-1"></script>
   <script src="js/jscolor.js"></script>
 </body>
 

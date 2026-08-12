@@ -1,0 +1,1062 @@
+{
+  "schemaVersion": 1,
+  "format": "fallout-shelter-pet-editor-catalog",
+  "appVersion": "2.5.1",
+  "source": {
+    "platform": "Android",
+    "packageName": "com.bethsoft.falloutshelter",
+    "gameVersion": "2.5.1",
+    "versionCode": 227,
+    "unityVersion": "6000.0.58f2",
+    "assetBundle": "assets/bin/Data/data.unity3d",
+    "assetObject": "PetsCustomizationData",
+    "assetPathId": 4665,
+    "assetSha256": "31657d300664e753fc3b4c9661163e805831572ddfc2f0967ce1a356022a4311",
+    "obbSha256": "e5645dcc90ea9a7b2aa694f43d804cc6f11b0173a846b7210f182597be2e8129",
+    "apkSha256": "20a11be7996e4b2018c2c8215c0972f268150bb4a80b00ae999027d9b33a3b69",
+    "globalMetadataSha256": "6d7a24a7e8423fcc3716ec19c852bce87f127d6517f1cef47e8bc6633b8308ab"
+  },
+  "petCount": 130,
+  "pets": [
+    {
+      "id": "Alien_Drone",
+      "name": "Alien Drone",
+      "rarity": "Rare",
+      "bonus": "DamageBoost",
+      "bonusMin": 4.0,
+      "bonusMax": 4.0
+    },
+    {
+      "id": "Rollerbrain",
+      "name": "Rollerbrain",
+      "rarity": "Legendary",
+      "bonus": "HappinessBoost",
+      "bonusMin": 90.0,
+      "bonusMax": 100.0
+    },
+    {
+      "id": "abyssinian_c",
+      "name": "Abyssinian",
+      "rarity": "Common",
+      "bonus": "Resistance",
+      "bonusMin": 20.0,
+      "bonusMax": 24.0
+    },
+    {
+      "id": "abyssinian_l",
+      "name": "Zula",
+      "rarity": "Legendary",
+      "bonus": "Resistance",
+      "bonusMin": 46.0,
+      "bonusMax": 50.0
+    },
+    {
+      "id": "abyssinian_r",
+      "name": "Abyssinian",
+      "rarity": "Rare",
+      "bonus": "Resistance",
+      "bonusMin": 36.0,
+      "bonusMax": 40.0
+    },
+    {
+      "id": "akita_l",
+      "name": "Kuma",
+      "rarity": "Legendary",
+      "bonus": "MysteriousMagnet",
+      "bonusMin": 7.5,
+      "bonusMax": 7.5
+    },
+    {
+      "id": "akita_l2",
+      "name": "Kabosu",
+      "rarity": "Legendary",
+      "bonus": "MysteriousMagnet",
+      "bonusMin": 5.0,
+      "bonusMax": 5.0
+    },
+    {
+      "id": "akita_r",
+      "name": "Akita",
+      "rarity": "Rare",
+      "bonus": "MysteriousMagnet",
+      "bonusMin": 2.5,
+      "bonusMax": 2.5
+    },
+    {
+      "id": "american_c",
+      "name": "American Shorthair",
+      "rarity": "Common",
+      "bonus": "WastelandCapsBoost",
+      "bonusMin": 6.0,
+      "bonusMax": 15.0
+    },
+    {
+      "id": "american_l",
+      "name": "Sterling",
+      "rarity": "Legendary",
+      "bonus": "WastelandCapsBoost",
+      "bonusMin": 36.0,
+      "bonusMax": 45.0
+    },
+    {
+      "id": "american_r",
+      "name": "American Shorthair",
+      "rarity": "Rare",
+      "bonus": "WastelandCapsBoost",
+      "bonusMin": 21.0,
+      "bonusMax": 30.0
+    },
+    {
+      "id": "australianshepherd_l",
+      "name": "Bandit",
+      "rarity": "Legendary",
+      "bonus": "ChildSpecialBoost",
+      "bonusMin": 3.0,
+      "bonusMax": 3.0
+    },
+    {
+      "id": "australianshepherd_r",
+      "name": "Australian Shepherd",
+      "rarity": "Rare",
+      "bonus": "ChildSpecialBoost",
+      "bonusMin": 2.0,
+      "bonusMax": 2.0
+    },
+    {
+      "id": "australianshepherd_r2",
+      "name": "Australian Shepherd",
+      "rarity": "Rare",
+      "bonus": "ChildSpecialBoost",
+      "bonusMin": 1.0,
+      "bonusMax": 1.0
+    },
+    {
+      "id": "blacklab_c",
+      "name": "Black Lab",
+      "rarity": "Common",
+      "bonus": "TrainingBoost",
+      "bonusMin": 6.0,
+      "bonusMax": 10.0
+    },
+    {
+      "id": "blacklab_l",
+      "name": "Muttface",
+      "rarity": "Legendary",
+      "bonus": "TrainingNonStopBoost",
+      "bonusMin": 26.0,
+      "bonusMax": 30.0
+    },
+    {
+      "id": "blacklab_r",
+      "name": "Black Lab",
+      "rarity": "Rare",
+      "bonus": "TrainingBoost",
+      "bonusMin": 16.0,
+      "bonusMax": 20.0
+    },
+    {
+      "id": "bloodhound_l",
+      "name": "Duke",
+      "rarity": "Legendary",
+      "bonus": "WastelandJunkBoost",
+      "bonusMin": 91.0,
+      "bonusMax": 100.0
+    },
+    {
+      "id": "bloodhound_l2",
+      "name": "Valentine",
+      "rarity": "Legendary",
+      "bonus": "WastelandJunkBoost",
+      "bonusMin": 25.0,
+      "bonusMax": 33.0
+    },
+    {
+      "id": "bloodhound_l3",
+      "name": "Moose",
+      "rarity": "Legendary",
+      "bonus": "WastelandJunkBoost",
+      "bonusMin": 58.0,
+      "bonusMax": 66.0
+    },
+    {
+      "id": "blueyellowmacaw_l",
+      "name": "Pip",
+      "rarity": "Legendary",
+      "bonus": "ObjectiveMultiplier",
+      "bonusMin": 3.0,
+      "bonusMax": 3.0
+    },
+    {
+      "id": "blueyellowmacaw_l2",
+      "name": "Vinnie",
+      "rarity": "Legendary",
+      "bonus": "ObjectiveMultiplier",
+      "bonusMin": 2.0,
+      "bonusMax": 2.0
+    },
+    {
+      "id": "bombay_c",
+      "name": "Bombay",
+      "rarity": "Common",
+      "bonus": "AddMaxHP",
+      "bonusMin": 25.0,
+      "bonusMax": 33.0
+    },
+    {
+      "id": "bombay_l",
+      "name": "Shadow",
+      "rarity": "Legendary",
+      "bonus": "AddMaxHP",
+      "bonusMin": 91.0,
+      "bonusMax": 100.0
+    },
+    {
+      "id": "bombay_r",
+      "name": "Bombay",
+      "rarity": "Rare",
+      "bonus": "AddMaxHP",
+      "bonusMin": 58.0,
+      "bonusMax": 66.0
+    },
+    {
+      "id": "boxer_c",
+      "name": "Boxer",
+      "rarity": "Common",
+      "bonus": "XPBoost",
+      "bonusMin": 6.0,
+      "bonusMax": 15.0
+    },
+    {
+      "id": "boxer_l",
+      "name": "Scavver",
+      "rarity": "Legendary",
+      "bonus": "XPBoost",
+      "bonusMin": 36.0,
+      "bonusMax": 45.0
+    },
+    {
+      "id": "boxer_r",
+      "name": "Boxer",
+      "rarity": "Rare",
+      "bonus": "XPBoost",
+      "bonusMin": 21.0,
+      "bonusMax": 30.0
+    },
+    {
+      "id": "british_c",
+      "name": "British Shorthair",
+      "rarity": "Common",
+      "bonus": "HealingBoost",
+      "bonusMin": 2.0,
+      "bonusMax": 2.0
+    },
+    {
+      "id": "british_l",
+      "name": "Ashes",
+      "rarity": "Legendary",
+      "bonus": "HealingBoost",
+      "bonusMin": 4.0,
+      "bonusMax": 4.0
+    },
+    {
+      "id": "british_r",
+      "name": "British Shorthair",
+      "rarity": "Rare",
+      "bonus": "HealingBoost",
+      "bonusMin": 3.0,
+      "bonusMax": 3.0
+    },
+    {
+      "id": "brittany_c",
+      "name": "Brittany",
+      "rarity": "Common",
+      "bonus": "FasterAndCheaperCrafting",
+      "bonusMin": 6.0,
+      "bonusMax": 10.0
+    },
+    {
+      "id": "brittany_l",
+      "name": "Gaston",
+      "rarity": "Legendary",
+      "bonus": "FasterAndCheaperCrafting",
+      "bonusMin": 26.0,
+      "bonusMax": 30.0
+    },
+    {
+      "id": "brittany_r",
+      "name": "Brittany",
+      "rarity": "Rare",
+      "bonus": "FasterAndCheaperCrafting",
+      "bonusMin": 16.0,
+      "bonusMax": 20.0
+    },
+    {
+      "id": "burmilla_l",
+      "name": "Diamond",
+      "rarity": "Legendary",
+      "bonus": "CheaperCrafting",
+      "bonusMin": 26.0,
+      "bonusMax": 30.0
+    },
+    {
+      "id": "burmilla_l2",
+      "name": "Cloudy",
+      "rarity": "Legendary",
+      "bonus": "CheaperCrafting",
+      "bonusMin": 16.0,
+      "bonusMax": 20.0
+    },
+    {
+      "id": "burmilla_r",
+      "name": "Burmilla",
+      "rarity": "Rare",
+      "bonus": "CheaperCrafting",
+      "bonusMin": 6.0,
+      "bonusMax": 10.0
+    },
+    {
+      "id": "cattledog_c",
+      "name": "Cattle Dog",
+      "rarity": "Common",
+      "bonus": "WastelandCapsBoost",
+      "bonusMin": 6.0,
+      "bonusMax": 15.0
+    },
+    {
+      "id": "cattledog_l",
+      "name": "Four Score",
+      "rarity": "Legendary",
+      "bonus": "WastelandCapsBoost",
+      "bonusMin": 36.0,
+      "bonusMax": 45.0
+    },
+    {
+      "id": "cattledog_r",
+      "name": "Cattle Dog",
+      "rarity": "Rare",
+      "bonus": "WastelandCapsBoost",
+      "bonusMin": 21.0,
+      "bonusMax": 30.0
+    },
+    {
+      "id": "collie_c",
+      "name": "Collie",
+      "rarity": "Common",
+      "bonus": "CheaperCrafting",
+      "bonusMin": 6.0,
+      "bonusMax": 10.0
+    },
+    {
+      "id": "collie_l",
+      "name": "Pal",
+      "rarity": "Legendary",
+      "bonus": "CheaperCrafting",
+      "bonusMin": 26.0,
+      "bonusMax": 30.0
+    },
+    {
+      "id": "collie_r",
+      "name": "Collie",
+      "rarity": "Rare",
+      "bonus": "CheaperCrafting",
+      "bonusMin": 16.0,
+      "bonusMax": 20.0
+    },
+    {
+      "id": "cx404_l",
+      "name": "CX404",
+      "rarity": "Legendary",
+      "bonus": "XPBoost",
+      "bonusMin": 36.0,
+      "bonusMax": 45.0
+    },
+    {
+      "id": "cyberdog_l",
+      "name": "Cyberdog",
+      "rarity": "Legendary",
+      "bonus": "Resistance",
+      "bonusMin": 46.0,
+      "bonusMax": 50.0
+    },
+    {
+      "id": "dalmatian_l",
+      "name": "Pongo",
+      "rarity": "Legendary",
+      "bonus": "ChildMultiplier",
+      "bonusMin": 75.0,
+      "bonusMax": 75.0
+    },
+    {
+      "id": "dalmatian_l2",
+      "name": "Lucky",
+      "rarity": "Legendary",
+      "bonus": "ChildMultiplier",
+      "bonusMin": 50.0,
+      "bonusMax": 50.0
+    },
+    {
+      "id": "dalmatian_r",
+      "name": "Dalmatian",
+      "rarity": "Rare",
+      "bonus": "ChildMultiplier",
+      "bonusMin": 25.0,
+      "bonusMax": 25.0
+    },
+    {
+      "id": "doberman_c",
+      "name": "Doberman",
+      "rarity": "Common",
+      "bonus": "HealingBoost",
+      "bonusMin": 2.0,
+      "bonusMax": 2.0
+    },
+    {
+      "id": "doberman_l",
+      "name": "Apolda",
+      "rarity": "Legendary",
+      "bonus": "HealingBoost",
+      "bonusMin": 4.0,
+      "bonusMax": 4.0
+    },
+    {
+      "id": "doberman_r",
+      "name": "Doberman",
+      "rarity": "Rare",
+      "bonus": "HealingBoost",
+      "bonusMin": 3.0,
+      "bonusMax": 3.0
+    },
+    {
+      "id": "englishmastiff_l",
+      "name": "Goliath",
+      "rarity": "Legendary",
+      "bonus": "CheaperCrafting",
+      "bonusMin": 26.0,
+      "bonusMax": 30.0
+    },
+    {
+      "id": "englishmastiff_r",
+      "name": "English Mastiff",
+      "rarity": "Rare",
+      "bonus": "CheaperCrafting",
+      "bonusMin": 16.0,
+      "bonusMax": 20.0
+    },
+    {
+      "id": "englishmastiff_r2",
+      "name": "English Mastiff",
+      "rarity": "Rare",
+      "bonus": "CheaperCrafting",
+      "bonusMin": 6.0,
+      "bonusMax": 10.0
+    },
+    {
+      "id": "germanpointer_c",
+      "name": "German Pointer",
+      "rarity": "Common",
+      "bonus": "RadHealingBoost",
+      "bonusMin": 2.0,
+      "bonusMax": 2.0
+    },
+    {
+      "id": "germanpointer_l",
+      "name": "Mr. Peepers",
+      "rarity": "Legendary",
+      "bonus": "RadHealingBoost",
+      "bonusMin": 4.0,
+      "bonusMax": 4.0
+    },
+    {
+      "id": "germanpointer_l2",
+      "name": "Cocoa Bean",
+      "rarity": "Legendary",
+      "bonus": "FasterWastelandReturnSpeed",
+      "bonusMin": 4.0,
+      "bonusMax": 4.0
+    },
+    {
+      "id": "germanpointer_r",
+      "name": "German Pointer",
+      "rarity": "Rare",
+      "bonus": "RadHealingBoost",
+      "bonusMin": 3.0,
+      "bonusMax": 3.0
+    },
+    {
+      "id": "germanshepherd_l",
+      "name": "Dogmeat",
+      "rarity": "Legendary",
+      "bonus": "ObjectiveMultiplier",
+      "bonusMin": 3.0,
+      "bonusMax": 3.0
+    },
+    {
+      "id": "germanshepherd_r",
+      "name": "German Shepherd",
+      "rarity": "Rare",
+      "bonus": "ObjectiveMultiplier",
+      "bonusMin": 2.0,
+      "bonusMax": 2.0
+    },
+    {
+      "id": "goldenret_c",
+      "name": "Golden Retriever",
+      "rarity": "Common",
+      "bonus": "WastelandItemBoost",
+      "bonusMin": 6.0,
+      "bonusMax": 10.0
+    },
+    {
+      "id": "goldenret_l",
+      "name": "Cindy",
+      "rarity": "Legendary",
+      "bonus": "WastelandItemBoost",
+      "bonusMin": 26.0,
+      "bonusMax": 30.0
+    },
+    {
+      "id": "goldenret_r",
+      "name": "Golden Retriever",
+      "rarity": "Rare",
+      "bonus": "WastelandItemBoost",
+      "bonusMin": 16.0,
+      "bonusMax": 20.0
+    },
+    {
+      "id": "greyhound_c",
+      "name": "Greyhound",
+      "rarity": "Common",
+      "bonus": "FasterCrafting",
+      "bonusMin": 6.0,
+      "bonusMax": 15.0
+    },
+    {
+      "id": "greyhound_l",
+      "name": "Little Helper",
+      "rarity": "Legendary",
+      "bonus": "FasterCrafting",
+      "bonusMin": 36.0,
+      "bonusMax": 45.0
+    },
+    {
+      "id": "greyhound_r",
+      "name": "Greyhound",
+      "rarity": "Rare",
+      "bonus": "FasterCrafting",
+      "bonusMin": 21.0,
+      "bonusMax": 30.0
+    },
+    {
+      "id": "havanabrown_l",
+      "name": "Merlin",
+      "rarity": "Legendary",
+      "bonus": "FasterCrafting",
+      "bonusMin": 36.0,
+      "bonusMax": 45.0
+    },
+    {
+      "id": "havanabrown_r",
+      "name": "Havana Brown",
+      "rarity": "Rare",
+      "bonus": "FasterCrafting",
+      "bonusMin": 21.0,
+      "bonusMax": 30.0
+    },
+    {
+      "id": "havanabrown_r2",
+      "name": "Havana Brown",
+      "rarity": "Rare",
+      "bonus": "FasterCrafting",
+      "bonusMin": 6.0,
+      "bonusMax": 15.0
+    },
+    {
+      "id": "husky_c",
+      "name": "Husky",
+      "rarity": "Common",
+      "bonus": "FasterWastelandReturnSpeed",
+      "bonusMin": 1.25,
+      "bonusMax": 1.25
+    },
+    {
+      "id": "husky_l",
+      "name": "Trench",
+      "rarity": "Legendary",
+      "bonus": "FasterWastelandReturnSpeed",
+      "bonusMin": 4.0,
+      "bonusMax": 4.0
+    },
+    {
+      "id": "husky_r",
+      "name": "Husky",
+      "rarity": "Rare",
+      "bonus": "FasterWastelandReturnSpeed",
+      "bonusMin": 2.0,
+      "bonusMax": 2.0
+    },
+    {
+      "id": "laperm_l",
+      "name": "Pouncer",
+      "rarity": "Legendary",
+      "bonus": "WastelandJunkBoost",
+      "bonusMin": 91.0,
+      "bonusMax": 100.0
+    },
+    {
+      "id": "laperm_l2",
+      "name": "Static",
+      "rarity": "Legendary",
+      "bonus": "WastelandJunkBoost",
+      "bonusMin": 25.0,
+      "bonusMax": 33.0
+    },
+    {
+      "id": "laperm_l3",
+      "name": "Luna",
+      "rarity": "Legendary",
+      "bonus": "WastelandJunkBoost",
+      "bonusMin": 58.0,
+      "bonusMax": 66.0
+    },
+    {
+      "id": "lykoi_c",
+      "name": "Lykoi",
+      "rarity": "Common",
+      "bonus": "DamageBoost",
+      "bonusMin": 2.0,
+      "bonusMax": 2.0
+    },
+    {
+      "id": "lykoi_l",
+      "name": "Calypso",
+      "rarity": "Legendary",
+      "bonus": "DamageBoost",
+      "bonusMin": 6.0,
+      "bonusMax": 6.0
+    },
+    {
+      "id": "lykoi_r",
+      "name": "Lykoi",
+      "rarity": "Rare",
+      "bonus": "DamageBoost",
+      "bonusMin": 4.0,
+      "bonusMax": 4.0
+    },
+    {
+      "id": "mainecoon_c",
+      "name": "Maine Coon",
+      "rarity": "Common",
+      "bonus": "TrainingBoost",
+      "bonusMin": 6.0,
+      "bonusMax": 10.0
+    },
+    {
+      "id": "mainecoon_l",
+      "name": "Bangor",
+      "rarity": "Legendary",
+      "bonus": "TrainingNonStopBoost",
+      "bonusMin": 26.0,
+      "bonusMax": 30.0
+    },
+    {
+      "id": "mainecoon_r",
+      "name": "Maine Coon",
+      "rarity": "Rare",
+      "bonus": "TrainingBoost",
+      "bonusMin": 16.0,
+      "bonusMax": 20.0
+    },
+    {
+      "id": "manx_l",
+      "name": "Shakespeare",
+      "rarity": "Legendary",
+      "bonus": "ChildMultiplier",
+      "bonusMin": 75.0,
+      "bonusMax": 75.0
+    },
+    {
+      "id": "manx_l2",
+      "name": "Genius",
+      "rarity": "Legendary",
+      "bonus": "ChildMultiplier",
+      "bonusMin": 25.0,
+      "bonusMax": 25.0
+    },
+    {
+      "id": "manx_l3",
+      "name": "Stubbs",
+      "rarity": "Legendary",
+      "bonus": "ChildMultiplier",
+      "bonusMin": 50.0,
+      "bonusMax": 50.0
+    },
+    {
+      "id": "militarymacaw_l",
+      "name": "Polly",
+      "rarity": "Legendary",
+      "bonus": "DamageBoost",
+      "bonusMin": 6.0,
+      "bonusMax": 6.0
+    },
+    {
+      "id": "militarymacaw_l2",
+      "name": "Butch",
+      "rarity": "Legendary",
+      "bonus": "DamageBoost",
+      "bonusMin": 4.0,
+      "bonusMax": 4.0
+    },
+    {
+      "id": "militarymacaw_r",
+      "name": "Military Macaw",
+      "rarity": "Rare",
+      "bonus": "DamageBoost",
+      "bonusMin": 2.0,
+      "bonusMax": 2.0
+    },
+    {
+      "id": "ocicat_c",
+      "name": "Ocicat",
+      "rarity": "Common",
+      "bonus": "WastelandItemBoost",
+      "bonusMin": 6.0,
+      "bonusMax": 10.0
+    },
+    {
+      "id": "ocicat_l",
+      "name": "Speckle",
+      "rarity": "Legendary",
+      "bonus": "WastelandItemBoost",
+      "bonusMin": 26.0,
+      "bonusMax": 30.0
+    },
+    {
+      "id": "ocicat_r",
+      "name": "Ocicat",
+      "rarity": "Rare",
+      "bonus": "WastelandItemBoost",
+      "bonusMin": 16.0,
+      "bonusMax": 20.0
+    },
+    {
+      "id": "pallascat_c",
+      "name": "Pallass Cat",
+      "rarity": "Common",
+      "bonus": "WastelandJunkBoost",
+      "bonusMin": 25.0,
+      "bonusMax": 33.0
+    },
+    {
+      "id": "pallascat_l",
+      "name": "Cinder",
+      "rarity": "Legendary",
+      "bonus": "WastelandJunkBoost",
+      "bonusMin": 91.0,
+      "bonusMax": 100.0
+    },
+    {
+      "id": "pallascat_r",
+      "name": "Pallass Cat",
+      "rarity": "Rare",
+      "bonus": "WastelandJunkBoost",
+      "bonusMin": 58.0,
+      "bonusMax": 66.0
+    },
+    {
+      "id": "persian_c",
+      "name": "Persian",
+      "rarity": "Common",
+      "bonus": "HappinessBoost",
+      "bonusMin": 25.0,
+      "bonusMax": 33.0
+    },
+    {
+      "id": "persian_l",
+      "name": "Mr. Pebbles",
+      "rarity": "Legendary",
+      "bonus": "HappinessBoost",
+      "bonusMin": 91.0,
+      "bonusMax": 100.0
+    },
+    {
+      "id": "persian_l_2",
+      "name": "Pugsley",
+      "rarity": "None",
+      "bonus": "TrainingNonStopBoost",
+      "bonusMin": 26.0,
+      "bonusMax": 30.0
+    },
+    {
+      "id": "persian_r",
+      "name": "Persian",
+      "rarity": "Rare",
+      "bonus": "HappinessBoost",
+      "bonusMin": 58.0,
+      "bonusMax": 66.0
+    },
+    {
+      "id": "pitbullterrier_l",
+      "name": "Hulk",
+      "rarity": "Legendary",
+      "bonus": "DamageBoost",
+      "bonusMin": 6.0,
+      "bonusMax": 6.0
+    },
+    {
+      "id": "pitbullterrier_l2",
+      "name": "Ranger",
+      "rarity": "Legendary",
+      "bonus": "DamageBoost",
+      "bonusMin": 2.0,
+      "bonusMax": 2.0
+    },
+    {
+      "id": "pitbullterrier_l3",
+      "name": "Titan",
+      "rarity": "Legendary",
+      "bonus": "DamageBoost",
+      "bonusMin": 4.0,
+      "bonusMax": 4.0
+    },
+    {
+      "id": "poodle_c",
+      "name": "Poodle",
+      "rarity": "Common",
+      "bonus": "HappinessBoost",
+      "bonusMin": 25.0,
+      "bonusMax": 33.0
+    },
+    {
+      "id": "poodle_l",
+      "name": "Lord Puffington",
+      "rarity": "Legendary",
+      "bonus": "HappinessBoost",
+      "bonusMin": 91.0,
+      "bonusMax": 100.0
+    },
+    {
+      "id": "poodle_r",
+      "name": "Poodle",
+      "rarity": "Rare",
+      "bonus": "HappinessBoost",
+      "bonusMin": 58.0,
+      "bonusMax": 66.0
+    },
+    {
+      "id": "rottweiler_c",
+      "name": "Rottweiler",
+      "rarity": "Common",
+      "bonus": "AddMaxHP",
+      "bonusMin": 25.0,
+      "bonusMax": 33.0
+    },
+    {
+      "id": "rottweiler_l",
+      "name": "Maizie Rai",
+      "rarity": "Legendary",
+      "bonus": "AddMaxHP",
+      "bonusMin": 91.0,
+      "bonusMax": 100.0
+    },
+    {
+      "id": "rottweiler_r",
+      "name": "Rottweiler",
+      "rarity": "Rare",
+      "bonus": "AddMaxHP",
+      "bonusMin": 58.0,
+      "bonusMax": 66.0
+    },
+    {
+      "id": "scarletmacaw_c",
+      "name": "Pirate Parrot",
+      "rarity": "Common",
+      "bonus": "Resistance",
+      "bonusMin": 20.0,
+      "bonusMax": 24.0
+    },
+    {
+      "id": "scarletmacaw_l",
+      "name": "Wanderer",
+      "rarity": "Legendary",
+      "bonus": "Resistance",
+      "bonusMin": 46.0,
+      "bonusMax": 50.0
+    },
+    {
+      "id": "scarletmacaw_r",
+      "name": "Pirate Parrot",
+      "rarity": "Rare",
+      "bonus": "Resistance",
+      "bonusMin": 36.0,
+      "bonusMax": 40.0
+    },
+    {
+      "id": "scottishfold_c",
+      "name": "Scottish Fold",
+      "rarity": "Common",
+      "bonus": "XPBoost",
+      "bonusMin": 6.0,
+      "bonusMax": 15.0
+    },
+    {
+      "id": "scottishfold_l",
+      "name": "Ginger",
+      "rarity": "Legendary",
+      "bonus": "XPBoost",
+      "bonusMin": 36.0,
+      "bonusMax": 45.0
+    },
+    {
+      "id": "scottishfold_r",
+      "name": "Scottish Fold",
+      "rarity": "Rare",
+      "bonus": "XPBoost",
+      "bonusMin": 21.0,
+      "bonusMax": 30.0
+    },
+    {
+      "id": "siamese_c",
+      "name": "Siamese",
+      "rarity": "Common",
+      "bonus": "RadHealingBoost",
+      "bonusMin": 2.0,
+      "bonusMax": 2.0
+    },
+    {
+      "id": "siamese_l",
+      "name": "Goblet",
+      "rarity": "Legendary",
+      "bonus": "RadHealingBoost",
+      "bonusMin": 4.0,
+      "bonusMax": 4.0
+    },
+    {
+      "id": "siamese_r",
+      "name": "Siamese",
+      "rarity": "Rare",
+      "bonus": "RadHealingBoost",
+      "bonusMin": 3.0,
+      "bonusMax": 3.0
+    },
+    {
+      "id": "somali_l",
+      "name": "Saffron",
+      "rarity": "Legendary",
+      "bonus": "FasterCrafting",
+      "bonusMin": 36.0,
+      "bonusMax": 45.0
+    },
+    {
+      "id": "somali_r",
+      "name": "Somali",
+      "rarity": "Rare",
+      "bonus": "FasterCrafting",
+      "bonusMin": 21.0,
+      "bonusMax": 30.0
+    },
+    {
+      "id": "somali_r2",
+      "name": "Somali",
+      "rarity": "Rare",
+      "bonus": "FasterCrafting",
+      "bonusMin": 6.0,
+      "bonusMax": 15.0
+    },
+    {
+      "id": "sphynx_c",
+      "name": "Sphynx",
+      "rarity": "Common",
+      "bonus": "FasterWastelandReturnSpeed",
+      "bonusMin": 1.25,
+      "bonusMax": 1.25
+    },
+    {
+      "id": "sphynx_l",
+      "name": "Bastet",
+      "rarity": "Legendary",
+      "bonus": "FasterWastelandReturnSpeed",
+      "bonusMin": 4.0,
+      "bonusMax": 4.0
+    },
+    {
+      "id": "sphynx_r",
+      "name": "Sphynx",
+      "rarity": "Rare",
+      "bonus": "FasterWastelandReturnSpeed",
+      "bonusMin": 2.0,
+      "bonusMax": 2.0
+    },
+    {
+      "id": "stbernard_c",
+      "name": "St. Bernard",
+      "rarity": "Common",
+      "bonus": "WastelandJunkBoost",
+      "bonusMin": 25.0,
+      "bonusMax": 33.0
+    },
+    {
+      "id": "stbernard_l",
+      "name": "Barry",
+      "rarity": "Legendary",
+      "bonus": "WastelandJunkBoost",
+      "bonusMin": 91.0,
+      "bonusMax": 100.0
+    },
+    {
+      "id": "stbernard_r",
+      "name": "St. Bernard",
+      "rarity": "Rare",
+      "bonus": "WastelandJunkBoost",
+      "bonusMin": 58.0,
+      "bonusMax": 66.0
+    },
+    {
+      "id": "toyger_c",
+      "name": "Toyger",
+      "rarity": "Common",
+      "bonus": "MysteriousMagnet",
+      "bonusMin": 2.5,
+      "bonusMax": 2.5
+    },
+    {
+      "id": "toyger_l",
+      "name": "Kato",
+      "rarity": "Legendary",
+      "bonus": "MysteriousMagnet",
+      "bonusMin": 7.5,
+      "bonusMax": 7.5
+    },
+    {
+      "id": "toyger_r",
+      "name": "Toyger",
+      "rarity": "Rare",
+      "bonus": "MysteriousMagnet",
+      "bonusMin": 5.0,
+      "bonusMax": 5.0
+    },
+    {
+      "id": "turkishvan_l",
+      "name": "Duchess",
+      "rarity": "Legendary",
+      "bonus": "ChildSpecialBoost",
+      "bonusMin": 3.0,
+      "bonusMax": 3.0
+    },
+    {
+      "id": "turkishvan_l2",
+      "name": "Pumpkin",
+      "rarity": "Legendary",
+      "bonus": "ChildSpecialBoost",
+      "bonusMin": 2.0,
+      "bonusMax": 2.0
+    },
+    {
+      "id": "turkishvan_r",
+      "name": "Turkish Van",
+      "rarity": "Rare",
+      "bonus": "ChildSpecialBoost",
+      "bonusMin": 1.0,
+      "bonusMax": 1.0
+    }
+  ]
+}
