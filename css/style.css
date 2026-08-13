@@ -325,6 +325,26 @@ a.tab:focus {
   margin: 6px 0 0;
 }
 
+.collection-statistics {
+  border-bottom: 1px solid #e1e6eb;
+  margin-bottom: 18px;
+}
+
+.collection-statistics .vault-statistic small {
+  display: block;
+}
+
+.collection-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.collection-actions + .help-block {
+  margin-bottom: 22px;
+}
+
 .bulk_dweller_danger {
   border: 1px solid #ebccd1;
   border-radius: 6px;

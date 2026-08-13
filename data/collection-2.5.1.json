@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "format": "fallout-shelter-survival-guide-catalog",
+  "appVersion": "2.5.1",
+  "source": {
+    "platform": "Android",
+    "packageName": "com.bethsoft.falloutshelter",
+    "gameVersion": "2.5.1",
+    "versionCode": 227,
+    "unityVersion": "6000.0.58f2",
+    "apkSha256": "20a11be7996e4b2018c2c8215c0972f268150bb4a80b00ae999027d9b33a3b69",
+    "obbSha256": "e5645dcc90ea9a7b2aa694f43d804cc6f11b0173a846b7210f182597be2e8129",
+    "gameParametersSha256": "0a01eb79b7b08413f99e6dfbcdee352a9fe8b012969a1408da677a604800d11b",
+    "petsCustomizationDataSha256": "31657d300664e753fc3b4c9661163e805831572ddfc2f0967ce1a356022a4311"
+  },
+  "collections": {
+    "weapons": {
+      "firstCode": 0,
+      "lastCode": 253,
+      "excludedCodes": [25, 179, 243, 244, 245, 246, 247, 248, 249, 250, 251, 252, 253],
+      "expectedCount": 241
+    },
+    "outfits": {
+      "firstCode": 0,
+      "lastCode": 214,
+      "excludedCodes": [100, 143, 155, 159, 160, 161, 162, 163, 164, 165, 166, 167, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 199, 201, 202, 203, 204, 205, 206, 207, 208, 209, 211, 212, 213, 214],
+      "expectedCount": 179
+    },
+    "pets": {
+      "firstCode": 0,
+      "lastCode": 129,
+      "excludedCodes": [126, 129],
+      "expectedCount": 128
+    },
+    "breeds": {
+      "firstCode": 0,
+      "lastCode": 43,
+      "excludedCodes": [],
+      "expectedCount": 44
+    },
+    "dwellers": {
+      "expectedCount": 59
+    }
+  }
+}

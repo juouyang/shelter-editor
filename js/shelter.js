@@ -173,6 +173,9 @@ app.controller('dwellerController', function ($scope, $http) {
   var COLLECTION_DWELLER_CATALOG_URLS = {
     "2.5.1": "data/dwellers-2.5.1.json?v=20260812-1"
   };
+  var COLLECTION_UNLOCK_CATALOG_URLS = {
+    "2.5.1": "data/collection-2.5.1.json?v=20260813-1"
+  };
   var EQUIPMENT_CATALOG_URLS = {
     "1.13.25": "data/equipment-1.13.25.json?v=20260803-1",
     "2.5.1": "data/equipment-2.5.1.json?v=20260812-1"
@@ -213,7 +216,12 @@ app.controller('dwellerController', function ($scope, $http) {
     loading: false,
     ready: false,
     error: '',
-    names: {}
+    names: {},
+    dwellerIds: [],
+    unlockLoading: false,
+    unlockReady: false,
+    unlockError: '',
+    catalog: {}
   };
   $scope.other = {};
   $scope.petOwner = {};
@@ -1220,32 +1228,220 @@ app.controller('dwellerController', function ($scope, $http) {
       return true;
     }).map(function (guideId) {
       var id = String(guideId);
+      var seenId = id.indexOf("NL_") === 0 ? "O" + id.substring(1) : id;
       return {
         id: id,
-        name: $scope.collectionEditor.names[id] || id.replace(/^OL_/, '')
+        name: $scope.collectionEditor.names[seenId] || id.replace(/^[NO]L_/, '')
       };
     }).sort(function (left, right) {
       return left.name.localeCompare(right.name);
     });
   }
 
+  function expandCollectionCodes(definition) {
+    var firstCode = Number(definition && definition.firstCode);
+    var lastCode = Number(definition && definition.lastCode);
+    var excludedCodes = definition && Array.isArray(definition.excludedCodes)
+      ? definition.excludedCodes
+      : [];
+    var excluded = {};
+    var codes = [];
+
+    if (!Number.isInteger(firstCode) || !Number.isInteger(lastCode) || lastCode < firstCode) {
+      throw new Error("The collection catalog contains an invalid code range.");
+    }
+
+    excludedCodes.forEach(function (code) {
+      excluded[String(code)] = true;
+    });
+
+    for (var code = firstCode; code <= lastCode; code++) {
+      if (!excluded[String(code)]) {
+        codes.push(String(code));
+      }
+    }
+
+    if (Number(definition.expectedCount) !== codes.length) {
+      throw new Error("The collection catalog count does not match its code range.");
+    }
+
+    return codes;
+  }
+
+  function compileCollectionCatalog(data) {
+    var definitions = data.collections || {};
+    var catalog = {};
+
+    ["weapons", "outfits", "pets", "breeds"].forEach(function (collectionName) {
+      catalog[collectionName] = expandCollectionCodes(definitions[collectionName]);
+    });
+    catalog.expectedDwellerCount = Number(definitions.dwellers && definitions.dwellers.expectedCount);
+
+    if (!Number.isInteger(catalog.expectedDwellerCount) || catalog.expectedDwellerCount < 1) {
+      throw new Error("The collection catalog contains an invalid Dweller count.");
+    }
+
+    return catalog;
+  }
+
+  function collectionEntryKey(value) {
+    return String(value).replace(/^[NO]/, '');
+  }
+
+  function markCollectionEntriesSeen(entries) {
+    var seen = {};
+    var result = [];
+
+    (Array.isArray(entries) ? entries : []).forEach(function (entry) {
+      var value = String(entry);
+      var seenValue = value.charAt(0) === "N" ? "O" + value.substring(1) : value;
+      if (!seen[seenValue]) {
+        seen[seenValue] = true;
+        result.push(seenValue);
+      }
+    });
+
+    return result;
+  }
+
+  function collectionCatalogEntries(collectionName) {
+    if (collectionName === "dwellers") {
+      return $scope.collectionEditor.dwellerIds.slice();
+    }
+    return ($scope.collectionEditor.catalog[collectionName] || []).map(function (code) {
+      return "O" + code;
+    });
+  }
+
+  function mergeCollectionEntries(existingEntries, catalogEntries) {
+    var merged = markCollectionEntriesSeen(existingEntries);
+    var seenKeys = {};
+
+    merged.forEach(function (entry) {
+      seenKeys[collectionEntryKey(entry)] = true;
+    });
+    catalogEntries.forEach(function (entry) {
+      var key = collectionEntryKey(entry);
+      if (!seenKeys[key]) {
+        seenKeys[key] = true;
+        merged.push(entry);
+      }
+    });
+
+    return merged;
+  }
+
+  function collectionCounts(collectionName) {
+    var survivalGuide = $scope.save && $scope.save.survivalW;
+    var entries = survivalGuide && Array.isArray(survivalGuide[collectionName])
+      ? survivalGuide[collectionName]
+      : [];
+    var catalogEntries = collectionCatalogEntries(collectionName);
+    var validKeys = {};
+    var collectedKeys = {};
+    var newKeys = {};
+
+    catalogEntries.forEach(function (entry) {
+      validKeys[collectionEntryKey(entry)] = true;
+    });
+    entries.forEach(function (entry) {
+      var key = collectionEntryKey(entry);
+      if (!validKeys[key]) {
+        return;
+      }
+      collectedKeys[key] = true;
+      if (String(entry).charAt(0) === "N") {
+        newKeys[key] = true;
+      }
+    });
+
+    return {
+      collected: Object.keys(collectedKeys).length,
+      total: catalogEntries.length,
+      newCount: Object.keys(newKeys).length
+    };
+  }
+
+  $scope.collectionCount = collectionCounts;
+
+  $scope.markAllCollectionItemsSeen = function () {
+    var survivalGuide = $scope.save && $scope.save.survivalW;
+    var collectionNames = ["weapons", "outfits", "pets", "breeds", "dwellers"];
+    var changed = 0;
+
+    if (!survivalGuide) {
+      return;
+    }
+    if (!confirm("Clear every New marker in the loaded Survival Guide? No inventory items will be added.")) {
+      return;
+    }
+
+    collectionNames.forEach(function (collectionName) {
+      var entries = Array.isArray(survivalGuide[collectionName]) ? survivalGuide[collectionName] : [];
+      changed += entries.filter(function (entry) {
+        return String(entry).charAt(0) === "N";
+      }).length;
+      survivalGuide[collectionName] = markCollectionEntriesSeen(entries);
+    });
+
+    refreshSurvivalGuideDwellers();
+    alert("Cleared " + changed + " New marker" + (changed === 1 ? "" : "s") + ".");
+  };
+
+  $scope.unlockAllCollectionEntries = function () {
+    var survivalGuide = $scope.save && $scope.save.survivalW;
+    var collectionNames = ["weapons", "outfits", "pets", "breeds", "dwellers"];
+
+    if (!survivalGuide || !$scope.collectionEditor.ready || !$scope.collectionEditor.unlockReady) {
+      return;
+    }
+    if ($scope.collectionEditor.dwellerIds.length !== $scope.collectionEditor.catalog.expectedDwellerCount) {
+      alert("The Legendary Dweller catalog count does not match the Survival Guide catalog. No changes were made.");
+      return;
+    }
+    if (!confirm(
+      "Unlock the complete Fallout Shelter " + $scope.collectionEditor.saveVersion
+      + " Survival Guide? This changes collection records only; it does not add inventory items, Pets, or Dwellers."
+    )) {
+      return;
+    }
+
+    collectionNames.forEach(function (collectionName) {
+      survivalGuide[collectionName] = mergeCollectionEntries(
+        survivalGuide[collectionName],
+        collectionCatalogEntries(collectionName)
+      );
+    });
+
+    refreshSurvivalGuideDwellers();
+    alert("Unlocked all supported Survival Guide entries for Fallout Shelter "
+      + $scope.collectionEditor.saveVersion + ".");
+  };
+
   function configureCollectionEditor() {
     var version = normalizeAppVersion(_save);
-    var catalogUrl = COLLECTION_DWELLER_CATALOG_URLS[version];
+    var dwellerCatalogUrl = COLLECTION_DWELLER_CATALOG_URLS[version];
+    var unlockCatalogUrl = COLLECTION_UNLOCK_CATALOG_URLS[version];
 
     $scope.collectionEditor.saveVersion = version;
-    $scope.collectionEditor.supported = !!catalogUrl;
+    $scope.collectionEditor.supported = !!dwellerCatalogUrl && !!unlockCatalogUrl;
     $scope.collectionEditor.loading = false;
     $scope.collectionEditor.ready = false;
     $scope.collectionEditor.error = '';
     $scope.collectionEditor.names = {};
+    $scope.collectionEditor.dwellerIds = [];
+    $scope.collectionEditor.unlockLoading = false;
+    $scope.collectionEditor.unlockReady = false;
+    $scope.collectionEditor.unlockError = '';
+    $scope.collectionEditor.catalog = {};
 
-    if (!catalogUrl) {
+    if (!dwellerCatalogUrl || !unlockCatalogUrl) {
       return;
     }
 
     $scope.collectionEditor.loading = true;
-    $http.get(catalogUrl, { cache: true }).then(function (response) {
+    $scope.collectionEditor.unlockLoading = true;
+    $http.get(dwellerCatalogUrl, { cache: true }).then(function (response) {
       if (normalizeAppVersion(_save) !== version) {
         return;
       }
@@ -1267,6 +1463,9 @@ app.controller('dwellerController', function ($scope, $http) {
       }
 
       $scope.collectionEditor.names = names;
+      $scope.collectionEditor.dwellerIds = dwellers.map(function (dweller) {
+        return dweller.id;
+      });
       $scope.collectionEditor.loading = false;
       $scope.collectionEditor.ready = true;
       refreshSurvivalGuideDwellers();
@@ -1281,6 +1480,31 @@ app.controller('dwellerController', function ($scope, $http) {
         ? error.message
         : "The Dweller collection catalog could not be loaded.";
       refreshSurvivalGuideDwellers();
+    });
+
+    $http.get(unlockCatalogUrl, { cache: true }).then(function (response) {
+      if (normalizeAppVersion(_save) !== version) {
+        return;
+      }
+
+      var data = response.data || {};
+      if (String(data.appVersion || '').trim() !== version) {
+        throw new Error("The Survival Guide catalog version does not match the loaded save.");
+      }
+
+      $scope.collectionEditor.catalog = compileCollectionCatalog(data);
+      $scope.collectionEditor.unlockLoading = false;
+      $scope.collectionEditor.unlockReady = true;
+    }).catch(function (error) {
+      if (normalizeAppVersion(_save) !== version) {
+        return;
+      }
+
+      $scope.collectionEditor.unlockLoading = false;
+      $scope.collectionEditor.unlockReady = false;
+      $scope.collectionEditor.unlockError = error && error.message
+        ? error.message
+        : "The Survival Guide catalog could not be loaded.";
     });
   }
 

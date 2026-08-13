@@ -27,7 +27,7 @@ Copyright (C) 2017
   <meta name="description"
     content="Web app to edit Fallout Shelter save games. You can change dwellers SPECIAL, other stats and vault's resources.">
   <link rel="stylesheet" href="css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/style.css?v=20260804-5">
+  <link rel="stylesheet" href="css/style.css?v=20260813-1">
 </head>
 
 <body ng-app="shelter" ng-controller="dwellerController">
@@ -899,13 +899,62 @@ Copyright (C) 2017
 
     <div class="row box" ng-show="section == 'collection'">
       <div class="col-sm-12 vault_info">
-        <h3>Survival Guide — Legendary Dwellers</h3>
-        <div class="alert alert-info" ng-show="collectionEditor.loading">
-          Loading Fallout Shelter {{ collectionEditor.saveVersion }} Dweller names…
+        <h3>Survival Guide</h3>
+        <div class="alert alert-info" ng-show="collectionEditor.loading || collectionEditor.unlockLoading">
+          Loading the Fallout Shelter {{ collectionEditor.saveVersion }} collection catalog…
         </div>
-        <div class="alert alert-warning" ng-show="collectionEditor.error">
-          Exact collection names could not be loaded: {{ collectionEditor.error }}
+        <div class="alert alert-warning" ng-show="!collectionEditor.supported">
+          Full collection unlock is read-only for Fallout Shelter {{ collectionEditor.saveVersion || 'unknown' }}.
+          An exact, version-matched catalog is required before this editor will modify collection entries.
         </div>
+        <div class="alert alert-warning" ng-show="collectionEditor.error || collectionEditor.unlockError">
+          Exact collection data could not be loaded:
+          {{ collectionEditor.error || collectionEditor.unlockError }}
+        </div>
+
+        <div class="row collection-statistics" ng-show="collectionEditor.ready && collectionEditor.unlockReady">
+          <div class="col-xs-6 col-sm-3 vault-statistic">
+            <span>Weapons</span>
+            <strong>{{ collectionCount('weapons').collected }} / {{ collectionCount('weapons').total }}</strong>
+            <small class="text-muted">{{ collectionCount('weapons').newCount }} New</small>
+          </div>
+          <div class="col-xs-6 col-sm-3 vault-statistic">
+            <span>Outfits</span>
+            <strong>{{ collectionCount('outfits').collected }} / {{ collectionCount('outfits').total }}</strong>
+            <small class="text-muted">{{ collectionCount('outfits').newCount }} New</small>
+          </div>
+          <div class="col-xs-6 col-sm-3 vault-statistic">
+            <span>Pets</span>
+            <strong>{{ collectionCount('pets').collected }} / {{ collectionCount('pets').total }}</strong>
+            <small class="text-muted">{{ collectionCount('pets').newCount }} Pet New</small>
+            <small class="text-muted">
+              Breeds {{ collectionCount('breeds').collected }} / {{ collectionCount('breeds').total }}
+              · {{ collectionCount('breeds').newCount }} New
+            </small>
+          </div>
+          <div class="col-xs-6 col-sm-3 vault-statistic">
+            <span>Legendary Dwellers</span>
+            <strong>{{ collectionCount('dwellers').collected }} / {{ collectionCount('dwellers').total }}</strong>
+            <small class="text-muted">{{ collectionCount('dwellers').newCount }} New</small>
+          </div>
+        </div>
+
+        <div class="collection-actions">
+          <button type="button" class="btn btn-primary" ng-click="markAllCollectionItemsSeen()">
+            Mark All Collection Items as Seen
+          </button>
+          <button type="button" class="btn btn-danger" ng-click="unlockAllCollectionEntries()"
+            ng-disabled="!collectionEditor.ready || !collectionEditor.unlockReady">
+            Unlock All {{ collectionEditor.saveVersion }} Collection Entries
+          </button>
+        </div>
+        <p class="help-block">
+          These actions only edit Survival Guide records. They do not add inventory items, Pets, or Dwellers.
+          <strong>Breed</strong> is the game's internal Pet breed/appearance index; full Pet unlock updates both
+          <code>survivalW.pets</code> and <code>survivalW.breeds</code>.
+        </p>
+
+        <h4>Registered Legendary Dwellers</h4>
         <p class="text-muted">
           {{ survivalGuideDwellers.length }} Legendary Dwellers are registered in this loaded save.
           This list is read directly from <code>survivalW.dwellers</code>.
@@ -992,7 +1041,7 @@ Copyright (C) 2017
   <script src="js/json2.min.js"></script>
   <script src="js/aes.js"></script>
   <script src="js/FileSaver.js"></script>
-  <script src="js/shelter.js?v=20260812-2"></script>
+  <script src="js/shelter.js?v=20260813-1"></script>
   <script src="js/jscolor.js"></script>
 </body>
 
