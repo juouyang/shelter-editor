@@ -171,9 +171,11 @@ app.controller('dwellerController', function ($scope, $http) {
     "2.5.1": "data/pets-2.5.1.json?v=20260812-1"
   };
   var COLLECTION_DWELLER_CATALOG_URLS = {
+    "1.13.25": "data/dwellers-1.13.25.json?v=20260814-1",
     "2.5.1": "data/dwellers-2.5.1.json?v=20260812-1"
   };
   var COLLECTION_UNLOCK_CATALOG_URLS = {
+    "1.13.25": "data/collection-1.13.25.json?v=20260814-1",
     "2.5.1": "data/collection-2.5.1.json?v=20260813-1"
   };
   var EQUIPMENT_CATALOG_URLS = {

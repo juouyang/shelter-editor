@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "format": "fallout-shelter-dweller-collection-catalog",
+  "appVersion": "1.13.25",
+  "source": {
+    "platform": "iOS",
+    "gameVersion": "1.13.25",
+    "build": 910858,
+    "note": "Version-locked Legendary Dweller Survival Guide catalog cross-checked against the 1.13.25 save and classic game catalog."
+  },
+  "dwellerCount": 23,
+  "dwellers": [
+    { "id": "OL_Abraham Washington", "name": "Abraham Washington" },
+    { "id": "OL_AlistairTenpenny", "name": "Allistair Tenpenny" },
+    { "id": "OL_Amata", "name": "Amata" },
+    { "id": "OL_Bittercup", "name": "Bittercup" },
+    { "id": "OL_Butch", "name": "Butch" },
+    { "id": "OL_ColonelAutumn", "name": "Colonel Autumn" },
+    { "id": "OL_ConfessorCromwell", "name": "Confessor Cromwell" },
+    { "id": "OL_Dr. Li", "name": "Dr. Li" },
+    { "id": "OL_ElderLyons", "name": "Elder Lyons" },
+    { "id": "OL_Eulogy Jones", "name": "Eulogy Jones" },
+    { "id": "OL_FarHarbor", "name": "Old Longfellow" },
+    { "id": "OL_Harkness", "name": "Harkness" },
+    { "id": "OL_James", "name": "James" },
+    { "id": "OL_Jericho", "name": "Jericho" },
+    { "id": "OL_Lucas Simms", "name": "Lucas Simms" },
+    { "id": "OL_Moira Brown", "name": "Moira Brown" },
+    { "id": "OL_Mr. Burque", "name": "Mr. Burke" },
+    { "id": "OL_Piper", "name": "Piper" },
+    { "id": "OL_Preston", "name": "Preston Garvey" },
+    { "id": "OL_Sarah Lyons", "name": "Sarah Lyons" },
+    { "id": "OL_Scribe Rothchild", "name": "Scribe Rothchild" },
+    { "id": "OL_Star Paladin Cross", "name": "Star Paladin Cross" },
+    { "id": "OL_ThreeDog", "name": "Three Dog" }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "format": "fallout-shelter-survival-guide-catalog",
+  "appVersion": "1.13.25",
+  "source": {
+    "platform": "iOS",
+    "gameVersion": "1.13.25",
+    "build": 910858,
+    "unityVersion": "2017.4.16f1",
+    "petAssetSha256": "dbed811525d2cf4fc370921816a64e9c323667dc8489164a249afab1837540f0",
+    "note": "Version-locked classic Survival Guide catalog. Pet codes come from the 1.13.25 PetsCustomizationData asset; equipment exclusions and totals were cross-checked against the classic catalog and a completed 1.13.25 Survival Guide save."
+  },
+  "collections": {
+    "weapons": {
+      "firstCode": 0,
+      "lastCode": 186,
+      "excludedCodes": [12, 25, 38, 112, 179],
+      "expectedCount": 182
+    },
+    "outfits": {
+      "firstCode": 0,
+      "lastCode": 163,
+      "excludedCodes": [5, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 28, 29, 40, 44, 45, 46, 58, 60, 62, 88, 99, 113, 114, 115, 117, 118, 143, 155, 159, 160, 161, 162, 163],
+      "expectedCount": 130
+    },
+    "pets": {
+      "firstCode": 0,
+      "lastCode": 125,
+      "excludedCodes": [0, 3, 7, 8, 12, 14, 16, 19, 25, 28, 32, 33, 36, 41, 44, 46, 49, 55, 57, 60, 62, 68, 71, 74, 95, 98, 101, 122],
+      "expectedCount": 98
+    },
+    "breeds": {
+      "firstCode": 0,
+      "lastCode": 41,
+      "excludedCodes": [],
+      "expectedCount": 42
+    },
+    "dwellers": {
+      "expectedCount": 23
+    }
+  }
+}
